@@ -1,11 +1,31 @@
-import Image from "next/image";
+import Features from "./components/features";
+import Products from "./components/Products";
+import Testimonials from "./components/Testimonials";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import HeroSlider from "./components/HeroSlider";
+import CompanyIntroSection from "./components/CompanyIntroSection";
+import ExportSection from "./components/ExportSection";
+
+export const metadata = {
+  title: "DispoPowell — Fresh Purple & Pink Homepage",
+  description:
+    "Modern, reimagined homepage built with Next.js and TailwindCSS",
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-      
+    <div className="min-h-screen flex flex-col">
+      <main className="flex-grow">
+        <HeroSlider />
+        <CompanyIntroSection />
+        <Features />
+        <Products />
+        <ExportSection />
+        <Testimonials />
+        <Contact />
       </main>
+      <Footer />
     </div>
   );
 }
