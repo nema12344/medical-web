@@ -1,7 +1,7 @@
 'use client';
-
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link'
 import {
   FiSearch,
   FiDownload,
@@ -53,7 +53,7 @@ export default function Navbar() {
             </a>
 
             <div className="flex items-center space-x-1 cursor-pointer text-textPrimary hover:text-accent transition">
-              <span>Services</span>
+              <Link href='/ReactTable'>Services</Link>
               <FiChevronDown className="w-4 h-4" />
             </div>
 

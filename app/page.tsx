@@ -1,11 +1,12 @@
 import Features from "./components/features";
 import Products from "./components/Products";
+import ProductListing from "./components/ProductListing";
 import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import HeroSlider from "./components/HeroSlider";
 import CompanyIntroSection from "./components/CompanyIntroSection";
 import ExportSection from "./components/ExportSection";
+import HeroAbout from "./components/HeroAbout";
 
 export const metadata = {
   title: "DispoPowell — Fresh Purple & Pink Homepage",
@@ -23,7 +24,8 @@ export default function Home() {
         <Products />
         <ExportSection />
         <Testimonials />
-        <Contact />
+          <ProductListing />
+          <HeroAbout />
       </main>
       <Footer />
     </div>

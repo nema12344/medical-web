@@ -1,0 +1,23 @@
+.productSlider :global(.swiper-pagination) {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.productSlider :global(.swiper-pagination-bullet) {
+  width: 48px;
+  height: 4px;
+  border-radius: 2px;
+  background: #d1d5db;
+  opacity: 1;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.productSlider :global(.swiper-pagination-bullet-active) {
+  background: #D0252C;
+  transform: scale(1.1);
+}
+
+.productSlider :global(.swiper-pagination-bullet:nth-child(n+3)) {
+  display: none;
+}

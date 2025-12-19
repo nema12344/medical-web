@@ -1,5 +1,6 @@
 'use client';
 import { FiCheckCircle, FiZap } from 'react-icons/fi';
+import Image from 'next/image';
 
 export default function CompanyIntroSection() {
   const certifications = [
@@ -19,7 +20,7 @@ export default function CompanyIntroSection() {
             <div className="relative">
               {/* Main Featured Image */}
               <img 
-                src="/company-intro.jpg" 
+                src="images/DISPOSABLE-SURGICAL-ITEMS.png" 
                 alt="Medical Manufacturing Facility"
                 className="w-full h-96 lg:h-[500px] object-cover rounded-xl shadow-lg"
               />
@@ -43,12 +44,12 @@ export default function CompanyIntroSection() {
           <div className="animate-fade-in-right">
             
             {/* Highlight Badge */}
-            <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6" style={{backgroundColor: 'rgba(208, 37, 44, 0.1)', color: '#D0252C'}}>
+            <div className="inline-flex items-center px-3 py-1 rounded-sm text-sm font-medium mb-6" style={{backgroundColor: 'rgba(208, 37, 44, 0.1)', color: '#D0252C'}}>
               India's Leading Surgical Disposable Manufacturer
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-6" style={{color: '#1A1A1A'}}>
+            <h2 className="text-2xl lg:text-3xl font-bold leading-tight mb-6" style={{color: '#1A1A1A'}}>
               We Are Pioneers In The World Of IV Infusion Set And Surgical Products Manufacturing!
             </h2>
 

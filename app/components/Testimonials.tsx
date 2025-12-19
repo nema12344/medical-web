@@ -78,14 +78,14 @@ export default function Testimonials() {
                     
                     {/* Testimonial Content */}
                     <div className="flex-1">
-                      <blockquote className="text-3xl lg:text-4xl font-light italic text-white leading-relaxed mb-8">
+                      <blockquote className="text-2xl lg:text-3xl font-light italic text-white leading-relaxed mb-8">
                         "{testimonial.text}"
                       </blockquote>
                       <div>
-                        <div className="text-xl font-bold text-white mb-1">
+                        <div className="text-lg font-bold text-white mb-1">
                           {testimonial.name}
                         </div>
-                        <div className="text-lg text-gray-400">
+                        <div className="text-md text-gray-400">
                           {testimonial.country}
                         </div>
                       </div>
@@ -100,7 +100,7 @@ export default function Testimonials() {
                       {/* Circular Badge */}
                       <div className="flex-shrink-0">
                         <div className="w-16 h-16 rounded-full border-4 flex items-center justify-center" style={{borderColor: '#D0252C'}}>
-                          <div className="w-12 h-12 rounded-full border-2 flex items-center justify-center text-white font-bold text-xl" style={{borderColor: '#D0252C'}}>
+                          <div className="w-12 h-12 rounded-full border-2 flex items-center justify-center text-white font-bold text-lg" style={{borderColor: '#D0252C'}}>
                             {testimonials[(index + 1) % testimonials.length].id}
                           </div>
                         </div>
@@ -108,7 +108,7 @@ export default function Testimonials() {
                       
                       {/* Testimonial Content */}
                       <div className="flex-1">
-                        <blockquote className="text-3xl lg:text-4xl font-light italic text-white leading-relaxed mb-8">
+                        <blockquote className="text-xl lg:text-2xl font-light italic text-white leading-relaxed mb-8">
                           "{testimonials[(index + 1) % testimonials.length].text}"
                         </blockquote>
                         <div>

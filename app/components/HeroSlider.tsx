@@ -1,11 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight, FiTarget } from 'react-icons/fi';
-
+import Image from 'next/image';
 const slides = [
   {
     id: 1,
-    bgImage: '/hero-bg-1.jpg',
+    bgImage: '/images/hero-bg-1.png',
     title: 'Advanced Medical\nSolutions for\nHealthcare Excellence',
     description: 'Leading the industry with innovative surgical instruments and medical devices designed for optimal patient outcomes and precision healthcare delivery.',
     missionTitle: 'Our Mission',
@@ -13,19 +13,11 @@ const slides = [
   },
   {
     id: 2,
-    bgImage: '/hero-bg-2.jpg',
+    bgImage: '/images/hero-bg-2.png',
     title: 'Surgical Innovation\nCutting-Edge Technology\nfor Modern Healthcare',
     description: 'Delivering state-of-the-art surgical solutions with uncompromising quality and reliability for medical professionals worldwide.',
     missionTitle: 'Our Vision',
     missionText: 'To be the global leader in medical device innovation, setting new standards in healthcare technology.'
-  },
-  {
-    id: 3,
-    bgImage: '/hero-bg-3.jpg',
-    title: 'Quality Assurance\nExcellence in Every\nMedical Device',
-    description: 'Committed to the highest standards of quality control and precision manufacturing for critical healthcare applications.',
-    missionTitle: 'Our Values',
-    missionText: 'Integrity, innovation, and excellence drive our commitment to advancing healthcare through superior medical devices.'
   }
 ];
 
@@ -70,17 +62,17 @@ export default function HeroSlider() {
 
           {/* Content */}
           <div className="relative z-10 h-full flex items-center">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               
               {/* Left Text Section */}
               <div className="text-white">
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 whitespace-pre-line">
+                <h1 className="text-3xl lg:text-4xl font-bold leading-tight mb-6 whitespace-pre-line">
                   {slide.title}
                 </h1>
                 <p className="text-lg lg:text-xl text-gray-200 mb-8 leading-relaxed">
                   {slide.description}
                 </p>
-                <button className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-lg hover:shadow-lg transition-shadow flex items-center gap-2">
+                <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-lg hover:shadow-lg transition-shadow flex items-center gap-2">
                   <span>Our Products</span>
                   <FiChevronRight className="w-5 h-5" />
                 </button>
@@ -88,12 +80,12 @@ export default function HeroSlider() {
 
               {/* Right Mission Card */}
               <div className="bg-white rounded-lg shadow-xl p-8 text-center relative">
-                {/* Green bar at top */}
-                <div className="w-15 h-1 bg-green-600 mx-auto mb-6"></div>
+                {/* Red bar at top */}
+                <div className="w-15 h-1 bg-red-600 mx-auto mb-6"></div>
                 
                 {/* Icon */}
                 <div className="mb-6">
-                  <FiTarget className="w-12 h-12 text-green-600 mx-auto" />
+                  <FiTarget className="w-12 h-12 text-red-600 mx-auto" />
                 </div>
                 
                 {/* Title */}
@@ -106,8 +98,8 @@ export default function HeroSlider() {
                   {slide.missionText}
                 </p>
                 
-                {/* Green round button */}
-                <button className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto transition-colors">
+                {/* Red round button */}
+                <button className="bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto transition-colors">
                   <FiChevronRight className="w-5 h-5" />
                 </button>
               </div>
