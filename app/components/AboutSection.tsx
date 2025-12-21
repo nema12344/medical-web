@@ -1,4 +1,4 @@
-import { FiArrowRight, FiAward, FiTool, FiGlobe, FiInfo } from 'react-icons/fi';
+import  { FiArrowRight, FiAward, FiTool, FiGlobe, FiInfo } from 'react-icons/fi';
 
 export default function AboutSection() {
   const featureCards = [
