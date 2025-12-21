@@ -75,11 +75,15 @@ const ReactTable: React.FC = () => {
   };
 
   return (
-    <div className="bg-white" onClick={(e) => {
-      if (!e.target.closest('.relative')) {
-        setShowFilters(false);
-      }
-    }}>
+    <div
+      className="bg-white"
+      onClick={(e) => {
+        // Only close filters when the click is outside elements marked as relative
+        if (e.target instanceof HTMLElement && !e.target.closest('.relative')) {
+          setShowFilters(false);
+        }
+      }}
+    >
       {/* HubSpot Action Bar */}
       <div className="p-4" style={{backgroundColor: '#f5f8fa'}}>
         <div className="bg-white rounded-lg px-4 py-3 shadow-sm border border-gray-200">
