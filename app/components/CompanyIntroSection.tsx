@@ -19,9 +19,11 @@ export default function CompanyIntroSection() {
           <div className="relative animate-fade-in-left">
             <div className="relative">
               {/* Main Featured Image */}
-              <img 
-                src="images/DISPOSABLE-SURGICAL-ITEMS.png" 
+              <Image 
+                src="/images/DISPOSABLE-SURGICAL-ITEMS.png" 
                 alt="Medical Manufacturing Facility"
+                width={500}
+                height={400}
                 className="w-full h-96 lg:h-[500px] object-cover rounded-xl shadow-lg"
               />
               

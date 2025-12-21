@@ -5,49 +5,50 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from './ProductListing.module.css';
+import Image from 'next/image';
 
 const ProductListing: React.FC = () => {
   const products = [
     {
       id: 1,
-      name: 'Digital Stethoscope',
-      description: 'Manfacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
-      image: '/api/placeholder/280/200',
-      category: 'Diagnostic Equipment'
+      name: 'IV Infusion Set Premium',
+      description: 'Manufacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
+      image: '/images/Iv-Infusion-set-Premium.png',
+      category: 'IV Equipment'
     },
     {
       id: 2,
-      name: 'Blood Pressure Monitor',
-      description: 'Manfacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
-      image: '/api/placeholder/280/200',
-      category: 'Monitoring Devices'
+      name: 'Surgical Disposables',
+      description: 'High-quality surgical disposable items for safe and effective medical procedures.',
+      image: '/images/Iv-Infusion-set-Premium.png',
+      category: 'Surgical Items'
     },
     {
       id: 3,
-      name: 'Pulse Oximeter',
-      description: 'Manfacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
-      image: '/api/placeholder/280/200',
-      category: 'Vital Signs'
+      name: 'Medical Syringes',
+      description: 'Sterile disposable syringes for various medical applications and treatments.',
+      image: '/images/Iv-Infusion-set-Premium.png',
+      category: 'Injection Equipment'
     },
     {
       id: 4,
-      name: 'Thermometer',
-      description: 'Manfacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
-      image: '/api/placeholder/280/200',
-      category: 'Temperature Monitoring'
+      name: 'Blood Collection Set',
+      description: 'Safe and reliable blood collection systems for diagnostic procedures.',
+      image: '/images/Iv-Infusion-set-Premium.png',
+      category: 'Diagnostic Equipment'
     },
     {
       id: 5,
-      name: 'ECG Machine',
-      description: 'Manfacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
-      image: '/api/placeholder/280/200',
-      category: 'Cardiac Monitoring'
+      name: 'Catheter Systems',
+      description: 'Advanced catheter solutions for various medical interventions.',
+      image: '/images/Iv-Infusion-set-Premium.png',
+      category: 'Medical Devices'
     },
     {
       id: 6,
-      name: 'Nebulizer',
-      description: 'Manfacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
-      image: '/api/placeholder/280/200',
+      name: 'Oxygen Masks',
+      description: 'High-quality oxygen delivery masks for respiratory support.',
+      image: '/images/Iv-Infusion-set-Premium.png',
       category: 'Respiratory Care'
     }
   ];
@@ -90,13 +91,23 @@ const ProductListing: React.FC = () => {
           {products.map((product) => (
             <SwiperSlide key={product.id}>
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-                <div className="relative overflow-hidden rounded-t-2xl bg-gray-100">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                    <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center">
-                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      </svg>
-                    </div>
+                <div className="relative overflow-hidden rounded-t-2xl bg-white">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={600}
+                    height={500}
+                    className="w-full h-80 object-contain p-6"
+                  />
+                  {/* Website Logo Overlay */}
+                  <div className="absolute top-9 right-8 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-md">
+                    <Image
+                      src="/logo.png"
+                      alt="DispoPowell Logo"
+                      width={60}
+                      height={20}
+                      className="object-contain"
+                    />
                   </div>
                 </div>
                 

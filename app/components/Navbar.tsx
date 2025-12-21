@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import {
@@ -9,130 +9,153 @@ import {
   FiMenu,
   FiX,
   FiArrowRight,
+  FiPhone,
+  FiMail,
 } from 'react-icons/fi';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-white border-borderLight shadow-sm">
-      <div className="max-w-8xl mx-auto px-8">
-        <div className="flex justify-between items-center h-20">
+    <>
+      {/* Main Navbar */}
+      <nav className={`fixed top-0 left-0 right-0 bg-white shadow-lg z-50 transition-all duration-300 ${isScrolled ? 'shadow-xl backdrop-blur-sm bg-white/95' : ''}`}>
+        <div className="max-w-8xl mx-auto px-12">
+          <div className="flex justify-between items-center h-20">
 
-          {/* LOGO */}
-          <div className="flex items-center">
-            <Image 
-              src="/logo.png" 
-              alt="TNX Surgical Logo" 
-              width={140}
-              height={50}
-              className="object-contain"
-            />
+            {/* LOGO */}
+            <div className="flex items-center">
+             <Image
+                src="/logo.png"
+                alt="Dispopwell Logo"
+                width={110}
+                height={10}
+                className="object-contain"
+              />
+            </div>
+
+            {/* DESKTOP MENU */}
+            <div className="hidden lg:flex items-center space-x-8">
+              <Link href="/" className="relative group py-2">
+                <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Home</span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+              </Link>
+
+              <div className="relative group"
+                    onMouseEnter={() => setActiveDropdown('company')}
+                    onMouseLeave={() => setActiveDropdown(null)}>
+               <div className="flex items-center space-x-1 cursor-pointer py-2">
+                  <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Company</span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+                  {/* <FiChevronDown className="w-4 h-4 text-gray-500 group-hover:rotate-180 transition-transform" /> */}
+                </div>
+                {/* {activeDropdown === 'company' && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border py-2">
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">About Us</a>
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Our Mission</a>
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Quality Assurance</a>
+                  </div>
+                )} */}
+              </div>
+
+              <div className="relative group"
+                   onMouseEnter={() => setActiveDropdown('products')}
+                   onMouseLeave={() => setActiveDropdown(null)}>
+                <div className="flex items-center space-x-1 cursor-pointer py-2">
+                  <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Products</span>
+               <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+                  {/* <FiChevronDown className="w-4 h-4 text-gray-500 group-hover:rotate-180 transition-transform" /> */}
+                </div>
+                {/* {activeDropdown === 'products' && (
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border py-2">
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">IV Infusion Sets</a>
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Surgical Disposables</a>
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Medical Devices</a>
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Diagnostic Equipment</a>
+                  </div>
+                )} */}
+              </div>
+
+              <Link href="#" className="relative group py-2">
+                <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Third Party/OEM</span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+              </Link>
+
+              <Link href='/ReactTable' className="relative group py-2">
+                <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Services</span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+              </Link>
+
+              <Link href="#" className="relative group py-2">
+                <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Contact</span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+              </Link>
+            </div>
+
+            {/* RIGHT SIDE BUTTONS */}
+            <div className="flex items-center space-x-4">
+              {/* Search Button */}
+              <button className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-colors">
+                <FiSearch className="w-5 h-5" />
+              </button>
+
+              {/* REQUEST QUOTE BUTTON */}
+              <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
+                <span>Request Quote</span>
+                <FiArrowRight className="w-4 h-4" />
+              </button>
+
+              {/* MOBILE MENU BUTTON */}
+              <button
+                className="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-700"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? (
+                  <FiX className="w-6 h-6" />
+                ) : (
+                  <FiMenu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
 
-          {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center space-x-8">
-
-            <div className="flex items-center space-x-1 cursor-pointer text-textPrimary hover:text-accent transition">
-              <span>Home</span>
-              <FiChevronDown className="w-4 h-4" />
+          {/* MOBILE MENU */}
+          {isMenuOpen && (
+            <div className="lg:hidden py-6 border-t border-gray-200 bg-white">
+              <div className="flex flex-col space-y-4">
+                <Link href="/" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Home</Link>
+                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Company</Link>
+                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Products</Link>
+                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Third Party/OEM</Link>
+                <Link href='/ReactTable' className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Services</Link>
+                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contact</Link>
+                
+                <div className="pt-4 border-t border-gray-200">
+                  <div className="flex items-center space-x-2 text-gray-600 mb-2">
+                    <FiPhone className="w-4 h-4" />
+                    <span className="text-sm">+1 (555) 123-4567</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <FiMail className="w-4 h-4" />
+                    <span className="text-sm">info@dispopwell.com</span>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="flex items-center space-x-1 cursor-pointer text-textPrimary hover:text-accent transition">
-              <span>Company</span>
-              <FiChevronDown className="w-4 h-4" />
-            </div>
-
-            <div className="flex items-center space-x-1 cursor-pointer text-textPrimary hover:text-accent transition">
-              <span>Products</span>
-              <FiChevronDown className="w-4 h-4" />
-            </div>
-
-            <a className="text-textPrimary hover:text-accent transition" href="#">
-              Third Party/OEM
-            </a>
-
-            <div className="flex items-center space-x-1 cursor-pointer text-textPrimary hover:text-accent transition">
-              <Link href='/ReactTable'>Services</Link>
-              <FiChevronDown className="w-4 h-4" />
-            </div>
-
-            <a className="text-textPrimary hover:text-accent transition" href="#">
-              Contact Us
-            </a>
-          </div>
-
-          {/* RIGHT SIDE BUTTONS */}
-          <div className="flex items-center space-x-4">
-
-            {/* Search & Download Icons */}
-            <div className="hidden lg:flex items-center space-x-4">
-              <FiSearch className="w-5 h-5 text-textPrimary cursor-pointer hover:text-accent transition" />
-              <FiDownload className="w-5 h-5 text-textPrimary cursor-pointer hover:text-accent transition" />
-            </div>
-
-            {/* REQUEST QUOTE BUTTON */}
-            <button className="bg-gradient-to-r from-accent-light to-accent text-white px-6 py-3 rounded-md flex items-center space-x-2 hover:shadow-redGlow transition-shadow">
-              <span>Request A Quote</span>
-              <FiArrowRight className="w-4 h-4" />
-            </button>
-
-            {/* MOBILE MENU BUTTON */}
-            <button
-              className="lg:hidden text-textPrimary"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? (
-                <FiX className="w-6 h-6" />
-              ) : (
-                <FiMenu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
+          )}
         </div>
-
-        {/* MOBILE MENU */}
-        {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-borderLight">
-            <div className="flex flex-col space-y-4 text-textPrimary">
-
-              <div className="flex items-center space-x-1 hover:text-accent transition">
-                <span>Home</span>
-                <FiChevronDown className="w-4 h-4" />
-              </div>
-
-              <div className="flex items-center space-x-1 hover:text-accent transition">
-                <span>Company</span>
-                <FiChevronDown className="w-4 h-4" />
-              </div>
-
-              <div className="flex items-center space-x-1 hover:text-accent transition">
-                <span>Products</span>
-                <FiChevronDown className="w-4 h-4" />
-              </div>
-
-              <a className="hover:text-accent transition" href="#">
-                Third Party/OEM
-              </a>
-
-              <div className="flex items-center space-x-1 hover:text-accent transition">
-                <span>Services</span>
-                <FiChevronDown className="w-4 h-4" />
-              </div>
-
-              <a className="hover:text-accent transition" href="#">
-                Contact Us
-              </a>
-
-              <div className="flex items-center space-x-4 pt-4 border-t border-borderLight">
-                <FiSearch className="w-5 h-5 text-textPrimary" />
-                <FiDownload className="w-5 h-5 text-textPrimary" />
-              </div>
-
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
