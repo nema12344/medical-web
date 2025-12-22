@@ -122,8 +122,8 @@ const ProductListing: React.FC = () => {
                     {product.name}
                   </h3>
                   
-                  <div className="">
-                    <span className="text-lg font-bold text-gray-600">{product.description}</span>
+                  <div className="mb-6 flex flex-col gap-4">
+                    <span className="text-sm font-bold text-gray-600 line-clamp-2">{product.description}</span>
                     <button className="bg-white border border-gray-300 rounded-lg h-12 w-80 px-6 flex items-center justify-between text-slate-900 group-hover:bg-[#D0252C] group-hover:text-white transition-all duration-300">
                       <span>View Details</span>
                       <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

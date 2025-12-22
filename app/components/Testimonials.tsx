@@ -21,12 +21,6 @@ export default function Testimonials() {
       text: "Their export quality and timely delivery have made them our preferred partner for medical supplies across our hospital network.",
       name: "Dr. Maria Santos",
       country: "Brazil"
-    },
-    {
-      id: 4,
-      text: "Exceptional customer service and product quality. Their medical devices meet all international standards and exceed our expectations.",
-      name: "Dr. Ahmed Hassan",
-      country: "UAE"
     }
   ];
 
