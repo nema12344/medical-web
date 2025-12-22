@@ -31,7 +31,7 @@ export default function Navbar() {
     <>
       {/* Main Navbar */}
       <nav className={`fixed top-0 left-0 right-0 bg-white shadow-lg z-50 transition-all duration-300 ${isScrolled ? 'shadow-xl backdrop-blur-sm bg-white/95' : ''}`}>
-        <div className="max-w-8xl mx-auto px-12">
+        <div className="max-w-8xl mx-auto px-15">
           <div className="flex justify-between items-center h-20">
 
             {/* LOGO */}
