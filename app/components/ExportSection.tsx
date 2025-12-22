@@ -1,112 +1,113 @@
 'use client';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiGlobe, FiTrendingUp, FiUsers, FiAward } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
 
 export default function ExportSection() {
+  const [activeMarker, setActiveMarker] = useState(0);
+  const [countUp, setCountUp] = useState({ countries: 0, partners: 0, years: 0, quality: 0 });
+
   const stats = [
-    {
-      number: "40+",
-      title: "Countries Served",
-      description: "Global reach across multiple continents with established distribution networks"
-    },
-    {
-      number: "200+",
-      title: "Export Partners",
-      description: "Trusted relationships with healthcare distributors and medical institutions worldwide"
-    }
+    { number: 40, suffix: "+", title: "Countries Served", icon: FiGlobe, color: "from-red-400 to-red-600" },
+    { number: 200, suffix: "+", title: "Export Partners", icon: FiUsers, color: "from-red-500 to-red-700" },
+    { number: 15, suffix: "+", title: "Years Experience", icon: FiTrendingUp, color: "from-red-400 to-red-600" },
+    { number: 99.8, suffix: "%", title: "Quality Rate", icon: FiAward, color: "from-red-500 to-red-700" }
   ];
 
+  const markers = [
+    { id: 0, x: "25%", y: "30%", region: "North America", clients: "45+" },
+    { id: 1, x: "30%", y: "65%", region: "South America", clients: "28+" },
+    { id: 2, x: "50%", y: "25%", region: "Europe", clients: "67+" },
+    { id: 3, x: "55%", y: "55%", region: "Africa", clients: "32+" },
+    { id: 4, x: "75%", y: "35%", region: "Asia Pacific", clients: "89+" }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveMarker((prev) => (prev + 1) % markers.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCountUp({
+        countries: 40,
+        partners: 200,
+        years: 15,
+        quality: 99.8
+      });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-12">
-        
-        {/* Top Two-Column Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
-          
-          {/* Left Column */}
-          <div>
-            <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6" style={{backgroundColor: 'rgba(208, 37, 44, 0.1)', color: '#D0252C'}}>
-              Global Export Excellence
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight" style={{color: '#1A1A1A'}}>
-              Delivering Quality<br />
-              Medical Solutions<br />
-              Across the Globe
-            </h2>
-          </div>
-
-          {/* Right Column */}
-          <div className="flex flex-col justify-center">
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              Our commitment to excellence extends beyond borders. With a robust export infrastructure and international quality certifications, we serve healthcare providers worldwide, ensuring that our premium medical products reach those who need them most, regardless of geographical boundaries.
-            </p>
-            <button className="self-start px-8 py-4 rounded-lg font-bold text-white flex items-center gap-2 hover:opacity-90 transition-opacity" style={{backgroundColor: '#D0252C'}}>
-              <span>Explore Export Markets</span>
-              <FiArrowRight className="w-5 h-5" />
-            </button>
-          </div>
-
+    <section className="relative py-32 overflow-hidden">
+      {/* Dark Background with Red Accents */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800" />
+      
+      <div className="relative max-w-7xl mx-auto px-8">
+        {/* Header with Morphing Text */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl lg:text-4xl flex space-x-2 justify-center font-black mb-8 leading-tight">
+            <span className="block text-white">Connecting</span>
+            <span className="block bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse">
+              Healthcare
+            </span>
+            <span className="block text-white">Worldwide</span>
+          </h2>
         </div>
 
-        {/* World Map Section with Stats */}
-        <div className="relative">
-          
-          {/* World Map Background */}
-          <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden" style={{backgroundColor: '#f8fafc'}}>
-            {/* Map placeholder - replace with actual world map image */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <svg viewBox="0 0 1000 500" className="w-full h-full opacity-20">
-                <path d="M150,200 Q200,150 300,180 T500,200 T700,180 Q800,150 850,200" stroke="#D0252C" strokeWidth="2" fill="none"/>
-                <path d="M100,300 Q200,250 400,280 T700,300 T900,280" stroke="#D0252C" strokeWidth="2" fill="none"/>
-              </svg>
-            </div>
-            
-            {/* Pulsating Markers */}
-            <div className="absolute top-1/3 left-1/4">
-              <div className="w-4 h-4 rounded-full animate-pulse" style={{backgroundColor: '#D0252C'}}></div>
-              <div className="absolute inset-0 w-4 h-4 rounded-full animate-ping" style={{backgroundColor: 'rgba(208, 37, 44, 0.3)'}}></div>
-            </div>
-            <div className="absolute top-1/2 left-1/2">
-              <div className="w-4 h-4 rounded-full animate-pulse" style={{backgroundColor: '#D0252C'}}></div>
-              <div className="absolute inset-0 w-4 h-4 rounded-full animate-ping" style={{backgroundColor: 'rgba(208, 37, 44, 0.3)'}}></div>
-            </div>
-            <div className="absolute top-2/5 right-1/4">
-              <div className="w-4 h-4 rounded-full animate-pulse" style={{backgroundColor: '#D0252C'}}></div>
-              <div className="absolute inset-0 w-4 h-4 rounded-full animate-ping" style={{backgroundColor: 'rgba(208, 37, 44, 0.3)'}}></div>
-            </div>
-            <div className="absolute bottom-1/3 left-1/3">
-              <div className="w-4 h-4 rounded-full animate-pulse" style={{backgroundColor: '#D0252C'}}></div>
-              <div className="absolute inset-0 w-4 h-4 rounded-full animate-ping" style={{backgroundColor: 'rgba(208, 37, 44, 0.3)'}}></div>
-            </div>
-            <div className="absolute top-1/4 right-1/3">
-              <div className="w-4 h-4 rounded-full animate-pulse" style={{backgroundColor: '#D0252C'}}></div>
-              <div className="absolute inset-0 w-4 h-4 rounded-full animate-ping" style={{backgroundColor: 'rgba(208, 37, 44, 0.3)'}}></div>
-            </div>
-          </div>
-
-          {/* Right-side Floating Stats */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-xl shadow-xl p-8 max-w-sm">
-            {stats.map((stat, index) => (
-              <div key={index}>
-                <div className="text-center">
-                  <div className="text-5xl font-bold mb-2" style={{color: '#D0252C'}}>
-                    {stat.number}
+        {/* Animated Statistics */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={index}
+                className="group relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                {/* Background Gradient */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                
+                {/* Icon */}
+                <div className="flex justify-center mb-4">
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color} shadow-lg`}>
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold italic mb-3" style={{color: '#1A1A1A'}}>
-                    {stat.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {stat.description}
-                  </p>
                 </div>
-                {index < stats.length - 1 && (
-                  <hr className="my-6 border-gray-200" />
-                )}
-              </div>
-            ))}
-          </div>
 
+                {/* Animated Number */}
+                <div className={`text-4xl lg:text-5xl font-black mb-3 text-center bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}>
+                  {Object.values(countUp)[index]}{stat.suffix}
+                </div>
+                
+                <h3 className="text-lg font-semibold text-white text-center mb-2">
+                  {stat.title}
+                </h3>
+                
+                {/* Progress Bar */}
+                <div className="w-full bg-white/10 rounded-full h-1 overflow-hidden">
+                  <div 
+                    className={`h-full bg-gradient-to-r ${stat.color} transition-all duration-1000 ease-out`}
+                    style={{ width: countUp ? '100%' : '0%', transitionDelay: `${index * 0.3}s` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
 
+        {/* CTA with Magnetic Effect */}
+        <div className="text-center mt-20">
+          <button className="group relative px-12 py-5 rounded-2xl bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25">
+            <span className="relative z-10 flex items-center gap-3">
+              Explore Global Network
+              <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </button>
+        </div>
       </div>
     </section>
   );

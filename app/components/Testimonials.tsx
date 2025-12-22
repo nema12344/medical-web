@@ -1,154 +1,127 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { FiChevronRight } from 'react-icons/fi';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import Image from 'next/image';
 
 export default function Testimonials() {
   const testimonials = [
     {
       id: 1,
+      img: '/images/team.jpg',
       text: "The quality of their surgical disposables has significantly improved our patient outcomes. Their commitment to excellence is evident in every product we receive.",
       name: "Dr. Sarah Johnson",
-      country: "United States"
+      role: "Chief Surgeon"
     },
     {
       id: 2,
+      img: '/images/team1.jpg',
       text: "Outstanding reliability and precision in their IV infusion sets. We've been using their products for over 5 years with complete satisfaction.",
       name: "Dr. Rajesh Patel",
-      country: "India"
+      role: "Medical Director"
     },
     {
       id: 3,
+      img: '/images/team.jpg',
       text: "Their export quality and timely delivery have made them our preferred partner for medical supplies across our hospital network.",
       name: "Dr. Maria Santos",
-      country: "Brazil"
+      role: "Healthcare Administrator"
+    },
+    {
+      id: 4,
+      img: '/images/team1.jpg',
+      text: "Exceptional quality control and innovative solutions that have transformed our healthcare delivery standards across multiple facilities.",
+      name: "Dr. Ahmed Hassan",
+      role: "Medical Chief"
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 3000);
-
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const getVisibleTestimonials = () => {
-    const next = (currentIndex + 1) % testimonials.length;
-    return [testimonials[currentIndex], testimonials[next]];
-  };
-
-  const [active, preview] = getVisibleTestimonials();
-
   return (
-    <section className="py-24 px-12" style={{backgroundColor: '#0c2534'}}>
+    <section className="py-16 px-4" style={{backgroundColor: '#0c2534'}}>
       <div className="max-w-7xl mx-auto">
-        
-        {/* Testimonials Container */}
-        <div className="relative overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{transform: `translateX(-${currentIndex * 100}%)`}}
-          >
-            {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id} className="w-full flex-shrink-0 flex items-center gap-16">
-                
-                {/* Active Testimonial */}
-                <div className="flex-1">
-                  <div className="flex items-start gap-8">
-                    {/* Circular Badge */}
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 rounded-full border-4 flex items-center justify-center" style={{borderColor: '#D0252C'}}>
-                        <div className="w-12 h-12 rounded-full border-2 flex items-center justify-center text-white font-bold text-xl" style={{borderColor: '#D0252C'}}>
-                          {testimonial.id}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Testimonial Content */}
-                    <div className="flex-1">
-                      <blockquote className="text-2xl lg:text-3xl font-light italic text-white leading-relaxed mb-8">
-                        "{testimonial.text}"
-                      </blockquote>
-                      <div>
-                        <div className="text-lg font-bold text-white mb-1">
-                          {testimonial.name}
-                        </div>
-                        <div className="text-md text-gray-400">
-                          {testimonial.country}
-                        </div>
-                      </div>
-                    </div>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">What Our Clients Say</h2>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">Our clients have experienced our service and results, and they're eager to share their positive experiences with you.</p>
+        </div>
+        {/* Testimonials Slider */}
+        {/* Testimonials Slider */}
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          slidesPerView={3}
+          spaceBetween={15}
+          loop={true}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false
+          }}
+          pagination={{
+            clickable: true
+          }}
+          breakpoints={{
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 12 },
+            1024: { slidesPerView: 3, spaceBetween: 15 }
+          }}
+          className="testimonials-swiper"
+        >
+          {testimonials.map((testimonial) => (
+            <SwiperSlide key={testimonial.id}>
+              <div className="bg-white rounded-2xl h-[320px] p-8 shadow-lg hover:shadow-xl transition-all duration-300 mx-2">
+                {/* Avatar */}
+                <div className="flex justify-center mb-6">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xl">
+                    <Image
+                      src={testimonial.img}
+                      alt={testimonial.name}
+                      width={96}
+                      height={96}
+                      className="rounded-full object-cover w-full h-full"
+                    />
                   </div>
                 </div>
 
-                {/* Preview Testimonial (Next) */}
-                <div className="flex-1 opacity-40">
-                  {testimonials[(index + 1) % testimonials.length] && (
-                    <div className="flex items-start gap-8">
-                      {/* Circular Badge */}
-                      <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-full border-4 flex items-center justify-center" style={{borderColor: '#D0252C'}}>
-                          <div className="w-12 h-12 rounded-full border-2 flex items-center justify-center text-white font-bold text-lg" style={{borderColor: '#D0252C'}}>
-                            {testimonials[(index + 1) % testimonials.length].id}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Testimonial Content */}
-                      <div className="flex-1">
-                        <blockquote className="text-xl lg:text-2xl font-light italic text-white leading-relaxed mb-8">
-                          "{testimonials[(index + 1) % testimonials.length].text}"
-                        </blockquote>
-                        <div>
-                          <div className="text-xl font-bold text-white mb-1">
-                            {testimonials[(index + 1) % testimonials.length].name}
-                          </div>
-                          <div className="text-lg text-gray-400">
-                            {testimonials[(index + 1) % testimonials.length].country}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                {/* Testimonial Text */}
+                <blockquote className="text-gray-700 text-center mb-6 leading-relaxed text-sm">
+                  "{testimonial.text}"
+                </blockquote>
+
+                {/* User Info */}
+                <div className="text-center">
+                  <div className="font-bold text-gray-900 mb-1">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {testimonial.role}
+                  </div>
                 </div>
-
-                {/* Arrow Button */}
-                <button 
-                  onClick={nextSlide}
-                  className="flex-shrink-0 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-                >
-                  <FiChevronRight className="w-6 h-6 text-white" />
-                </button>
-
               </div>
-            ))}
-          </div>
-        </div>
-
-
-
-        {/* Progress Indicator */}
-        <div className="flex justify-center mt-16">
-          <div className="flex gap-2">
-            {testimonials.map((_, index) => (
-              <div
-                key={index}
-                className={`h-1 w-12 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-red-500' : 'bg-gray-600'
-                }`}
-                style={{backgroundColor: index === currentIndex ? '#D0252C' : '#374151'}}
-              />
-            ))}
-          </div>
-        </div>
-
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
+
+      <style jsx global>{`
+        .testimonials-swiper {
+          padding: 20px 0 60px 0;
+        }
+        
+        .testimonials-swiper .swiper-pagination {
+          bottom: 0;
+        }
+        
+        .testimonials-swiper .swiper-pagination-bullet {
+          width: 12px;
+          height: 12px;
+          background: rgba(255, 255, 255, 0.3);
+          opacity: 1;
+        }
+        
+        .testimonials-swiper .swiper-pagination-bullet-active {
+          background: #D0252C;
+        }
+      `}</style>
     </section>
   );
 }

@@ -55,36 +55,19 @@ export default function Navbar() {
               <div className="relative group"
                     onMouseEnter={() => setActiveDropdown('company')}
                     onMouseLeave={() => setActiveDropdown(null)}>
-               <div className="flex items-center space-x-1 cursor-pointer py-2">
+               <Link href="/about" className="flex items-center space-x-1 cursor-pointer py-2">
                   <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Company</span>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
-                  {/* <FiChevronDown className="w-4 h-4 text-gray-500 group-hover:rotate-180 transition-transform" /> */}
-                </div>
-                {/* {activeDropdown === 'company' && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border py-2">
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">About Us</a>
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Our Mission</a>
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Quality Assurance</a>
-                  </div>
-                )} */}
+                  </Link>
               </div>
 
               <div className="relative group"
                    onMouseEnter={() => setActiveDropdown('products')}
                    onMouseLeave={() => setActiveDropdown(null)}>
-                <div className="flex items-center space-x-1 cursor-pointer py-2">
+                <Link href="/products" className="flex items-center space-x-1 cursor-pointer py-2">
                   <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Products</span>
                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
-                  {/* <FiChevronDown className="w-4 h-4 text-gray-500 group-hover:rotate-180 transition-transform" /> */}
-                </div>
-                {/* {activeDropdown === 'products' && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border py-2">
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">IV Infusion Sets</a>
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Surgical Disposables</a>
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Medical Devices</a>
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600">Diagnostic Equipment</a>
-                  </div>
-                )} */}
+                  </Link>
               </div>
 
               <Link href="#" className="relative group py-2">
@@ -93,7 +76,7 @@ export default function Navbar() {
               </Link>
 
 
-              <Link href="#" className="relative group py-2">
+              <Link href="/contact" className="relative group py-2">
                 <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Contact</span>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
               </Link>
@@ -131,9 +114,10 @@ export default function Navbar() {
             <div className="lg:hidden py-6 border-t border-gray-200 bg-white">
               <div className="flex flex-col space-y-4">
                 <Link href="/" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Home</Link>
-                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Company</Link>
-                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Products</Link>
+                <Link href="/about" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Company</Link>
+                <Link href="/products" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Products</Link>
                 <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Third Party/OEM</Link>
+                <Link href="/contact" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contact</Link>
                 
                 <div className="pt-4 border-t border-gray-200">
                   <div className="flex items-center space-x-2 text-gray-600 mb-2">

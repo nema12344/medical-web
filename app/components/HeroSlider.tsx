@@ -66,7 +66,7 @@ export default function HeroSlider() {
               
               {/* Left Text Section */}
               <div className="text-white">
-                <h1 className="text-3xl lg:text-4xl font-bold leading-tight mb-6 whitespace-pre-line">
+                <h1 className="text-4xl lg:text-4xl font-bold leading-tight mb-6 whitespace-pre-line">
                   {slide.title}
                 </h1>
                 <p className="text-lg lg:text-xl text-gray-200 mb-8 leading-relaxed">
@@ -79,7 +79,7 @@ export default function HeroSlider() {
               </div>
 
               {/* Right Mission Card */}
-              <div className="bg-white rounded-lg shadow-xl p-8 text-center relative">
+              <div className="bg-white rounded-lg max-w-md mx-auto shadow-xl p-8 text-center relative">
                 {/* Red bar at top */}
                 <div className="w-15 h-1 bg-red-600 mx-auto mb-6"></div>
                 

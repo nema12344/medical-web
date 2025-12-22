@@ -91,13 +91,13 @@ const ProductListing: React.FC = () => {
           {products.map((product) => (
             <SwiperSlide key={product.id}>
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-                <div className="relative overflow-hidden rounded-t-2xl bg-white">
+                <div className="relative overflow-hidden rounded-t-4xl bg-white">
                   <Image
                     src={product.image}
                     alt={product.name}
                     width={600}
                     height={500}
-                    className="w-full h-80 object-contain p-6"
+                    className="w-full h-80 object-contain"
                   />
                   {/* Website Logo Overlay */}
                   <div className="absolute top-9 right-8 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-md">
