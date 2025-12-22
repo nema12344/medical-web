@@ -57,7 +57,7 @@ export default function Navbar() {
                     onMouseLeave={() => setActiveDropdown(null)}>
                <Link href="/about" className="flex items-center space-x-1 cursor-pointer py-2">
                   <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Company</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+                <div className="absolute  bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
                   </Link>
               </div>
 
