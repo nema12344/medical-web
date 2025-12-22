@@ -2,6 +2,7 @@
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Map from '../components/Map';
 import { FiMail, FiPhone, FiMapPin, FiClock, FiArrowRight, FiHelpCircle, FiPlus, FiMinus, FiUsers, FiAward, FiTruck, FiVoicemail } from 'react-icons/fi';
 import { useState } from 'react';
 
@@ -323,28 +324,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Interactive Map Card */}
             <div className="lg:col-span-2">
-              <div className="group relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 h-96 overflow-hidden border-2 border-gray-200 hover:border-red-300 transition-all duration-500">
-                {/* Animated radar circles */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 border-2 border-red-300/30 rounded-full animate-ping" />
-                  <div className="absolute w-48 h-48 border border-red-200/20 rounded-full animate-pulse" style={{animationDelay: '1s'}} />
-                  <div className="absolute w-64 h-64 border border-red-100/10 rounded-full animate-pulse" style={{animationDelay: '2s'}} />
-                </div>
-                
-                {/* Center content */}
-                <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                    <FiMapPin className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Interactive Map</h3>
-                  <p className="text-gray-600 mb-4">Coming Soon</p>
-                  <div className="flex gap-2">
-                    <div className="w-2 h-2 bg-red-500 rounded-full animate-bounce" />
-                    <div className="w-2 h-2 bg-red-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}} />
-                    <div className="w-2 h-2 bg-red-300 rounded-full animate-bounce" style={{animationDelay: '0.2s'}} />
-                  </div>
-                </div>
-              </div>
+              <Map address="Plot No 8, Asha Vihar, Colony, Rani Sati Nagar, Shyam Nagar (Jaipur), Jaipur, Jaipur, Rajasthan, India, 302019" />
             </div>
             
             {/* Location Cards */}

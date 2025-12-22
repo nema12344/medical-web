@@ -122,9 +122,6 @@ export default function ProductsPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 bg-red-50 text-red-600 border border-red-200">
-              Quality Standards
-            </div>
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Regulatory Compliance</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Our manufacturing processes adhere to the highest international standards, ensuring product safety and regulatory compliance across global markets.
