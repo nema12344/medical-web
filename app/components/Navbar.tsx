@@ -92,10 +92,6 @@ export default function Navbar() {
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
               </Link>
 
-              <Link href='/ReactTable' className="relative group py-2">
-                <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Services</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
-              </Link>
 
               <Link href="#" className="relative group py-2">
                 <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Contact</span>
@@ -138,8 +134,6 @@ export default function Navbar() {
                 <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Company</Link>
                 <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Products</Link>
                 <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Third Party/OEM</Link>
-                <Link href='/ReactTable' className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Services</Link>
-                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contact</Link>
                 
                 <div className="pt-4 border-t border-gray-200">
                   <div className="flex items-center space-x-2 text-gray-600 mb-2">
