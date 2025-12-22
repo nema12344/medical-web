@@ -114,14 +114,14 @@ export default function HeroSlider() {
         onClick={prevSlide}
         className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
       >
-        <FiChevronLeft className="w-6 h-6" />
+        <FiChevronLeft className="w-6 h-6 hidden md:flex" />
       </button>
       
       <button
         onClick={nextSlide}
         className="absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
       >
-        <FiChevronRight className="w-6 h-6" />
+        <FiChevronRight className="w-6 h-6 hidden md:flex" />
       </button>
 
       {/* Bottom Indicators */}

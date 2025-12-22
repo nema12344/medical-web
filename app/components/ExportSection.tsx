@@ -48,7 +48,7 @@ export default function ExportSection() {
       <div className="relative max-w-7xl mx-auto px-8">
         {/* Header with Morphing Text */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl lg:text-4xl flex space-x-2 justify-center font-black mb-8 leading-tight">
+          <h2 className="text-4xl lg:text-4xl flex flex-col space-x-2 justify-center font-black mb-8 leading-tight">
             <span className="block text-white">Connecting</span>
             <span className="block bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent animate-pulse">
               Healthcare

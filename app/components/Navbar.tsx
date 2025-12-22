@@ -35,7 +35,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-20">
 
             {/* LOGO */}
-            <div className="flex items-center">
+            <div className="flex items-center px-4">
              <Image
                 src="/logo.png"
                 alt="Dispopwell Logo"
@@ -90,7 +90,7 @@ export default function Navbar() {
               </button>
 
               {/* REQUEST QUOTE BUTTON */}
-              <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
+              <button className="bg-gradient-to-r hidden md:inline-flex from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
                 <span>Request Quote</span>
                 <FiArrowRight className="w-4 h-4" />
               </button>
@@ -118,7 +118,11 @@ export default function Navbar() {
                 <Link href="/products" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Products</Link>
                 <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Third Party/OEM</Link>
                 <Link href="/contact" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contact</Link>
-                
+                 <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
+                <span>Request Quote</span>
+                <FiArrowRight className="w-4 h-4" />
+              </button>
+
                 <div className="pt-4 border-t border-gray-200">
                   <div className="flex items-center space-x-2 text-gray-600 mb-2">
                     <FiPhone className="w-4 h-4" />

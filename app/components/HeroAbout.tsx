@@ -3,7 +3,7 @@ import React from 'react';
 
 const HeroAbout: React.FC = () => {
   return (
-    <section className="min-h-screen flex bg-[#D0252C]">
+    <section className="min-h-screen flex flex-col bg-[#D0252C]">
       {/* Left Side - Green Gradient */}
         <div className="flex-1 bg-gradient-to-br from-[#D0252C] to-[#D0252C] p-12 flex flex-col justify-center">
         <div className="max-w-2xl">
