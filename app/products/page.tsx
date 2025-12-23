@@ -74,7 +74,7 @@ export default function ProductsPage() {
                     {/* Icon */}
                     <div className="flex-shrink-0 mb-4 lg:mb-0 ">
                       <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-sm">
-                        <Icon className="w-8 h-8 text-white" />
+                        <Icon className="w-8 h-8   text-white" />
                       </div>
                     </div>
                     
