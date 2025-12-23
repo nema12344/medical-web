@@ -70,9 +70,9 @@ export default function ProductsPage() {
               const Icon = category.icon;
               return (
                 <div key={index} className="group bg-white border border-gray-200 rounded-xl p-8 hover:border-red-200 hover:shadow-lg transition-all duration-300">
-                  <div className="flex items-start gap-6">
+                  <div className="lg:flex items-start gap-6">
                     {/* Icon */}
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 mb-4 lg:mb-0 ">
                       <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-sm">
                         <Icon className="w-8 h-8 text-white" />
                       </div>
@@ -119,7 +119,7 @@ export default function ProductsPage() {
       <ProductListing />
 
       {/* Quality Assurance */}
-      <section className="py-20 bg-gray-50">
+      <section className="lg:py-20 py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Regulatory Compliance</h2>

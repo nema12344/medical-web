@@ -24,7 +24,7 @@ export default function Contact(){
 
           <div className="p-6 rounded-xl bg-gradient-to-br from-primary-50 to-accent-50">
             <h4 className="font-semibold">Contact details</h4>
-            <p className="mt-3 text-gray-600">Email: hello@dispowell.example</p>
+            <p className="mt-3 text-gray-600">Email: hello@Tnx Surgical.example</p>
             <p className="mt-2 text-gray-600">Location: Remote / India</p>
             <div className="mt-6">
               <a href="#" className="text-sm underline">Privacy policy</a>

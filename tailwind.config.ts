@@ -8,12 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // --- TNX BRAND COLORS ---
+        // --- Tnx Surgical BRAND COLORS ---
         primary: {
           DEFAULT: "#1A1A1A",        // Dark charcoal / topbar background
         },
         accent: {
-          DEFAULT: "#D0252C",        // TNX Red (hover, icons, buttons)
+          DEFAULT: "#D0252C",        // Tnx Surgical Red (hover, icons, buttons)
           light: "#E74A53",          // Lighter red for gradients or highlights
         },
 
@@ -32,7 +32,7 @@ module.exports = {
       boxShadow: {
         card: "0 2px 8px rgba(0,0,0,0.1)",
         soft: "0 4px 14px rgba(0,0,0,0.12)",
-        redGlow: "0 4px 15px rgba(208,37,44,0.25)",  // TNX Red glow
+        redGlow: "0 4px 15px rgba(208,37,44,0.25)",  // Tnx Surgical Red glow
       }
     },
   },

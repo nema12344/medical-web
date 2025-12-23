@@ -94,13 +94,13 @@ const ProductListing: React.FC = () => {
                     alt={product.name}
                     width={600}
                     height={500}
-                    className="w-full h-80 object-contain"
+                    className="w-full h-80 lg:object-contain"
                   />
                   {/* Website Logo Overlay */}
                   <div className="absolute top-9 right-8 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-md">
                     <Image
                       src="/logo.png"
-                      alt="DispoPowell Logo"
+                      alt="Tnx Surgical Logo"
                       width={60}
                       height={20}
                       className="object-contain"
@@ -121,7 +121,7 @@ const ProductListing: React.FC = () => {
                   
                   <div className="mb-6 flex flex-col gap-4">
                     <span className="text-sm font-bold text-gray-600 line-clamp-2">{product.description}</span>
-                    <button className="bg-white border border-gray-300 rounded-lg h-12 w-80 px-6 flex items-center justify-between text-slate-900 group-hover:bg-[#D0252C] group-hover:text-white transition-all duration-300">
+                    <button className="bg-white border border-gray-300 rounded-lg h-12 lg:w-80 px-6 flex items-center justify-between text-slate-900 group-hover:bg-[#D0252C] group-hover:text-white transition-all duration-300">
                       <span>View Details</span>
                       <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

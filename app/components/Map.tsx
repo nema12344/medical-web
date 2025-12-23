@@ -18,7 +18,7 @@ export default function Map({ address }: MapProps) {
         allowFullScreen
         loading="lazy"
         className="w-full h-full"
-        title="TNX Medical Location - Jaipur, Rajasthan"
+        title="Tnx Surgical Medical Location - Jaipur, Rajasthan"
       />
     </div>
   );

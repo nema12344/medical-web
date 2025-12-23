@@ -31,7 +31,7 @@ export default function Navbar() {
     <>
       {/* Main Navbar */}
       <nav className={`fixed top-0 left-0 right-0 bg-white shadow-lg z-50 transition-all duration-300 ${isScrolled ? 'shadow-xl backdrop-blur-sm bg-white/95' : ''}`}>
-        <div className="max-w-8xl mx-auto px-15">
+        <div className="max-w-8xl mx-auto lg:px-15 px-8">
           <div className="flex justify-between items-center h-20">
 
             {/* LOGO */}
@@ -113,11 +113,11 @@ export default function Navbar() {
           {isMenuOpen && (
             <div className="lg:hidden py-6 border-t border-gray-200 bg-white">
               <div className="flex flex-col space-y-4">
-                <Link href="/" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Home</Link>
-                <Link href="/about" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Company</Link>
-                <Link href="/products" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Products</Link>
-                <Link href="#" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Third Party/OEM</Link>
-                <Link href="/contact" className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contact</Link>
+                <Link href="/" onClick={() => setIsMenuOpen(false)} className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Home</Link>
+                <Link href="/about" onClick={() => setIsMenuOpen(false)} className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Company</Link>
+                <Link href="/products" onClick={() => setIsMenuOpen(false)} className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Products</Link>
+                <Link href="#" onClick={() => setIsMenuOpen(false)} className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Third Party/OEM</Link>
+                <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contact</Link>
                  <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
                 <span>Request Quote</span>
                 <FiArrowRight className="w-4 h-4" />

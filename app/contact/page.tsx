@@ -77,7 +77,7 @@ export default function ContactPage() {
                 {/* Content */}
                 <div className="relative max-w-sm mx-auto z-10 text-white h-full flex flex-col">
                   <div className="flex-1">
-                    <h2 className="text-3xl font-bold mb-8">TNX Medical</h2>
+                    <h2 className="text-3xl font-bold mb-8">Tnx Surgical Medical</h2>
                     
                     {/* Address */}
                     <div className="mb-8">
@@ -103,7 +103,7 @@ export default function ContactPage() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <FiPhone className="w-5 h-5" />
-                      <span className="text-white/90">+1 (555) 123-4567</span>
+                      <span className="text-white/90">+91 9950241240</span>
                     </div>
                     
                     <div className="flex items-center gap-3">
@@ -113,7 +113,7 @@ export default function ContactPage() {
                     
                     <div className="flex items-center gap-3">
                       <FiMail className="w-5 h-5" />
-                      <span className="text-white/90">tnxsurgical@gmail.com</span>
+                      <span className="text-white/90">Tnx Surgical@gmail.com</span>
                     </div>
                   </div>
                 </div>
@@ -356,7 +356,7 @@ export default function ContactPage() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-3">
                     <FiPhone className="w-4 h-4" />
-                    <span>+1 (555) 123-4567</span>
+                    <span>+91 9950241240</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <FiClock className="w-4 h-4" />

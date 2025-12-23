@@ -5,13 +5,13 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import HeroSlider from "./components/HeroSlider";
 import CompanyIntroSection from "./components/CompanyIntroSection";
-import ExportSection from "./components/ExportSection";
+// import ExportSection from "./components/ExportSection";
 import HeroAbout from "./components/HeroAbout";
 
 export const metadata = {
-  title: "DispoPowell — Fresh Purple & Pink Homepage",
+  title: "Tnx Surgical Surgical",
   description:
-    "Modern, reimagined homepage built with Next.js and TailwindCSS",
+    "Leading Manufacturer and Exporter of Premium Medical Disposables",
 };
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
         <CompanyIntroSection />
         <Features />
         <Products />
-        <ExportSection />
+        {/* <ExportSection /> */}
         <Testimonials />
           <ProductListing />
           <HeroAbout />

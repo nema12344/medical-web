@@ -49,13 +49,12 @@ export default function Footer(){
 
   {/* Email */}
   <p className="text-red-400 font-medium mb-6">
-    Email: dispowellsurgicals@gmail.com
+    Email: Tnx Surgicals@gmail.com
   </p>
 
   {/* Address */}
   <p className="text-gray-400 leading-relaxed mb-4">
-    28, Yamuna Industrial Park, Vanch-Dhamatvan Road,
-    Dhamatvan, Ahmedabad: 382435, Gujarat, India
+    Plot No. 8, Asha Vihar, Colony, Rani Sati Nagar, Shyam Nagar (Jaipur), Jaipur, Jaipur, Rajasthan, India, 302019
   </p>
 
   {/* Get Directions */}
@@ -77,7 +76,7 @@ export default function Footer(){
         
         {/* Bottom Copyright */}
         <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-          <p className="text-gray-400">© {new Date().getFullYear()} DispoPowell. All rights reserved.</p>
+          <p className="text-gray-400">© {new Date().getFullYear()} <a href="https://codinwalk.com">codinwalk.com</a> All rights reserved.</p>
         </div>
       </div>
     </footer>

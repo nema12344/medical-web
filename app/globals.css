@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 /* ------------------------------
-   Global TNX Brand Color System
+   Global Tnx Surgical Brand Color System
 ------------------------------- */
 :root {
   --primary: #1A1A1A;      /* Dark charcoal */
-  --accent: #D0252C;       /* TNX red */
+  --accent: #D0252C;       /* Tnx Surgical red */
   --accent-light: #E74A53; /* Light red */
   --bg: #FFFFFF;           /* Page background */
 }
@@ -28,7 +28,7 @@ body {
 }
 
 /* ------------------------------
-   TNX Utility Classes
+   Tnx Surgical Utility Classes
 ------------------------------- */
 
 /* Light Red Gradient Background */

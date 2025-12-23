@@ -34,7 +34,7 @@ export default function AboutPage() {
       <section className="pt-32 pb-20 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
         <div className="max-w-7xl mx-auto px-8 text-center">
           <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
-            About TNX SERGICAL
+            About Tnx SERGICAL
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Leading manufacturer and exporter of premium medical disposables, serving healthcare providers globally with innovative solutions and unwavering quality standards.
@@ -45,11 +45,11 @@ export default function AboutPage() {
       {/* Company Story */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Founded with a vision to revolutionize healthcare through quality medical disposables, DispoPowell has grown from a small manufacturing unit to a globally recognized brand trusted by healthcare professionals worldwide.
+                Founded with a vision to revolutionize healthcare through quality medical disposables, Tnx Surgical has grown from a small manufacturing unit to a globally recognized brand trusted by healthcare professionals worldwide.
               </p>
               <p className="text-lg text-gray-600 mb-6">
                 Our journey began with a simple mission: to provide healthcare providers with reliable, safe, and innovative medical products that enhance patient care and improve clinical outcomes.
@@ -58,7 +58,7 @@ export default function AboutPage() {
                 Today, we serve over 40 countries with our comprehensive range of medical disposables, maintaining the highest quality standards and regulatory compliance across all markets.
               </p>
             </div>
-            <div className="rounded-2xl h-96 flex items-center justify-center">
+            <div className="rounded-2xl lg:h-96 mt-8 flex items-center justify-center">
               <span className="text-gray-500">
                  <img src="/images/company.png" alt="About Us" className="w-full h-full object-cover rounded-2xl" />   
               </span>

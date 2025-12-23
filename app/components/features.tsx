@@ -35,7 +35,7 @@ export default function Features(){
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="px-8 py-4 rounded-xl text-white font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity" style={{backgroundColor: '#D0252C'}}>
-                <span>Dispowell</span>
+                <span>Tnx Surgical</span>
                 <FiArrowRight className="w-5 h-5" />
               </button>
               <button className="px-8 py-4 rounded-xl text-white font-semibold border-2 border-white hover:bg-white hover:text-gray-900 transition-colors">

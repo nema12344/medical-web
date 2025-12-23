@@ -3,11 +3,11 @@ import React from 'react';
 
 const HeroAbout: React.FC = () => {
   return (
-    <section className="min-h-screen flex bg-[#D0252C]">
+    <section className="min-h-screen lg:flex flex-wrap bg-[#D0252C]">
       {/* Left Side - Green Gradient */}
-        <div className="flex-1 bg-gradient-to-br from-[#D0252C] to-[#D0252C] p-12 flex flex-col justify-center">
+        <div className="flex-1 bg-gradient-to-br from-[#D0252C] to-[#D0252C] lg:p-12 flex flex-col p-8 justify-center">
         <div className="max-w-2xl">
-          <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
+          <h1 className="lg:text-5xl text-4xl font-bold text-white mb-6 leading-tight">
             Advanced Medical Solutions for Healthcare Excellence
           </h1>
           
@@ -34,10 +34,10 @@ const HeroAbout: React.FC = () => {
           
           {/* CTA Buttons */}
           <div className="flex gap-4">
-            <button className="bg-white text-red-700 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors">
+            <button className="bg-white text-red-700 p-2 lg:py-3 lg:px-6 rounded-lg font-semibold hover:bg-red-50 transition-colors">
               Our Products
             </button>
-            <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition-colors">
+            <button className="border-2 border-white text-white p-2 lg:py-3 lg:px-6 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition-colors">
               Contact Us
             </button>
           </div>
@@ -45,7 +45,7 @@ const HeroAbout: React.FC = () => {
       </div>
 
       {/* Right Side - White Card */}
-       <div className="flex-1 p-12 flex items-center justify-center">
+       <div className="flex-1 lg:p-12 flex items-center justify-center">
         <div className="bg-white rounded-3xl p-10 max-w-xl w-full shadow-2xl">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             About Our Medical Excellence
