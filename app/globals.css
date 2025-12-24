@@ -5,8 +5,8 @@
    Global Tnx Surgical Brand Color System
 ------------------------------- */
 :root {
-  --primary: #1A1A1A;      /* Dark charcoal */
-  --accent: #D0252C;       /* Tnx Surgical red */
+   --primary: #1A1A1A;      /* Dark charcoal */
+   --accent: #D0252C;       /* Tnx Surgical red */
   --accent-light: #E74A53; /* Light red */
   --bg: #FFFFFF;           /* Page background */
 }
