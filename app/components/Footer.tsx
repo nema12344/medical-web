@@ -49,7 +49,7 @@ export default function Footer(){
 
   {/* Email */}
   <p className="text-red-400 font-medium mb-6">
-    Email: Tnx Surgicals@gmail.com
+    Email: Tnxsurgicals@gmail.com
   </p>
 
   {/* Address */}
