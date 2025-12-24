@@ -44,17 +44,17 @@ export default function Footer(){
          <div className="lg:text-right text-left">
   {/* Phone */}
   <p className="text-3xl lg:text-4xl font-light text-white mb-2">
-    +91 9067680104
+    +91 9950241240
   </p>
 
   {/* Email */}
   <p className="text-red-400 font-medium mb-6">
-    Email: Tnx Surgicals@gmail.com
+    Email: Tnxsuurgicals@gmail.com
   </p>
 
   {/* Address */}
   <p className="text-gray-400 leading-relaxed mb-4">
-    Plot No. 8, Asha Vihar, Colony, Rani Sati Nagar, Shyam Nagar (Jaipur), Jaipur, Jaipur, Rajasthan, India, 302019
+   Shiv Vatika, Plot No 1 & 2, near St. Teresa's School, Manyawas, Mansarovar, Jaipur, Rajasthan 302020
   </p>
 
   {/* Get Directions */}
