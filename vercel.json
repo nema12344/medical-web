@@ -1,0 +1,6 @@
+{
+  "build": {
+    "installCommand": "npm cache clean --force && npm ci",
+    "command": "npm run build"
+  }
+}
