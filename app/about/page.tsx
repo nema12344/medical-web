@@ -5,7 +5,7 @@ import { FiAward, FiUsers, FiGlobe, FiTrendingUp } from 'react-icons/fi';
 export default function AboutPage() {
   const values = [
      {
-       icon: FiAward,
+        icon: FiAward,
       title: "Quality Excellence",
       description: "Committed to delivering the highest quality medical products with rigorous testing and certification processes."
     },
