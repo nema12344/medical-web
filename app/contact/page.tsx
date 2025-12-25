@@ -22,7 +22,7 @@ export default function ContactPage() {
       question: "What are your minimum order quantities?",
       answer: "Minimum order quantities vary by product type. For standard products, MOQs typically start at 1,000 units. For custom products, we can discuss flexible arrangements based on your needs."
     },
-    {
+    { 
       question: "How long does shipping take for international orders?",
       answer: "International shipping typically takes 7-14 business days depending on the destination. We work with reliable logistics partners to ensure safe and timely delivery of all orders."
     }

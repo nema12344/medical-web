@@ -5,8 +5,14 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import HeroSlider from "./components/HeroSlider";
 import CompanyIntroSection from "./components/CompanyIntroSection";
-// import ExportSection from "./components/ExportSection";
+import QualitySection from "./components/QualitySection";
+import ProcessSection from "./components/ProcessSection";
+import BenefitsSection from "./components/BenefitsSection";
+import CTASection from "./components/CTASection";
+//   ExportSection from "./components/ExportSection";
 import HeroAbout from "./components/HeroAbout";
+import MedicalSections from "./components/MedicalSections";
+// import HeroCarousel from "./components/HeroCarousel";
 
 export const metadata = {
   title: "Tnx Surgical Surgical",
@@ -19,13 +25,19 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
         <HeroSlider />
+        {/* <HeroCarousel /> */}
         <CompanyIntroSection />
-        <Features />
+        <MedicalSections />
+        <ProcessSection />
+        <QualitySection />
+        <BenefitsSection />
         <Products />
+        <Features />
         {/* <ExportSection /> */}
         <Testimonials />
-          <ProductListing />
-          <HeroAbout />
+        <CTASection />
+        <ProductListing />
+        <HeroAbout />
       </main>
       <Footer />
     </div>

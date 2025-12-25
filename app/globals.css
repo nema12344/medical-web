@@ -67,3 +67,59 @@ body {
 .hover\:text-accent:hover {
   color: var(--accent);
 }
+
+/* ------------------------------
+   Micro Animations (Float / Glow / Shimmer)
+   Use these lightweight classes together with Tailwind utilities
+------------------------------- */
+
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(225,29,46, 0.12); }
+  70% { box-shadow: 0 10px 30px rgba(225,29,46, 0.08); }
+  100% { box-shadow: 0 0 0 0 rgba(225,29,46, 0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.anim-float { animation: floatY 4s ease-in-out infinite; }
+.anim-float-fast { animation: floatY 2.6s ease-in-out infinite; }
+
+.anim-glow { animation: pulseGlow 3.2s ease-in-out infinite; }
+
+.shimmer {
+  background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Hover helpers */
+.hover-raise:hover { transform: translateY(-6px); transition: transform 220ms ease; }
+.hover-scale:hover { transform: scale(1.04); transition: transform 220ms ease; }
+.hover-glow:hover { box-shadow: 0 18px 40px rgba(15,42,68,0.12); transform: translateY(-6px); transition: all 260ms ease; }
+
+/* Subtle accent underline animation */
+.accent-underline {
+  position: relative;
+}
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  border-radius: 4px;
+  transition: width 300ms ease;
+}
+.accent-underline:hover::after { width: 56%; }
+

@@ -66,7 +66,7 @@ export default function HeroSlider() {
 
             {/* LEFT CONTENT */}
             <div className="text-white text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5 whitespace-pre-line">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5 whitespace-pre-line accent-underline">
                 {slide.title}
               </h1>
 
@@ -74,8 +74,8 @@ export default function HeroSlider() {
                 {slide.description}
               </p>
 
-              <div className="flex justify-center lg:justify-start">
-                <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 hover:shadow-lg transition">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="bg-red-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-redGlow transition-all duration-300 transform hover-scale hover-glow">
                   <span>Our Products</span>
                   <FiChevronRight className="w-5 h-5" />
                 </button>
@@ -84,7 +84,7 @@ export default function HeroSlider() {
 
             {/* RIGHT CARD */}
             <div className="flex justify-center lg:justify-end">
-              <div className="bg-white rounded-xl shadow-xl p-6 sm:p-8 w-full max-w-sm text-center">
+              <div className="bg-white rounded-xl shadow-xl p-6 sm:p-8 w-full max-w-sm text-center anim-float">
                 {/* Red line */}
                 <div className="w-12 h-1 bg-red-600 mx-auto mb-5"></div>
 
@@ -102,7 +102,7 @@ export default function HeroSlider() {
                 </p>
 
                 {/* Button */}
-                <button className="bg-red-600 hover:bg-red-700 text-white w-11 h-11 rounded-full flex items-center justify-center mx-auto transition">
+                <button className="bg-red-600 hover:bg-red-700 text-white w-11 h-11 rounded-full flex items-center justify-center mx-auto transition hover-raise">
                   <FiChevronRight className="w-5 h-5" />
                 </button>
               </div>
