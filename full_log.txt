@@ -1,0 +1,15 @@
+▲ Next.js 16.1.1 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.9s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+
+> Build error occurred
+Error: ENOENT: no such file or directory, open 'C:\Users\kr\Desktop\medical\medical-web\.next\server\pages-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\kr\\Desktop\\medical\\medical-web\\.next\\server\\pages-manifest.json'
+}
