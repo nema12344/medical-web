@@ -1,45 +1,42 @@
 'use client';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
-import AboutSection from './AboutSection';
 import { motion } from 'framer-motion';
 
 export default function Features() {
   return (
-    <section className="relative py-24 bg-medical-navy overflow-hidden">
+    <section className="relative py-24 bg-[#0c2534] overflow-hidden">
       {/* Background Gradients */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-medical-red/5 rounded-full blur-3xl opacity-50" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl opacity-30" />
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-[#D0252C] rounded-full blur-3xl opacity-5" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-white rounded-full blur-3xl opacity-5" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Left Column */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 1, x: 0 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
             {/* Label */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm">
-              <CheckCircle2 className="w-4 h-4 text-medical-red" />
+              <CheckCircle2 className="w-4 h-4 text-[#D0252C]" />
               <span>World Class Quality Surgical Products</span>
             </div>
 
             {/* Big Bold Heading */}
             <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6">
-              Providing Value Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-medical-red-light to-red-400">Innovation</span> & Excellence.
+              Providing Value Through <span className="text-[#D0252C]">Innovation</span> & Excellence.
             </h2>
 
-            <div className="w-20 h-1.5 bg-gradient-to-r from-medical-red to-red-800 rounded-full mb-8" />
+            <div className="w-20 h-1.5 bg-gradient-to-r from-[#D0252C] to-red-800 rounded-full mb-8" />
           </motion.div>
 
           {/* Right Column */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 1, x: 0 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
             viewport={{ once: true }}
             className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl shadow-xl"
           >
@@ -56,7 +53,7 @@ export default function Features() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/about">
-                <button className="w-full sm:w-auto px-8 py-4 bg-medical-red text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-red-700 hover:shadow-lg hover:shadow-red-900/40 transition-all">
+                <button className="w-full sm:w-auto px-8 py-4 bg-[#D0252C] text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-red-700 hover:shadow-lg hover:shadow-red-900/40 transition-all">
                   <span>Discover Tnx Surgical</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
@@ -70,10 +67,6 @@ export default function Features() {
           </motion.div>
 
         </div>
-      </div>
-
-      <div className="mt-16 relative z-10">
-        <AboutSection />
       </div>
     </section>
   )

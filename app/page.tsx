@@ -7,7 +7,7 @@ import ModernHero from "./components/ModernHero";
 import CompanyIntroSection from "./components/CompanyIntroSection";
 import QualitySection from "./components/QualitySection";
 import ProcessSection from "./components/ProcessSection";
-import BenefitsSection from "./components/BenefitsSection";
+import PartnerMUI from "./components/PartnerMUI";
 import CTASection from "./components/CTASection";
 import HeroAbout from "./components/HeroAbout";
 import MedicalSections from "./components/MedicalSections";
@@ -41,6 +41,10 @@ export default function Home() {
           </SectionWrapper>
 
           <SectionWrapper>
+            <Products />
+          </SectionWrapper>
+
+          <SectionWrapper>
             <MedicalSections />
           </SectionWrapper>
 
@@ -53,11 +57,7 @@ export default function Home() {
           </SectionWrapper>
 
           <SectionWrapper>
-            <BenefitsSection />
-          </SectionWrapper>
-
-          <SectionWrapper>
-            <Products />
+            <PartnerMUI />
           </SectionWrapper>
 
           <SectionWrapper>
