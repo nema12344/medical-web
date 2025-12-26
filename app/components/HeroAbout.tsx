@@ -1,5 +1,11 @@
 'use client';
 import React from 'react';
+import { BiJoystickButton } from 'react-icons/bi';
+import { BsFillGrid3X2GapFill } from 'react-icons/bs';
+import { FaGlideG, FaGoogleDrive, FaGripHorizontal, FaHSquare } from 'react-icons/fa';
+import { FaG, FaSpaghettiMonsterFlying } from 'react-icons/fa6';
+import { FcGoodDecision } from 'react-icons/fc';
+import { GiCardJackHearts } from 'react-icons/gi';
 
 const HeroAbout: React.FC = () => {
   return (

@@ -8,20 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // --- Tnx Surgical BRAND COLORS ---
+        // --- Medical Manufacturer Brand Colors ---
         primary: {
-          DEFAULT: "#1A1A1A",        // Dark charcoal / topbar background
+          DEFAULT: "#0F2A44",        // Navy blue / primary brand
         },
         accent: {
-          DEFAULT: "#D0252C",        // Tnx Surgical Red (hover, icons, buttons)
-          light: "#E74A53",          // Lighter red for gradients or highlights
+          DEFAULT: "#E11D2E",        // Medical red (buttons, highlights)
+          light: "#F5E9E8",          // Light red tint for backgrounds
         },
-
+        medicalNavy: "#0F2A44",      // Navy blue
+        medicalRed: "#E11D2E",       // Medical red
         // --- SUPPORTING COLORS ---
-        textPrimary: "#1A1A1A",      // Main text color
-        borderLight: "#E5E5E5",      // Light gray borders
+        textPrimary: "#0F2A44",      // Navy text for main content
+        textSecondary: "#4A5568",    // Gray-blue for secondary text
+        borderLight: "#E0E7FF",      // Subtle blue-tinted borders
         white: "#FFFFFF",            // Clean white
-        grayBg: "#F8F8F8",           // Optional page background
+        grayBg: "#F8FAFC",           // Soft blue-white background
       },
 
       fontFamily: {
@@ -30,9 +32,10 @@ module.exports = {
       },
 
       boxShadow: {
-        card: "0 2px 8px rgba(0,0,0,0.1)",
-        soft: "0 4px 14px rgba(0,0,0,0.12)",
-        redGlow: "0 4px 15px rgba(208,37,44,0.25)",  // Tnx Surgical Red glow
+        card: "0 2px 12px rgba(15,42,68,0.08)",
+        soft: "0 6px 20px rgba(15,42,68,0.12)",
+        premium: "0 10px 30px rgba(15,42,68,0.15)",
+        redGlow: "0 4px 15px rgba(225,29,46,0.2)",  // Medical red glow
       }
     },
   },
