@@ -57,10 +57,10 @@ const ProductListing: React.FC = () => {
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{color: '#1A1A1A'}}>Medical Equipment</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1A1A1A' }}>Medical Equipment</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">Professional-grade medical devices for healthcare providers</p>
         </div>
-        
+
         <Swiper
           modules={[Pagination, Autoplay]}
           slidesPerView={3}
@@ -73,7 +73,7 @@ const ProductListing: React.FC = () => {
               return '<span class="' + className + '"></span>';
             }
           }}
-          autoplay={{ 
+          autoplay={{
             delay: 3000,
             disableOnInteraction: false
           }}
@@ -88,7 +88,7 @@ const ProductListing: React.FC = () => {
           {products.map((product) => (
             <SwiperSlide key={product.id}>
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-                <div className="relative overflow-hidden rounded-t-4xl bg-white">
+                <div className="relative overflow-hidden rounded-t-2xl bg-white">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -107,18 +107,18 @@ const ProductListing: React.FC = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="mb-3">
-                    <span className="inline-block px-3 py-1 text-xs font-medium" style={{color: '#D0252C', backgroundColor: 'rgba(208, 37, 44, 0.1)'}}>
+                    <span className="inline-block px-3 py-1 text-xs font-medium" style={{ color: '#D0252C', backgroundColor: 'rgba(208, 37, 44, 0.1)' }}>
                       {product.category}
                     </span>
                   </div>
-                  
+
                   <h3 className="text-xl font-semibold mb-2 transition-colors text-black">
                     {product.name}
                   </h3>
-                  
+
                   <div className="mb-6 flex flex-col gap-4">
                     <span className="text-sm font-bold text-gray-600 line-clamp-2">{product.description}</span>
                     <button className="bg-white border border-gray-300 rounded-lg h-12 lg:w-80 px-6 flex items-center justify-between text-slate-900 group-hover:bg-[#D0252C] group-hover:text-white transition-all duration-300">
