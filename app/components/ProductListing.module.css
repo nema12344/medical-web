@@ -1,23 +1,21 @@
+.productSlider {
+  padding-bottom: 50px !important;
+}
+
 .productSlider :global(.swiper-pagination) {
-  position: relative;
-  margin-top: 2rem;
+  bottom: 0 !important;
 }
 
 .productSlider :global(.swiper-pagination-bullet) {
-  width: 48px;
-  height: 4px;
-  border-radius: 2px;
-  background: #d1d5db;
+  width: 10px;
+  height: 10px;
+  background-color: #e2e8f0;
   opacity: 1;
-  margin: 0 4px;
   transition: all 0.3s ease;
 }
 
 .productSlider :global(.swiper-pagination-bullet-active) {
-  background: #D0252C;
-  transform: scale(1.1);
-}
-
-.productSlider :global(.swiper-pagination-bullet:nth-child(n+3)) {
-  display: none;
+  background-color: #D0252C;
+  width: 25px;
+  border-radius: 5px;
 }
