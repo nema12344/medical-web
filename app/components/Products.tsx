@@ -1,6 +1,6 @@
 import ProductCard from './ProductCard';
 
-export default function Products(){
+export default function Products() {
   const products = [
     {
       title: 'IV Infusion Sets',
@@ -35,16 +35,16 @@ export default function Products(){
   ];
 
   return (
-    <section id="products" className="py-20 bg-gray-50">
+    <section id="products" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6" style={{backgroundColor: 'rgba(208, 37, 44, 0.1)', color: '#D0252C'}}>
-            Our Product Range
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{color: '#1A1A1A'}}>
-            Medical Solutions for Every Healthcare Need
+        <div className="text-center mb-20">
+          <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-medical-red text-sm font-bold tracking-wide mb-6">
+            OUR PRODUCT RANGE
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Medical Solutions for <br /> <span className="text-medical-navy">Every Healthcare Need</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Discover our comprehensive portfolio of medical products designed to meet the highest standards of quality and safety in healthcare delivery.
           </p>
         </div>

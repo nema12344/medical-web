@@ -1,4 +1,6 @@
-import { FiCheck, FiArrowRight } from 'react-icons/fi';
+'use client';
+import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
 
 interface ProductCardProps {
   title: string;
@@ -8,32 +10,32 @@ interface ProductCardProps {
 
 export default function ProductCard({ title, description, features }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      {/* Title */}
-      <h3 className="text-2xl font-bold mb-4" style={{color: '#1A1A1A'}}>
-        {title}
-      </h3>
-      
-      {/* Description */}
-      <p className="text-gray-600 leading-relaxed mb-6">
-        {description}
-      </p>
-      
-      {/* Features List */}
-      <ul className="space-y-3 mb-8">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start space-x-3">
-            <FiCheck className="w-5 h-5 mt-0.5 flex-shrink-0" style={{color: '#D0252C'}} />
-            <span className="text-gray-700 leading-relaxed">{feature}</span>
-          </li>
+    <motion.div
+      whileHover={{ y: -8 }}
+      className="bg-white rounded-2xl p-8 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-5px_rgba(208,37,44,0.1)] transition-all duration-300 border border-slate-100 flex flex-col h-full"
+    >
+      <div className="mb-6">
+        <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
+        <p className="text-slate-500 leading-relaxed text-sm">{description}</p>
+      </div>
+
+      <div className="mt-auto space-y-3">
+        {features.map((feature, featureIndex) => (
+          <div key={featureIndex} className="flex items-start gap-3 text-sm text-slate-600 group">
+            <div className="mt-0.5 p-1 rounded-full bg-slate-50 text-medical-red group-hover:bg-red-50 transition-colors">
+              <Check className="w-3 h-3" />
+            </div>
+            <span>{feature}</span>
+          </div>
         ))}
-      </ul>
-      
-      {/* CTA Button */}
-      <button className="w-full px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity" style={{backgroundColor: '#D0252C', color: 'white'}}>
-        <span>All Products</span>
-        <FiArrowRight className="w-5 h-5" />
-      </button>
-    </div>
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-slate-100">
+        <button className="w-full py-3 rounded-lg text-medical-red font-semibold text-sm hover:bg-red-50 transition-colors flex items-center justify-center gap-2 group">
+          View Details
+          <span className="group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+      </div>
+    </motion.div>
   );
 }

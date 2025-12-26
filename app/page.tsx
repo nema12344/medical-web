@@ -3,16 +3,17 @@ import Products from "./components/Products";
 import ProductListing from "./components/ProductListing";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
-import HeroSlider from "./components/HeroSlider";
+import ModernHero from "./components/ModernHero";
 import CompanyIntroSection from "./components/CompanyIntroSection";
 import QualitySection from "./components/QualitySection";
 import ProcessSection from "./components/ProcessSection";
-import BenefitsSection from "./components/BenefitsSection";
+import PartnerMUI from "./components/PartnerMUI";
 import CTASection from "./components/CTASection";
-//   ExportSection from "./components/ExportSection";
 import HeroAbout from "./components/HeroAbout";
 import MedicalSections from "./components/MedicalSections";
-// import HeroCarousel from "./components/HeroCarousel";
+import SectionWrapper from "./components/SectionWrapper";
+import HighlightsMUI from "./components/HighlightsMUI";
+import ScrollingServices from "./components/ScrollingServices";
 
 export const metadata = {
   title: "Tnx Surgical Surgical",
@@ -22,22 +23,63 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-slate-50/50">
       <main className="flex-grow">
-        <HeroSlider />
-        {/* <HeroCarousel /> */}
-        <CompanyIntroSection />
-        <MedicalSections />
-        <ProcessSection />
-        <QualitySection />
-        <BenefitsSection />
-        <Products />
-        <Features />
-        {/* <ExportSection /> */}
-        <Testimonials />
-        <CTASection />
-        <ProductListing />
-        <HeroAbout />
+        <ModernHero />
+
+        <div className="pb-20">
+          <SectionWrapper delay={0.1}>
+            <CompanyIntroSection />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <HighlightsMUI />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <ScrollingServices />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <Products />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <MedicalSections />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <ProcessSection />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <QualitySection />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <PartnerMUI />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <Features />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <Testimonials />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <CTASection />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <ProductListing />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <HeroAbout />
+          </SectionWrapper>
+        </div>
       </main>
       <Footer />
     </div>
