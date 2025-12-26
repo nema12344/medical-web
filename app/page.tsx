@@ -13,6 +13,7 @@ import HeroAbout from "./components/HeroAbout";
 import MedicalSections from "./components/MedicalSections";
 import SectionWrapper from "./components/SectionWrapper";
 import HighlightsMUI from "./components/HighlightsMUI";
+import ScrollingServices from "./components/ScrollingServices";
 
 export const metadata = {
   title: "Tnx Surgical Surgical",
@@ -33,6 +34,10 @@ export default function Home() {
 
           <SectionWrapper>
             <HighlightsMUI />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <ScrollingServices />
           </SectionWrapper>
 
           <SectionWrapper>
