@@ -87,8 +87,8 @@ const ProductListing: React.FC = () => {
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-                <div className="relative overflow-hidden rounded-t-2xl bg-white">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="relative overflow-hidden rounded-t-2xl bg-white flex-shrink-0">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -108,7 +108,7 @@ const ProductListing: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <div className="mb-3">
                     <span className="inline-block px-3 py-1 text-xs font-medium" style={{ color: '#D0252C', backgroundColor: 'rgba(208, 37, 44, 0.1)' }}>
                       {product.category}
@@ -119,14 +119,16 @@ const ProductListing: React.FC = () => {
                     {product.name}
                   </h3>
 
-                  <div className="mb-6 flex flex-col gap-4">
-                    <span className="text-sm font-bold text-gray-600 line-clamp-2">{product.description}</span>
-                    <button className="bg-white border border-gray-300 rounded-lg h-12 lg:w-80 px-6 flex items-center justify-between text-slate-900 group-hover:bg-[#D0252C] group-hover:text-white transition-all duration-300">
-                      <span>View Details</span>
-                      <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
+                  <div className="mb-6 flex flex-col gap-4 flex-grow">
+                    <span className="text-sm font-bold text-gray-600 block">{product.description}</span>
+                    <div className="mt-auto">
+                      <button className="bg-white border border-gray-300 rounded-lg h-12 lg:w-80 px-6 flex items-center justify-between text-slate-900 group-hover:bg-[#D0252C] group-hover:text-white transition-all duration-300 w-full">
+                        <span>View Details</span>
+                        <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

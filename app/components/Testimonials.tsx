@@ -1,6 +1,6 @@
 'use client';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -39,13 +39,12 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-16 px-4" style={{backgroundColor: '#0c2534'}}>
+    <section className="py-16 px-4" style={{ backgroundColor: '#0c2534' }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">What Our Clients Say</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">Our clients have experienced our service and results, and they're eager to share their positive experiences with you.</p>
         </div>
-        {/* Testimonials Slider */}
         {/* Testimonials Slider */}
         <Swiper
           modules={[Pagination, Autoplay]}
@@ -68,7 +67,7 @@ export default function Testimonials() {
         >
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.id}>
-              <div className="bg-white rounded-2xl lg:max-h-[320px] p-8 shadow-lg hover:shadow-xl transition-all duration-300 mx-2">
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 mx-2 h-full flex flex-col">
                 {/* Avatar */}
                 <div className="flex justify-center mb-6">
                   <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xl">
@@ -83,12 +82,12 @@ export default function Testimonials() {
                 </div>
 
                 {/* Testimonial Text */}
-                <blockquote className="text-gray-700 text-center mb-6 leading-relaxed text-sm">
+                <blockquote className="text-gray-700 text-center mb-6 leading-relaxed text-sm flex-grow">
                   "{testimonial.text}"
                 </blockquote>
 
                 {/* User Info */}
-                <div className="text-center">
+                <div className="text-center mt-auto">
                   <div className="font-bold text-gray-900 mb-1">
                     {testimonial.name}
                   </div>

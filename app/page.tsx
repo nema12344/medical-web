@@ -12,6 +12,7 @@ import CTASection from "./components/CTASection";
 import HeroAbout from "./components/HeroAbout";
 import MedicalSections from "./components/MedicalSections";
 import SectionWrapper from "./components/SectionWrapper";
+import HighlightsMUI from "./components/HighlightsMUI";
 
 export const metadata = {
   title: "Tnx Surgical Surgical",
@@ -28,6 +29,10 @@ export default function Home() {
         <div className="pb-20">
           <SectionWrapper delay={0.1}>
             <CompanyIntroSection />
+          </SectionWrapper>
+
+          <SectionWrapper>
+            <HighlightsMUI />
           </SectionWrapper>
 
           <SectionWrapper>
