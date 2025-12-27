@@ -92,7 +92,7 @@ export default function PartnerMUI() {
                 {/* Horizontal Tabs / Buttons Row */}
                 <Grid container spacing={2} sx={{ mb: 6, justifyContent: 'center' }}>
                     {partnersData.map((item, index) => (
-                        <Grid item xs={6} md={true} key={item.id}>
+                        <Grid item xs={6} md key={item.id}>
                             <Box
                                 onClick={() => setSelectedIndex(index)}
                                 sx={{

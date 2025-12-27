@@ -100,11 +100,36 @@ export default function CompanyIntroSection() {
             </div>
 
             {/* Overlaid Interactive Grid - Horizontal Layout on Desktop */}
-            <div className="absolute -bottom-10 left-4 right-4 lg:left-8 lg:right-auto lg:w-[90%] grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <InteractiveStatCard states={statsData1} />
-              <InteractiveStatCard states={statsData2} />
-              <InteractiveStatCard states={statsData3} />
-            </div>
+            <motion.div
+              className="absolute -bottom-10 left-4 right-4 lg:left-8 lg:right-auto lg:w-[90%] grid grid-cols-1 sm:grid-cols-3 gap-4"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.2
+                  }
+                }
+              }}
+            >
+              {[statsData1, statsData2, statsData3].map((stats, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={{
+                    hidden: { opacity: 0, x: -50 },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      transition: { duration: 0.6, ease: "easeOut" }
+                    }
+                  }}
+                >
+                  <InteractiveStatCard states={stats} />
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
 
           {/* RIGHT SIDE - Content */}
