@@ -73,8 +73,8 @@ export default function HighlightsMUI() {
                 </Box>
 
                 <Grid container spacing={3}>
-                    {highlights.map((item, index) => (
-                        <Grid item xs={12} md={6} key={index} sx={{ display: 'flex' }}>
+                    {highlights.map((item) => (
+                        <Grid item xs={12} md={6} key={item.title} sx={{ display: 'flex' }}>
                             <Card
                                 elevation={0}
                                 sx={{
@@ -143,3 +143,4 @@ export default function HighlightsMUI() {
         </Box>
     );
 }
+    
