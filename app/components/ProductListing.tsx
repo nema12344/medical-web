@@ -105,7 +105,7 @@ const ProductSlide: React.FC<{ product: (typeof products)[number] }> = ({ produc
     'bg-[#D0252C] border border-transparent text-white shadow-[0_10px_30px_-10px_rgba(208,37,44,0.45)]';
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group h-full flex flex-col min-h-[560px] w-full">
+    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group h-full flex flex-col w-full h-[560px] min-h-[560px] max-h-[560px] md:h-[600px] md:min-h-[600px] md:max-h-[600px] lg:h-[620px] lg:min-h-[620px] lg:max-h-[620px]">
       <div className="relative overflow-hidden rounded-t-2xl bg-white flex-shrink-0">
         <Image
           src={product.image}
@@ -126,7 +126,7 @@ const ProductSlide: React.FC<{ product: (typeof products)[number] }> = ({ produc
         </div>
       </div>
 
-      <div className="p-6 flex flex-col flex-grow">
+      <div className="p-6 flex flex-col flex-grow overflow-hidden">
         <div className="mb-3">
           <span
             className="inline-block px-3 py-1 text-xs font-medium"
@@ -136,12 +136,14 @@ const ProductSlide: React.FC<{ product: (typeof products)[number] }> = ({ produc
           </span>
         </div>
 
-        <h3 className="text-xl font-semibold mb-2 transition-colors text-black">
+        <h3 className={`text-xl font-semibold mb-2 transition-colors text-black ${styles.titleClamp}`}>
           {product.name}
         </h3>
 
-        <div className="mb-6 flex flex-col gap-4 flex-grow">
-          <span className="text-sm font-bold text-gray-600 block">{product.description}</span>
+        <div className="mb-6 flex flex-col gap-4 flex-grow overflow-hidden">
+          <span className={`text-sm font-bold text-gray-600 block ${styles.descriptionClamp}`}>
+            {product.description}
+          </span>
           <div className="mt-auto">
             <button
               className={`rounded-lg h-12 w-full max-w-[280px] mx-auto px-6 flex items-center justify-center gap-2 transition-all duration-300 ${isActive ? activeButton : inactiveButton} hover:translate-y-[-1px]`}
