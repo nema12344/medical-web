@@ -1,7 +1,16 @@
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
 import ProductCard from './ProductCard';
 
-export default function Products() {
-  const products = [
+type Product = {
+  title: string;
+  description: string;
+  features: string[];
+  category: string;
+};
+
+const productData: Product[] = [
     {
       title: 'IV Infusion Sets',
       description: 'Premium quality intravenous infusion sets designed for safe and efficient fluid delivery in clinical settings.',
@@ -10,7 +19,8 @@ export default function Products() {
         'Precision flow control mechanisms',
         'Compatible with standard IV solutions',
         'Available in multiple configurations'
-      ]
+      ],
+      category: 'IV Equipment'
     },
     {
       title: 'Surgical Disposables',
@@ -20,7 +30,8 @@ export default function Products() {
         'Latex-free materials available',
         'Individually packaged and sterilized',
         'Cost-effective healthcare solutions'
-      ]
+      ],
+      category: 'Surgical Disposables'
     },
     {
       title: 'Medical Devices',
@@ -30,12 +41,32 @@ export default function Products() {
         'CE marking for European compliance',
         'Comprehensive warranty coverage',
         'Technical support and training'
-      ]
+      ],
+      category: 'Medical Devices'
     }
   ];
 
+export default function Products() {
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  useEffect(() => {
+    const handleFilter = (event: Event) => {
+      const detail = (event as CustomEvent<{ target?: string; value?: string }>).detail;
+      if (!detail || detail.target !== 'products') return;
+      setActiveCategory(detail.value && detail.value !== 'all' ? detail.value : 'all');
+    };
+
+    window.addEventListener('home-section-filter', handleFilter as EventListener);
+    return () => window.removeEventListener('home-section-filter', handleFilter as EventListener);
+  }, []);
+
+  const products = useMemo(() => {
+    if (activeCategory === 'all') return productData;
+    return productData.filter((item) => item.category === activeCategory);
+  }, [activeCategory]);
+
   return (
-    <section id="products" className="py-24 bg-slate-50">
+    <section className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-medical-red text-sm font-bold tracking-wide mb-6">
@@ -47,6 +78,12 @@ export default function Products() {
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Discover our comprehensive portfolio of medical products designed to meet the highest standards of quality and safety in healthcare delivery.
           </p>
+          <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200">
+            <span className="text-sm text-slate-500">Active filter:</span>
+            <span className="text-sm font-semibold text-slate-800">
+              {activeCategory === 'all' ? 'All product lines' : activeCategory}
+            </span>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
