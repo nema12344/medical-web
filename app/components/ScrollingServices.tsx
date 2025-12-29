@@ -2,11 +2,9 @@
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { Quote, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
 const services = [
@@ -44,87 +42,85 @@ const services = [
 
 export default function ServicesPatientStyle() {
   return (
-    <section className="relative py-24 overflow-hidden bg-[#2b160f]">
+    <section className="relative py-28 bg-[#dd4817] overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0">
         <Image
           src="/images/hero-bg-2.png"
           alt="background"
           fill
           className="object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-[#2b160f]/90" />
+        <div className="absolute inset-0 bg-[#0c2534]/90" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Heading */}
-        <h2 className="text-center text-4xl font-bold text-white mb-16">
-          Our Services
+        <h2 className="text-center text-4xl font-bold text-white mb-20">
+          Patient Review
         </h2>
 
-        {/* Navigation */}
-        <button className="service-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow">
-          <ArrowLeft className="text-black w-5 h-5" />
+        {/* Navigation Arrows */}
+        <button className="srv-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow">
+          <ArrowLeft className="w-5 h-5 text-black" />
         </button>
-
-        <button className="service-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow">
-          <ArrowRight className="text-black w-5 h-5" />
+        <button className="srv-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow">
+          <ArrowRight className="w-5 h-5 text-black" />
         </button>
 
         <Swiper
-          modules={[Pagination, Autoplay, Navigation]}
+          modules={[Navigation, Autoplay]}
           loop
           centeredSlides
           slidesPerView={1}
-          spaceBetween={30}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false
-          }}
+          spaceBetween={60}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
           navigation={{
-            prevEl: '.service-prev',
-            nextEl: '.service-next'
+            prevEl: '.srv-prev',
+            nextEl: '.srv-next'
           }}
-          pagination={{ clickable: true }}
           breakpoints={{
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 }
           }}
-          className="pb-20"
+          className="!overflow-visible"
         >
           {services.map((item) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={item.id} className="pt-12 pb-24">
               {({ isActive }) => (
                 <div
                   className={`transition-all duration-500 ${
                     isActive
-                      ? 'scale-100 opacity-100'
-                      : 'scale-90 opacity-50'
+                      ? 'scale-110 opacity-100'
+                      : 'scale-95 opacity-40'
                   }`}
                 >
-                  {/* Bubble */}
-                  <div className="relative border-2 border-white rounded-[32px] px-8 py-10 text-center min-h-[260px] flex items-center justify-center">
+                  {/* Speech Bubble */}
+                  <div className="relative border border-white/80 rounded-[24px] px-8 pt-12 pb-16 min-h-[260px] flex items-center justify-center text-center bg-transparent">
 
-                    {/* Top Quote */}
-                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#d97706] rounded-full p-2">
-                      <Quote className="w-5 h-5 text-white fill-white" />
+                    {/* Top Quote Chip */}
+                    <div className="absolute -top-[14px] left-1/2 -translate-x-1/2 bg-[#dd0c05] px-3 py-1 rounded-full z-10">
+                      <span className="text-white text-lg font-bold leading-none">
+                        “”
+                      </span>
                     </div>
 
-                    <p className="text-white text-base leading-relaxed">
+                    {/* Description */}
+                    <p className="text-white text-sm leading-relaxed max-w-[85%]">
                       {item.description}
                     </p>
 
-                    {/* Bubble Tail */}
-                    <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 border-r-2 border-b-2 border-white bg-transparent rotate-45"></span>
+                    {/* Bottom-left Tail (diagonal) */}
+                    <div className="absolute -bottom-[14px] left-10 w-6 h-6 bg-[#dd0c05] border-l border-b border-white/80 rotate-45"></div>
                   </div>
 
                   {/* Title */}
-                  <div className="mt-6 flex items-center justify-center gap-2">
-                    <Quote className="w-4 h-4 text-[#d97706] fill-[#d97706] rotate-180" />
-                    <h4 className="text-white font-semibold text-lg">
+                  <div className="mt-6 flex items-center justify-center gap-2 text-[#dd0c05]">
+                    <span className="text-lg leading-none">“</span>
+                    <span className="text-white text-sm font-semibold">
                       {item.title}
-                    </h4>
-                    <Quote className="w-4 h-4 text-[#d97706] fill-[#d97706]" />
+                    </span>
+                    <span className="text-lg leading-none">”</span>
                   </div>
                 </div>
               )}
@@ -132,20 +128,6 @@ export default function ServicesPatientStyle() {
           ))}
         </Swiper>
       </div>
-
-      {/* Pagination Style */}
-      <style jsx global>{`
-        .swiper-pagination-bullet {
-          background: #fff;
-          opacity: 0.4;
-        }
-        .swiper-pagination-bullet-active {
-          background: #d97706;
-          opacity: 1;
-          width: 20px;
-          border-radius: 10px;
-        }
-      `}</style>
     </section>
   );
 }

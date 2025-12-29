@@ -1,45 +1,70 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Stethoscope, Ambulance, Microscope, Pill, Activity, HeartPulse } from 'lucide-react';
 
+const servicesData = [
+  {
+    title: "General Consultation",
+    icon: <Stethoscope className="w-8 h-8" />,
+    desc: "Expert medical advice from certified professionals.",
+    category: "general"
+  },
+  {
+    title: "Emergency Care",
+    icon: <Ambulance className="w-8 h-8" />,
+    desc: "24/7 rapid response for critical medical situations.",
+    category: "emergency"
+  },
+  {
+    title: "Diagnostic Services",
+    icon: <Microscope className="w-8 h-8" />,
+    desc: "Advanced lab testing and precise diagnostics.",
+    category: "diagnostics"
+  },
+  {
+    title: "Pharmacy Services",
+    icon: <Pill className="w-8 h-8" />,
+    desc: "Fully stocked pharmacy with prescription management.",
+    category: "pharmacy"
+  },
+  {
+    title: "Specialized Surgery",
+    icon: <Activity className="w-8 h-8" />,
+    desc: "State-of-the-art operating theatres and surgeons.",
+    category: "surgery"
+  },
+  {
+    title: "Preventive Checkups",
+    icon: <HeartPulse className="w-8 h-8" />,
+    desc: "Comprehensive health screening packages.",
+    category: "preventive"
+  }
+];
+
 export default function MedicalSections() {
-  const services = [
-    {
-      title: "General Consultation",
-      icon: <Stethoscope className="w-8 h-8" />,
-      desc: "Expert medical advice from certified professionals."
-    },
-    {
-      title: "Emergency Care",
-      icon: <Ambulance className="w-8 h-8" />,
-      desc: "24/7 rapid response for critical medical situations."
-    },
-    {
-      title: "Diagnostic Services",
-      icon: <Microscope className="w-8 h-8" />,
-      desc: "Advanced lab testing and precise diagnostics."
-    },
-    {
-      title: "Pharmacy Services",
-      icon: <Pill className="w-8 h-8" />,
-      desc: "Fully stocked pharmacy with prescription management."
-    },
-    {
-      title: "Specialized Surgery",
-      icon: <Activity className="w-8 h-8" />,
-      desc: "State-of-the-art operating theatres and surgeons."
-    },
-    {
-      title: "Preventive Checkups",
-      icon: <HeartPulse className="w-8 h-8" />,
-      desc: "Comprehensive health screening packages."
-    }
-  ];
+
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  useEffect(() => {
+    const handleFilter = (event: Event) => {
+      const detail = (event as CustomEvent<{ target?: string; value?: string }>).detail;
+      if (!detail || detail.target !== 'services') return;
+      setActiveFilter(detail.value && detail.value !== 'all' ? detail.value : 'all');
+    };
+
+    window.addEventListener('home-section-filter', handleFilter as EventListener);
+    return () => window.removeEventListener('home-section-filter', handleFilter as EventListener);
+  }, []);
+
+  const visibleServices = useMemo(() => {
+    if (activeFilter === 'all') return servicesData;
+    return servicesData.filter((service) => service.category === activeFilter);
+  }, [activeFilter]);
 
   return (
-    <div className="bg-slate-50 relative overflow-hidden">
+    <div className="bg-slate-50 relative overflow-hidden scroll-mt-32">
       {/* Decorative Blob */}
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-white to-transparent" />
 
@@ -67,10 +92,16 @@ export default function MedicalSections() {
           >
             Comprehensive, cutting-edge healthcare solutions designed for optimal patient outcomes and clinical excellence.
           </motion.p>
+          <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200">
+            <span className="text-sm text-slate-500">Active filter:</span>
+            <span className="text-sm font-semibold text-slate-800">
+              {activeFilter === 'all' ? 'All service lines' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+            </span>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((s, idx) => (
+          {visibleServices.map((s, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}

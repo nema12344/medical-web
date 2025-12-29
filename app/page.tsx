@@ -5,7 +5,7 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import ModernHero from "./components/ModernHero";
 import CompanyIntroSection from "./components/CompanyIntroSection";
-import QualitySection from "./components/QualitySection";
+// import QualitySection from "./components/QualitySection";
 import ProcessSection from "./components/ProcessSection";
 import PartnerMUI from "./components/PartnerMUI";
 import CTASection from "./components/CTASection";
@@ -13,7 +13,7 @@ import HeroAbout from "./components/HeroAbout";
 import MedicalSections from "./components/MedicalSections";
 import SectionWrapper from "./components/SectionWrapper";
 import HighlightsMUI from "./components/HighlightsMUI";
-import ScrollingServices from "./components/ScrollingServices";
+// import ScrollingServices from "./components/ScrollingServices";
 
 export const metadata = {
   title: "Tnx Surgical Surgical",
@@ -25,60 +25,84 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50">
       <main className="flex-grow">
-        <ModernHero />
+        <section id="hero" className="scroll-mt-32">
+          <ModernHero />
+        </section>
 
         <div className="pb-20">
-          <SectionWrapper delay={0.1}>
-            <CompanyIntroSection />
-          </SectionWrapper>
+          <section id="company" className="scroll-mt-32">
+            <SectionWrapper delay={0.1}>
+              <CompanyIntroSection />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <HighlightsMUI />
-          </SectionWrapper>
+          <section id="highlights" className="scroll-mt-32">
+            <SectionWrapper>
+              <HighlightsMUI />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
+          {/* <SectionWrapper>
             <ScrollingServices />
-          </SectionWrapper>
+          </SectionWrapper> */}
 
-          <SectionWrapper>
-            <Products />
-          </SectionWrapper>
+          <section id="products" className="scroll-mt-32">
+            <SectionWrapper>
+              <Products />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <MedicalSections />
-          </SectionWrapper>
+          <section id="services" className="scroll-mt-32">
+            <SectionWrapper>
+              <MedicalSections />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <ProcessSection />
-          </SectionWrapper>
-
+          <section id="process" className="scroll-mt-32">
+            <SectionWrapper>
+              <ProcessSection />
+            </SectionWrapper>
+          </section>
+{/* 
           <SectionWrapper>
             <QualitySection />
-          </SectionWrapper>
+          </SectionWrapper> */}
 
-          <SectionWrapper>
-            <PartnerMUI />
-          </SectionWrapper>
+          <section id="partners" className="scroll-mt-32">
+            <SectionWrapper>
+              <PartnerMUI />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <Features />
-          </SectionWrapper>
+          <section id="features" className="scroll-mt-32">
+            <SectionWrapper>
+              <Features />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <Testimonials />
-          </SectionWrapper>
+          <section id="testimonials" className="scroll-mt-32">
+            <SectionWrapper>
+              <Testimonials />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <CTASection />
-          </SectionWrapper>
+          <section id="cta" className="scroll-mt-32">
+            <SectionWrapper>
+              <CTASection />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <ProductListing />
-          </SectionWrapper>
+          <section id="catalog" className="scroll-mt-32">
+            <SectionWrapper>
+              <ProductListing />
+            </SectionWrapper>
+          </section>
 
-          <SectionWrapper>
-            <HeroAbout />
-          </SectionWrapper>
+          <section id="about" className="scroll-mt-32">
+            <SectionWrapper>
+              <HeroAbout />
+            </SectionWrapper>
+          </section>
         </div>
       </main>
       <Footer />
