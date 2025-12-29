@@ -5,7 +5,7 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import ModernHero from "./components/ModernHero";
 import CompanyIntroSection from "./components/CompanyIntroSection";
-import QualitySection from "./components/QualitySection";
+// import QualitySection from "./components/QualitySection";
 import ProcessSection from "./components/ProcessSection";
 import PartnerMUI from "./components/PartnerMUI";
 import CTASection from "./components/CTASection";
@@ -51,10 +51,10 @@ export default function Home() {
           <SectionWrapper>
             <ProcessSection />
           </SectionWrapper>
-
+{/* 
           <SectionWrapper>
             <QualitySection />
-          </SectionWrapper>
+          </SectionWrapper> */}
 
           <SectionWrapper>
             <PartnerMUI />

@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -8,50 +8,51 @@ import styles from './ProductListing.module.css';
 import Image from 'next/image';
 
 const ProductListing: React.FC = () => {
-  const products = [
-    {
-      id: 1,
-      name: 'IV Infusion Set Premium',
-      description: 'Manufacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
-      image: '/images/Iv-Infusion-set-Premium.png',
-      category: 'IV Equipment'
-    },
-    {
-      id: 2,
-      name: 'Surgical Disposables',
-      description: 'High-quality surgical disposable items for safe and effective medical procedures.',
-      image: '/images/Iv-Infusion-set-Premium.png',
-      category: 'Surgical Items'
-    },
-    {
-      id: 3,
-      name: 'Medical Syringes',
-      description: 'Sterile disposable syringes for various medical applications and treatments.',
-      image: '/images/Iv-Infusion-set-Premium.png',
-      category: 'Injection Equipment'
-    },
-    {
-      id: 4,
-      name: 'Blood Collection Set',
-      description: 'Safe and reliable blood collection systems for diagnostic procedures.',
-      image: '/images/Iv-Infusion-set-Premium.png',
-      category: 'Diagnostic Equipment'
-    },
-    {
-      id: 5,
-      name: 'Catheter Systems',
-      description: 'Advanced catheter solutions for various medical interventions.',
-      image: '/images/Iv-Infusion-set-Premium.png',
-      category: 'Medical Devices'
-    },
-    {
-      id: 6,
-      name: 'Oxygen Masks',
-      description: 'High-quality oxygen delivery masks for respiratory support.',
-      image: '/images/Iv-Infusion-set-Premium.png',
-      category: 'Respiratory Care'
-    }
-  ];
+ const products = [
+  {
+    id: 1,
+    name: 'IV Infusion Set Premium',
+    description: 'Manufacturer and Supplier of all types of Best Quality Sterile Needle Free IV Set/Infusion Set at an affordable cost.',
+    image: '/images/Iv-Infusion-set-Premium.png',
+    category: 'IV Equipment'
+  },
+  {
+    id: 2,
+    name: 'Surgical Disposables',
+    description: 'High-quality surgical disposable items for safe and effective medical procedures.',
+    image: '/images/DISPOSABLE-SURGICAL-ITEMS.png',
+    category: 'Surgical Items'
+  },
+  {
+    id: 3,
+    name: 'Medical Syringes',
+    description: 'Sterile disposable syringes for various medical applications and treatments.',
+    image: '/images/coronavirus-arrangement-with-vaccine-bottle-syringe.jpg',
+    category: 'Injection Equipment'
+  },
+  {
+    id: 4,
+    name: 'Blood Collection Set',
+    description: 'Safe and reliable blood collection systems for diagnostic procedures.',
+    image: '/images/coronavirus-arrangement-with-blood-samples-vaccine.jpg',
+    category: 'Diagnostic Equipment'
+  },
+  {
+    id: 5,
+    name: 'Catheter Systems',
+    description: 'Advanced catheter solutions for various medical interventions.',
+    image: '/images/doctor-monitoring-patient-s-pulse.jpg',
+    category: 'Medical Devices'
+  },
+  {
+    id: 6,
+    name: 'Oxygen Masks',
+    description: 'High-quality oxygen delivery masks for respiratory support.',
+    image: '/images/mid-adult-man-breathing-through-mask-hyperbaric-oxygen-therapy-clinic.jpg',
+    category: 'Respiratory Care'
+  }
+];
+
 
   return (
     <section className="py-20 bg-gray-50">
@@ -86,57 +87,88 @@ const ProductListing: React.FC = () => {
           className={`pb-12 ${styles.productSlider}`}
         >
           {products.map((product) => (
-            <SwiperSlide key={product.id}>
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group h-full flex flex-col">
-                <div className="relative overflow-hidden rounded-t-2xl bg-white flex-shrink-0">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={600}
-                    height={500}
-                    className="w-full h-80 lg:object-contain"
-                  />
-                  {/* Website Logo Overlay */}
-                  <div className="absolute top-9 right-8 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-md">
-                    <Image
-                      src="/logo.png"
-                      alt="Tnx Surgical Logo"
-                      width={60}
-                      height={20}
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="mb-3">
-                    <span className="inline-block px-3 py-1 text-xs font-medium" style={{ color: '#D0252C', backgroundColor: 'rgba(208, 37, 44, 0.1)' }}>
-                      {product.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-semibold mb-2 transition-colors text-black">
-                    {product.name}
-                  </h3>
-
-                  <div className="mb-6 flex flex-col gap-4 flex-grow">
-                    <span className="text-sm font-bold text-gray-600 block">{product.description}</span>
-                    <div className="mt-auto">
-                      <button className="bg-white border border-gray-300 rounded-lg h-12 lg:w-80 px-6 flex items-center justify-between text-slate-900 group-hover:bg-[#D0252C] group-hover:text-white transition-all duration-300 w-full">
-                        <span>View Details</span>
-                        <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <SwiperSlide key={product.id} className="flex">
+              <ProductSlide product={product} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
     </section>
+  );
+};
+
+const ProductSlide: React.FC<{ product: (typeof products)[number] }> = ({ product }) => {
+  const { isActive } = useSwiperSlide();
+  const inactiveButton =
+    'bg-[#fff7f7] border border-[#f0dede] text-slate-900 shadow-[0_1px_0_rgba(0,0,0,0.03)]';
+  const activeButton =
+    'bg-[#D0252C] border border-transparent text-white shadow-[0_10px_30px_-10px_rgba(208,37,44,0.45)]';
+
+  return (
+    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group h-full flex flex-col min-h-[560px] w-full">
+      <div className="relative overflow-hidden rounded-t-2xl bg-white flex-shrink-0">
+        <Image
+          src={product.image}
+          alt={product.name}
+          width={600}
+          height={500}
+          className="w-full h-64 md:h-72 lg:h-80 object-cover object-center"
+        />
+        {/* Website Logo Overlay */}
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-md">
+          <Image
+            src="/logo.png"
+            alt="Tnx Surgical Logo"
+            width={60}
+            height={20}
+            className="object-contain"
+          />
+        </div>
+      </div>
+
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="mb-3">
+          <span
+            className="inline-block px-3 py-1 text-xs font-medium"
+            style={{ color: '#D0252C', backgroundColor: 'rgba(208, 37, 44, 0.1)' }}
+          >
+            {product.category}
+          </span>
+        </div>
+
+        <h3 className="text-xl font-semibold mb-2 transition-colors text-black">
+          {product.name}
+        </h3>
+
+        <div className="mb-6 flex flex-col gap-4 flex-grow">
+          <span className="text-sm font-bold text-gray-600 block">{product.description}</span>
+          <div className="mt-auto">
+            <button
+              className={`rounded-lg h-12 w-full max-w-[280px] mx-auto px-6 flex items-center justify-center gap-2 transition-all duration-300 ${isActive ? activeButton : inactiveButton} hover:translate-y-[-1px]`}
+            >
+              <svg
+                className="w-5 h-5 invisible shrink-0"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              <span className={`${isActive ? '' : 'text-slate-800'} text-center`}>View Details</span>
+              <svg
+                className="w-5 h-5 transform transition-transform duration-300 shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
