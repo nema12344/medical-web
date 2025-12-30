@@ -136,7 +136,10 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 0);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+      setIsProductsMegaOpen(false); // Close mega menu on scroll
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -185,9 +188,7 @@ export default function Navbar() {
   };
 
   const renderProductsMegaMenu = () => (
-    <div className={`fixed left-0 right-0 w-full bg-white shadow-2xl border border-slate-100 p-5 z-40 transition-all duration-700 ease-in-out ${
-      isProductsMegaOpen ? 'top-20' : 'top-full'
-    }`}>
+    <div className="fixed left-0 right-0 top-20 w-full bg-white shadow-2xl border border-slate-100 p-5 z-40">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {/* Column 1: Infusion Therapy (Part 1) */}
           <div>
@@ -356,7 +357,7 @@ export default function Navbar() {
                   />
                 </button>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300" />
-                {renderProductsMegaMenu()}
+                {isProductsMegaOpen && renderProductsMegaMenu()}
               </div>
 
               <Link href="#" className="relative group py-2">
