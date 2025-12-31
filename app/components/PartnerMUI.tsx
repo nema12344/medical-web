@@ -92,7 +92,7 @@ export default function PartnerMUI() {
                 {/* Horizontal Tabs / Buttons Row */}
                 <Grid container spacing={2} sx={{ mb: 6, justifyContent: 'center' }}>
                     {partnersData.map((item, index) => (
-                        <Grid item xs={6} md key={item.id}>
+                        <Grid item xs={6} md={true} key={item.id}>
                             <Box
                                 onClick={() => setSelectedIndex(index)}
                                 sx={{
@@ -191,8 +191,13 @@ export default function PartnerMUI() {
                             >
                                 {activeContent.description}
                             </Typography>
-
-                            <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" sx={{ bgcolor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(4px)', py: 1.5, px: 4, borderRadius: 10, border: '1px solid rgba(208, 37, 44, 0.1)', display: 'inline-flex' }}>
+                            <button className="inline-flex items-center gap-3 px-8 py-4 bg-red-500 hover:bg-red-700 text-white font-bold text-lg rounded-2xl shadow-xl shadow-red-500/25 hover:shadow-red-500/40 transition-all duration-300 group">
+                                Learn More
+                                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                            {/* <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" sx={{ bgcolor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(4px)', py: 1.5, px: 4, borderRadius: 10, border: '1px solid rgba(208, 37, 44, 0.1)', display: 'inline-flex' }}>
                                 <Typography variant="overline" sx={{ color: '#D0252C', fontWeight: 800, letterSpacing: 1 }}>
                                     KEY METRIC
                                 </Typography>
@@ -200,7 +205,7 @@ export default function PartnerMUI() {
                                 <Typography variant="h6" sx={{ color: '#0F2A44', fontWeight: 700, fontSize: '1.1rem' }}>
                                     {activeContent.stat}
                                 </Typography>
-                            </Stack>
+                            </Stack> */}
                         </Box>
                     </Paper>
                 </Fade>

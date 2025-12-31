@@ -1,40 +1,48 @@
 "use client";
 import { motion } from "framer-motion";
+import { Shield, Award, CheckCircle, Globe } from "lucide-react";
 
 export default function QualitySection() {
-  const certifications = [
+  const certificationInfo = [
     {
-      title: "ISO 13485",
+      title: "ISO 13485:2016",
       description: "Medical Devices Quality Management System",
-      icon: "✓",
-      color: "bg-blue-50",
-      borderColor: "border-blue-200",
-      textColor: "text-blue-600",
+      icon: Shield
     },
     {
       title: "FDA Approved",
       description: "US Food and Drug Administration Certified",
-      icon: "✓",
-      color: "bg-green-50",
-      borderColor: "border-green-200",
-      textColor: "text-green-600",
+      icon: Award
     },
     {
-      title: "CE Marked",
+      title: "CE Marking",
       description: "European Conformity Standards",
-      icon: "✓",
-      color: "bg-purple-50",
-      borderColor: "border-purple-200",
-      textColor: "text-purple-600",
+      icon: CheckCircle
     },
     {
-      title: "WHO Guidelines",
-      description: "World Health Organization Compliant",
-      icon: "✓",
-      color: "bg-red-50",
-      borderColor: "border-medicalRed/20",
-      textColor: "text-medicalRed",
+      title: "WHO-GMP",
+      description: "World Health Organization Good Manufacturing Practice",
+      icon: Globe
+    }
+  ];
+
+  const certificates = [
+    {
+      title: "ISO 13485:2016",
+      image: "/certificate/FINAL-TNX SURGICAL(CE)_page-0001.jpg"
     },
+    {
+      title: "FDA Approved",
+      image: "/certificate/FINAL-TNX SURGICAL(GMP)_page-0001.jpg"
+    },
+    {
+      title: "CE Marking",
+      image: "/certificate/FINAL-TNX SURGICAL(QMS)_page-0001.jpg"
+    },
+    {
+      title: "WHO-GMP",
+      image: "/certificate/FINAL-TNX SURGICAL(13485)_page-0001.jpg"
+    }
   ];
 
   const features = [
@@ -62,52 +70,53 @@ export default function QualitySection() {
           </p>
         </motion.div>
 
-        {/* Certification Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {certifications.map((cert, idx) => (
+        {/* Certification Info Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {certificationInfo.map((cert, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`${cert.color} border-2 ${cert.borderColor} rounded-xl p-8 text-center hover:shadow-premium transition-all duration-300`}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 text-center group"
             >
-              <div className={`text-5xl font-bold ${cert.textColor} mb-4`}>
-                {cert.icon}
+              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-red-100 transition-colors">
+                <cert.icon className="w-8 h-8 text-red-600" />
               </div>
-              <h3 className={`text-xl font-bold ${cert.textColor} mb-2`}>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">
                 {cert.title}
               </h3>
-              <p className="text-textSecondary text-sm font-medium">
+              <p className="text-slate-600 text-sm leading-relaxed">
                 {cert.description}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Quality Features */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-white rounded-2xl shadow-premium p-10 border border-borderLight"
-        >
-          <h3 className="text-2xl font-bold text-medicalNavy mb-8 text-center">
-            Our Quality Promise
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {features.map((feature, idx) => (
-              <div key={idx} className="flex items-center gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-medicalRed/10 flex items-center justify-center">
-                  <span className="text-medicalRed font-bold">✓</span>
-                </div>
-                <p className="text-lg font-medium text-medicalNavy">{feature}</p>
+        {/* Certificate Images Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {certificates.map((cert, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+            >
+              <div className="h-[300px] overflow-hidden rounded-xl bg-gray-100">
+                <img
+                  src={cert.image}
+                  alt={cert.title}
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
-            ))}
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

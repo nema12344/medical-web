@@ -47,11 +47,11 @@ export default function CompanyIntroSection() {
             className="space-y-8"
           >
             {/* Pill Label */}
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-50 border border-red-100">
+            {/* <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-50 border border-red-100">
               <span className="text-red-600 font-bold text-sm tracking-wide">
                 LEADERS IN HEALTHCARE
               </span>
-            </div>
+            </div> */}
 
             {/* Headline */}
             <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-tight">

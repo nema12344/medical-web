@@ -5,8 +5,8 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import ModernHero from "./components/ModernHero";
 import CompanyIntroSection from "./components/CompanyIntroSection";
-// import QualitySection from "./components/QualitySection";
-import ProcessSection from "./components/ProcessSection";
+import QualitySection from "./components/QualitySection";
+// import ProcessSection from "./components/ProcessSection";
 import PartnerMUI from "./components/PartnerMUI";
 import CTASection from "./components/CTASection";
 import HeroAbout from "./components/HeroAbout";
@@ -59,14 +59,14 @@ export default function Home() {
           </section>
 
           <section id="process" className="scroll-mt-32">
-            <SectionWrapper>
+            {/* <SectionWrapper>
               <ProcessSection />
-            </SectionWrapper>
+            </SectionWrapper> */}
           </section>
-{/* 
+
           <SectionWrapper>
             <QualitySection />
-          </SectionWrapper> */}
+          </SectionWrapper>
 
           <section id="partners" className="scroll-mt-32">
             <SectionWrapper>
@@ -80,6 +80,11 @@ export default function Home() {
             </SectionWrapper>
           </section>
 
+          <section id="product-listing" className="scroll-mt-32">
+            <SectionWrapper>
+              <ProductListing />
+            </SectionWrapper>
+          </section>
           <section id="testimonials" className="scroll-mt-32">
             <SectionWrapper>
               <Testimonials />
@@ -89,12 +94,6 @@ export default function Home() {
           <section id="cta" className="scroll-mt-32">
             <SectionWrapper>
               <CTASection />
-            </SectionWrapper>
-          </section>
-
-          <section id="catalog" className="scroll-mt-32">
-            <SectionWrapper>
-              <ProductListing />
             </SectionWrapper>
           </section>
 

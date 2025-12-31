@@ -131,6 +131,7 @@ export default function Navbar() {
   const [isProductsMegaOpen, setIsProductsMegaOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsMobileOpen, setIsProductsMobileOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -374,7 +375,10 @@ export default function Navbar() {
             {/* RIGHT SIDE BUTTONS */}
             <div className="flex items-center space-x-4">
               {/* Search Button */}
-              <button className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-colors">
+              <button 
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-colors"
+              >
                 <FiSearch className="w-5 h-5" />
               </button>
 
@@ -475,6 +479,28 @@ export default function Navbar() {
             </div>
           )}
         </div>
+
+        {/* Search Dropdown */}
+        {isSearchOpen && (
+          <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
+            <div className="max-w-8xl mx-auto px-8 py-6">
+              <div className="flex items-center gap-4">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    placeholder="Search products, categories, or solutions..."
+                    className="w-full px-6 py-4 border-2 border-red-200 rounded-xl focus:border-red-500 focus:outline-none text-lg"
+                    autoFocus
+                  />
+                </div>
+                <button className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors flex items-center gap-2">
+                  <FiSearch className="w-5 h-5" />
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   );
