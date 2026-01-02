@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type ProductItem = {
   id: number;
@@ -38,6 +39,7 @@ const productItems: ProductItem[] = [
     description: 'Safe and reliable blood collection systems for diagnostic procedures.',
     image: '/images/coronavirus-arrangement-with-blood-samples-vaccine.jpg',
     category: 'Others'
+    
   },
   {
     id: 5,
@@ -146,7 +148,7 @@ const ProductCard: React.FC<{ product: ProductItem }> = ({ product }) => {
           </span>
         </div> */}
 
-        <h3 className="text-xl font-semibold mb-3 text-slate-900 line-clamp-2">
+        <h3 className="text-xl font-semibold mb-2 text-slate-900 line-clamp-2">
           {product.name}
         </h3>
 
@@ -154,12 +156,12 @@ const ProductCard: React.FC<{ product: ProductItem }> = ({ product }) => {
           {product.description}
         </p>
 
-        <button className="w-full px-6 py-3 hover:bg-red-600 hover:text-white border border-red-100 bg-red-100 rounded-xl font-medium transition-colors duration-300 flex items-center justify-between gap-2 group">
+        <Link href={`/products/${product.id}`} className="w-full px-6 py-3 hover:bg-red-600 hover:text-white border border-red-100 bg-red-100 rounded-xl font-medium transition-colors duration-300 flex items-center justify-between gap-2 group">
           View Details
           <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
   );
