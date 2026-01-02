@@ -111,7 +111,7 @@ export default function QualitySection() {
                 <img
                   src={cert.image}
                   alt={cert.title}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </motion.div>

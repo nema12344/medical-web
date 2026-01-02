@@ -78,12 +78,6 @@ export default function Products() {
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Discover our comprehensive portfolio of medical products designed to meet the highest standards of quality and safety in healthcare delivery.
           </p>
-          <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200">
-            <span className="text-sm text-slate-500">Active filter:</span>
-            <span className="text-sm font-semibold text-slate-800">
-              {activeCategory === 'all' ? 'All product lines' : activeCategory}
-            </span>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

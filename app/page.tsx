@@ -29,7 +29,7 @@ export default function Home() {
           <ModernHero />
         </section>
 
-        <div className="pb-20">
+        <div>
           <section id="company" className="scroll-mt-32">
             <SectionWrapper delay={0.1}>
               <CompanyIntroSection />
