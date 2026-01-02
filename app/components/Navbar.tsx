@@ -483,7 +483,7 @@ export default function Navbar() {
         {/* Search Dropdown */}
         {isSearchOpen && (
           <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
-            <div className="max-w-8xl mx-auto px-8 py-6">
+            <div className="max-w-5xl mx-auto px-8 py-6">
               <div className="flex items-center gap-4">
                 <div className="flex-1 relative">
                   <input
@@ -496,6 +496,9 @@ export default function Navbar() {
                 <button className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors flex items-center gap-2">
                   <FiSearch className="w-5 h-5" />
                   Search
+                </button>
+                <button onClick={() => setIsSearchOpen(false)} className="text-gray-600 hover:text-red-600 transition-colors">
+                  <FiX className="w-6 h-6" />
                 </button>
               </div>
             </div>
