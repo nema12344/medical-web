@@ -1,185 +1,113 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Globe,
-  Users,
-  Award,
-  Briefcase,
-  Zap,
-  CheckCircle2,
-  ArrowRight
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Shield, Award, CheckCircle2, ArrowRight } from 'lucide-react';
 
-/* ----------------------------------
-   Reusable Interactive Stat Card
------------------------------------*/
-const InteractiveStatCard = ({
-  states,
-}: {
-  states: { icon: any; title: string; desc: string; color: string }[];
-}) => {
-  const [index, setIndex] = useState(0);
-  const current = states[index];
-
-  return (
-    <div className="relative bg-white rounded-xl border border-slate-100 shadow-md p-4 h-28 flex flex-col justify-between">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.25 }}
-        >
-          <div className="flex justify-between items-start mb-2">
-            <div
-              className={`p-2 rounded-lg ${current.color} bg-opacity-10`}
-            >
-              <current.icon
-                className={`w-5 h-5 ${current.color.replace(
-                  'bg-',
-                  'text-'
-                )}`}
-              />
-            </div>
-
-            <button
-              onClick={() =>
-                setIndex((prev) => (prev + 1) % states.length)
-              }
-              className="w-7 h-7 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-red-500 transition"
-              title="Next stat"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div>
-            <div className="text-xl font-bold text-slate-900 leading-none">
-              {current.title}
-            </div>
-            <div className="text-xs uppercase tracking-wide text-slate-500">
-              {current.desc}
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-};
-
-/* ----------------------------------
-   Main Section
------------------------------------*/
 export default function CompanyIntroSection() {
   const certifications = [
-    'WHO-GMP Compliance',
-    'ISO 13485-2016 Certified',
-    'ISO 9001-2015 Certified',
-    'MDR 2017 Approved',
-  ];
-
-  const stats1 = [
-    { icon: Globe, title: '50+', desc: 'Countries Served', color: 'bg-blue-500' },
-    { icon: Users, title: '1000+', desc: 'Global Distributors', color: 'bg-indigo-500' },
-  ];
-
-  const stats2 = [
-    { icon: Award, title: '20+', desc: 'Years Experience', color: 'bg-amber-500' },
-    { icon: Briefcase, title: '100%', desc: 'Client Commitment', color: 'bg-orange-500' },
-  ];
-
-  const stats3 = [
-    { icon: Zap, title: '500+', desc: 'Unique SKUs', color: 'bg-red-500' },
-    { icon: CheckCircle2, title: 'Zero', desc: 'Defect Goal', color: 'bg-emerald-500' },
+    { icon: Shield, text: 'WHO-GMP Compliance' },
+    { icon: Award, text: 'ISO 13485-2016 Certified' },
+    { icon: CheckCircle2, text: 'ISO 9001-2015 Certified' },
+    { icon: Shield, text: 'MDR 2017 Approved' },
   ];
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 -skew-x-12 opacity-50" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section className="py-20 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          {/* LEFT */}
+          
+          {/* Left Column - Image */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
           >
-            {/* Image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-xl max-h-[420px]">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/DISPOSABLE-SURGICAL-ITEMS.png"
-                alt="Medical Manufacturing"
+                src="/images/Disposable surgical-items.jpg"
+                alt="Healthcare Professional in Sterile Environment"
                 width={600}
-                height={420}
-                priority
-                className="w-full h-[420px] object-cover transition-transform duration-500 hover:scale-[1.03]"
+                height={500}
+                className="w-full h-[500px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            </div>
-
-            {/* Stats */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <InteractiveStatCard states={stats1} />
-              <InteractiveStatCard states={stats2} />
-              <InteractiveStatCard states={stats3} />
+              {/* Soft gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/10" />
             </div>
           </motion.div>
 
-          {/* RIGHT */}
+          {/* Right Column - Content */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
           >
-            <span className="inline-block mb-6 px-3 py-1 rounded-md bg-red-50 text-red-600 text-sm font-bold">
-              LEADERS IN HEALTHCARE
-            </span>
+            {/* Pill Label */}
+            {/* <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-50 border border-red-100">
+              <span className="text-red-600 font-bold text-sm tracking-wide">
+                LEADERS IN HEALTHCARE
+              </span>
+            </div> */}
 
-            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-              Running the Future of <br className="hidden lg:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700">
+            {/* Headline */}
+            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-tight">
+              Running the Future of{' '}
+              <span className="text-red-600 font-black">
                 Surgical Manufacturing
               </span>
             </h2>
 
-            <div className="space-y-5 text-slate-600 text-lg mb-8">
+            {/* Description */}
+            <div className="space-y-4 text-lg text-slate-600 leading-relaxed">
               <p>
-                With over two decades of excellence in medical device manufacturing,
-                we have built a reputation for quality and trust.
+                With over two decades of excellence in medical device manufacturing, 
+                we have built an unparalleled reputation for quality and trust in the healthcare industry.
               </p>
               <p>
-                From IV infusion sets to complete surgical disposables,
-                we support healthcare providers worldwide.
+                From precision IV infusion sets to comprehensive surgical disposables, 
+                we empower healthcare providers worldwide with innovative solutions that save lives.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              {certifications.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition"
+            {/* Certifications Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {certifications.map((cert, index) => (
+                <motion.div
+                  key={cert.text}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  className="flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-red-500" />
-                  <span className="font-medium text-slate-700">
-                    {item}
+                  <div className="p-2 bg-red-50 rounded-lg group-hover:bg-red-100 transition-colors">
+                    <cert.icon className="w-5 h-5 text-red-600" />
+                  </div>
+                  <span className="font-semibold text-slate-700 text-sm">
+                    {cert.text}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
 
-            <p className="text-sm italic text-slate-400">
-              Click arrows on the stats to explore more
-            </p>
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <button className="inline-flex items-center gap-3 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-2xl shadow-xl shadow-red-500/25 hover:shadow-red-500/40 transition-all duration-300 group">
+                Contact Sales
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
           </motion.div>
-
         </div>
       </div>
     </section>

@@ -27,19 +27,79 @@ type FilterOption = {
   sectionId: string;
 };
 
-const homeSections: HomeSection[] = [
-  { id: 'hero', title: 'Hero', description: 'Top of the page with the primary hero story.' },
-  { id: 'company', title: 'About', description: 'Company intro and credentials overview.' },
-  { id: 'highlights', title: 'Highlights', description: 'Quick reasons to choose our solutions.' },
-  { id: 'products', title: 'Products', description: 'Core product range overview.' },
-  { id: 'services', title: 'Services', description: 'Clinical services and expertise areas.' },
-  { id: 'process', title: 'Process', description: 'How we work with clients end-to-end.' },
-  { id: 'partners', title: 'Partners', description: 'Why partners trust us globally.' },
-  { id: 'features', title: 'Features', description: 'Innovation and value-driven features.' },
-  { id: 'testimonials', title: 'Testimonials', description: 'Proof from real customer stories.' },
-  { id: 'cta', title: 'Get Started', description: 'Conversion-focused call to action.' },
-  { id: 'catalog', title: 'Product Gallery', description: 'Swipeable gallery of equipment.' },
-  { id: 'about', title: 'About Spotlight', description: 'Deeper dive into our expertise.' },
+const productCategories = [
+  {
+    title: "Infusion Therapy",
+    items: [
+      "IV Infusion Set Economy",
+      "IV Infusion Set Premium", 
+      "IV Set Vented Premium",
+      "Needle Free IV Infusion Set",
+      "PVC/DEHP Free IV Administration Set",
+      "Dial Flow IV Infusion Set",
+      "Measured Volume Burette Set",
+      "Extension Tube for Pressure Monitoring",
+      "IV Cannula",
+      "3 Way Stopcock",
+      "Scalp Vein Set",
+      "Customized IV Infusion Set"
+    ]
+  },
+  {
+    title: "Transfusion Therapy",
+    items: [
+      "Blood Transfusion Set"
+    ]
+  },
+  {
+    title: "Gastroenterology", 
+    items: [
+      "Infant Feeding Tube",
+      "Ryles Tube",
+      "Levin Tube",
+      "Stomach Tube"
+    ]
+  },
+  {
+    title: "Urology & Nephrology",
+    items: [
+      "Urine Bag",
+      "Urometer", 
+      "Urinary Catheter",
+      "Nelaton Catheter",
+      "Foley Ballon Catheter",
+      "Paediatric Urine Bag"
+    ]
+  },
+  {
+    title: "Anaesthesia & Respiratory",
+    items: [
+      "Oxygen Mask",
+      "Nebulizer Mask",
+      "Guedel Airways",
+      "Nasal Cannula",
+      "Suction Catheter",
+      "Endotracheal Tubes",
+      "3 Ball Spirometer",
+      "Ventilator Circuit",
+      "Bain Circuit",
+      "Ambu Bag"
+    ]
+  },
+  {
+    title: "Other Medical Disposables",
+    items: [
+      "Karman Cannula",
+      "Umbilical Cord Clamp",
+      "Corrugated Drainage Sheet",
+      "Examination Gloves",
+      "Surgical Gloves",
+      "Thoracic Catheter",
+      "Infant Mucus Extractor",
+      "Yankauer Suction Set",
+      "Close Wound Suction unit"
+    ]
+  }
 ];
 
 const filterGroups: { title: string; options: FilterOption[] }[] = [
@@ -68,15 +128,19 @@ const filterGroups: { title: string; options: FilterOption[] }[] = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isHomeMegaOpen, setIsHomeMegaOpen] = useState(false);
+  const [isProductsMegaOpen, setIsProductsMegaOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHomeMobileOpen, setIsHomeMobileOpen] = useState(false);
+  const [isProductsMobileOpen, setIsProductsMobileOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 0);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+      setIsProductsMegaOpen(false); // Close mega menu on scroll
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -84,7 +148,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setIsHomeMegaOpen(false);
+        setIsProductsMegaOpen(false);
       }
     };
 
@@ -93,8 +157,8 @@ export default function Navbar() {
   }, []);
 
   const navigateToSection = (sectionId: string) => {
-    setIsHomeMegaOpen(false);
-    setIsHomeMobileOpen(false);
+    setIsProductsMegaOpen(false);
+    setIsProductsMobileOpen(false);
     setIsMenuOpen(false);
 
     if (pathname !== '/') {
@@ -124,52 +188,128 @@ export default function Navbar() {
     navigateToSection(option.sectionId);
   };
 
-  const renderHomeMegaMenu = () => (
-    <div className="absolute left-0 top-full mt-4 w-[960px] max-w-[92vw] rounded-2xl bg-white shadow-2xl border border-slate-100 p-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {homeSections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => navigateToSection(section.id)}
-              className="w-full text-left p-4 rounded-xl border border-transparent hover:border-slate-200 hover:bg-slate-50 transition-all duration-200 group"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-slate-900 font-semibold">{section.title}</span>
-                <FiArrowRight className="w-4 h-4 text-medical-red opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <p className="text-sm text-slate-500 mt-1 leading-relaxed">{section.description}</p>
-            </button>
-          ))}
-        </div>
-
-        <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Filters</p>
-              <p className="text-sm text-slate-600">Tune what you see without reloading.</p>
+  const renderProductsMegaMenu = () => (
+    <div className="fixed left-0 right-0 top-20 w-full bg-white shadow-2xl border border-slate-100 p-5 z-40">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {/* Column 1: Infusion Therapy (Part 1) */}
+          <div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[0].title}</h3>
+            <div className="space-y-2">
+              {productCategories[0].items.slice(0, 7).map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
             </div>
-            <FiFilter className="w-5 h-5 text-medical-red" />
           </div>
 
-          {filterGroups.map((group) => (
-            <div key={group.title} className="bg-white border border-slate-200 rounded-xl p-3">
-              <div className="text-sm font-semibold text-slate-900 mb-2">{group.title}</div>
-              <div className="flex flex-wrap gap-2">
-                {group.options.map((option) => (
-                  <button
-                    key={option.label}
-                    onClick={() => handleFilter(option)}
-                    className="px-3 py-1.5 rounded-full text-sm bg-slate-100 text-slate-700 hover:bg-medical-red hover:text-white transition-colors"
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
+          {/* Column 2: Infusion Therapy (Part 2) + Transfusion */}
+          <div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3 opacity-0">.</h3>
+            <div className="space-y-2 mb-4">
+              {productCategories[0].items.slice(7).map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
             </div>
-          ))}
+            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[1].title}</h3>
+            <div className="space-y-2">
+              {productCategories[1].items.map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 3: Gastroenterology + Urology */}
+          <div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[2].title}</h3>
+            <div className="space-y-2 mb-4">
+              {productCategories[2].items.map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[3].title}</h3>
+            <div className="space-y-2">
+              {productCategories[3].items.slice(0, 3).map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 4: Urology (Part 2) + Anaesthesia (Part 1) */}
+          <div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3 opacity-0">.</h3>
+            <div className="space-y-2 mb-4">
+              {productCategories[3].items.slice(3).map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[4].title}</h3>
+            <div className="space-y-2">
+              {productCategories[4].items.slice(0, 4).map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 5: Anaesthesia (Part 2) + Other Medical Disposables */}
+          <div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3 opacity-0">.</h3>
+            <div className="space-y-2 mb-4">
+              {productCategories[4].items.slice(4).map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[5].title}</h3>
+            <div className="space-y-2">
+              {productCategories[5].items.slice(0, 4).map((item, idx) => (
+                <button
+                  key={idx}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
     </div>
   );
 
@@ -197,29 +337,29 @@ export default function Navbar() {
 
             {/* DESKTOP MENU */}
             <div className="hidden lg:flex items-center space-x-8">
-              <div className="relative group">
-                <button
-                  onClick={() => setIsHomeMegaOpen((prev) => !prev)}
-                  className="flex items-center space-x-2 cursor-pointer py-2 text-gray-700 hover:text-red-600 transition-colors font-medium"
-                >
-                  <span>Home</span>
-                  <FiChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${isHomeMegaOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300" />
-                {isHomeMegaOpen && renderHomeMegaMenu()}
-              </div>
+              <Link href="/" className="relative group py-2">
+                <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Home</span>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
+              </Link>
 
               <Link href="/about" className="relative group py-2">
                 <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Company</span>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
               </Link>
 
-              <Link href="/products" className="relative group py-2">
-                <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Products</span>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></div>
-              </Link>
+              <div className="relative group">
+                <button
+                  onClick={() => setIsProductsMegaOpen((prev) => !prev)}
+                  className="flex items-center space-x-2 cursor-pointer py-2 text-gray-700 hover:text-red-600 transition-colors font-medium"
+                >
+                  <span>Products</span>
+                  <FiChevronDown
+                    className={`w-4 h-4 transition-transform duration-200 ${isProductsMegaOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300" />
+                {isProductsMegaOpen && renderProductsMegaMenu()}
+              </div>
 
               <Link href="#" className="relative group py-2">
                 <span className="text-gray-700 hover:text-red-600 transition-colors font-medium">Third Party/OEM</span>
@@ -235,7 +375,10 @@ export default function Navbar() {
             {/* RIGHT SIDE BUTTONS */}
             <div className="flex items-center space-x-4">
               {/* Search Button */}
-              <button className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-colors">
+              <button 
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-colors"
+              >
                 <FiSearch className="w-5 h-5" />
               </button>
 
@@ -259,44 +402,13 @@ export default function Navbar() {
           {isMenuOpen && (
             <div className="lg:hidden py-6 border-t border-gray-200 bg-white">
               <div className="flex flex-col space-y-4">
-                <div className="rounded-xl border border-gray-200">
-                  <button
-                    className="w-full flex items-center justify-between px-3 py-3 text-left text-gray-800 font-semibold"
-                    onClick={() => setIsHomeMobileOpen((prev) => !prev)}
-                  >
-                    <span>Home</span>
-                    <FiChevronDown
-                      className={`w-4 h-4 transition-transform ${isHomeMobileOpen ? 'rotate-180' : ''}`}
-                    />
-                  </button>
-                  {isHomeMobileOpen && (
-                    <div className="px-3 pb-3 space-y-2">
-                      {homeSections.map((section) => (
-                        <button
-                          key={section.id}
-                          onClick={() => navigateToSection(section.id)}
-                          className="w-full text-left px-3 py-2 rounded-lg bg-gray-50 hover:bg-gray-100 text-sm text-gray-700"
-                        >
-                          {section.title}
-                        </button>
-                      ))}
-                      <div className="pt-2 border-t border-gray-200 mt-2">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">Filters</p>
-                        <div className="flex flex-wrap gap-2">
-                          {[...filterGroups.flatMap((group) => group.options)].slice(0, 6).map((option) => (
-                            <button
-                              key={option.label}
-                              onClick={() => handleFilter(option)}
-                              className="px-3 py-1.5 rounded-full text-sm bg-gray-100 text-gray-700 hover:bg-medical-red hover:text-white transition-colors"
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <Link
+                  href="/"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2"
+                >
+                  Home
+                </Link>
 
                 <Link
                   href="/about"
@@ -305,13 +417,35 @@ export default function Navbar() {
                 >
                   Company
                 </Link>
-                <Link
-                  href="/products"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2"
-                >
-                  Products
-                </Link>
+
+                <div className="rounded-xl border border-gray-200">
+                  <button
+                    className="w-full flex items-center justify-between px-3 py-3 text-left text-gray-800 font-semibold"
+                    onClick={() => setIsProductsMobileOpen((prev) => !prev)}
+                  >
+                    <span>Products</span>
+                    <FiChevronDown
+                      className={`w-4 h-4 transition-transform ${isProductsMobileOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  {isProductsMobileOpen && (
+                    <div className="px-3 pb-3 space-y-2">
+                      {productCategories.map((category, index) => (
+                        <div key={index} className="mb-3">
+                          <div className="text-sm font-semibold text-gray-800 mb-2">{category.title}</div>
+                          {category.items.slice(0, 3).map((item, idx) => (
+                            <button
+                              key={idx}
+                              className="w-full text-left px-3 py-2 rounded-lg bg-gray-50 hover:bg-red-600 hover:text-white text-sm text-gray-700 transition-colors mb-1"
+                            >
+                              {item}
+                            </button>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 <Link
                   href="#"
                   onClick={() => setIsMenuOpen(false)}
@@ -345,6 +479,28 @@ export default function Navbar() {
             </div>
           )}
         </div>
+
+        {/* Search Dropdown */}
+        {isSearchOpen && (
+          <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
+            <div className="max-w-8xl mx-auto px-8 py-6">
+              <div className="flex items-center gap-4">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    placeholder="Search products, categories, or solutions..."
+                    className="w-full px-6 py-4 border-2 border-red-200 rounded-xl focus:border-red-500 focus:outline-none text-lg"
+                    autoFocus
+                  />
+                </div>
+                <button className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors flex items-center gap-2">
+                  <FiSearch className="w-5 h-5" />
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   );
