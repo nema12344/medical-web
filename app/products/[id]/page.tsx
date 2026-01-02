@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Download, FileText, Shield, Award, CheckCircle, Check, MessageCircle, Phone, Settings, Clock, Zap } from 'lucide-react';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 const product = {
   id: 1,
@@ -27,7 +29,10 @@ export default function ProductDetailPage() {
   const [selectedImage, setSelectedImage] = useState(0);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
+      <Navbar />
+
+      <main className="flex-1 pb-24 md:pb-0">
       {/* Breadcrumb Navigation */}
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -366,6 +371,9 @@ export default function ProductDetailPage() {
           </button>
         </div>
       </div>
+      </main>
+
+      <Footer />
 
       {/* Sticky Enquiry CTA */}
       {/* Mobile Bottom Fixed Bar */}

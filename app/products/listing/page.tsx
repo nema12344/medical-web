@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Search, Filter, Grid, List, ChevronDown } from 'lucide-react';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 const products = [
   {
@@ -85,114 +87,120 @@ export default function ProductListingPage() {
   }, [searchTerm, selectedCategory, sortBy]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header Banner */}
-      <div className="bg-gradient-to-r from-red-600 to-pink-600 h-[50vh] flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Medical Products</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">Professional-grade medical equipment and supplies for healthcare excellence</p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Search and Controls */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border mb-6">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              />
-            </div>
-
-            <div className="flex items-center gap-4">
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="appearance-none bg-white border border-gray-200 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              >
-                {categories.map(category => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
-              </select>
-
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none bg-white border border-gray-200 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              >
-                <option value="name">Sort by Name</option>
-                <option value="price">Sort by Price</option>
-              </select>
-            </div>
+      <main className="flex-1">
+        {/* Header Banner */}
+        <div className="bg-gradient-to-r from-red-600 to-pink-600 h-[50vh] flex items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Medical Products</h1>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">Professional-grade medical equipment and supplies for healthcare excellence</p>
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map(product => (
-            <div
-              key={product.id}
-              className="bg-white rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 overflow-hidden group"
-            >
-              <div className="relative">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={400}
-                  height={300}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          {/* Search and Controls */}
+          <div className="bg-white rounded-xl p-6 shadow-sm border mb-6">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 />
-                {product.featured && (
-                  <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                    Featured
-                  </div>
-                )}
               </div>
 
-              <div className="p-6">
-                <div className="mb-2">
-                  <span className="inline-block px-2 py-1 bg-red-50 text-red-600 text-xs font-medium rounded-full">
-                    {product.category}
-                  </span>
-                </div>
-                
-                <h3 className="text-xl font-semibold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
-                  {product.name}
-                </h3>
-                
-                <p className="text-slate-600 mb-4 line-clamp-2">
-                  {product.description}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-slate-900">
-                    {product.price}
-                  </span>
-                  
-                  <Link href={`/products/${product.id}`}>
-                    <button
-                      disabled={!product.inStock}
-                      className={`px-6 py-2 rounded-lg font-medium transition-colors ${
-                        product.inStock
-                          ? 'bg-red-600 hover:bg-red-700 text-white'
-                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      }`}
-                    >
-                      {product.inStock ? 'View Details' : 'Out of Stock'}
-                    </button>
-                  </Link>
-                </div>
+              <div className="flex items-center gap-4">
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="appearance-none bg-white border border-gray-200 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                >
+                  {categories.map(category => (
+                    <option key={category} value={category}>{category}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="appearance-none bg-white border border-gray-200 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                >
+                  <option value="name">Sort by Name</option>
+                  <option value="price">Sort by Price</option>
+                </select>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map(product => (
+              <div
+                key={product.id}
+                className="bg-white rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 overflow-hidden group"
+              >
+                <div className="relative">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {product.featured && (
+                    <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                      Featured
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-6">
+                  <div className="mb-2">
+                    <span className="inline-block px-2 py-1 bg-red-50 text-red-600 text-xs font-medium rounded-full">
+                      {product.category}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                    {product.name}
+                  </h3>
+                  
+                  <p className="text-slate-600 mb-4 line-clamp-2">
+                    {product.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-slate-900">
+                      {product.price}
+                    </span>
+                    
+                    <Link href={`/products/${product.id}`}>
+                      <button
+                        disabled={!product.inStock}
+                        className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+                          product.inStock
+                            ? 'bg-red-600 hover:bg-red-700 text-white'
+                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        }`}
+                      >
+                        {product.inStock ? 'View Details' : 'Out of Stock'}
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

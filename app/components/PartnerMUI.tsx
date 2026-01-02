@@ -90,9 +90,17 @@ export default function PartnerMUI() {
                 </Box>
 
                 {/* Horizontal Tabs / Buttons Row */}
-                <Grid container spacing={2} sx={{ mb: 6, justifyContent: 'center' }}>
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(3, minmax(0, 1fr))' },
+                        gap: 2,
+                        mb: 6,
+                        justifyItems: 'center',
+                    }}
+                >
                     {partnersData.map((item, index) => (
-                        <Grid item xs={6} md={true} key={item.id}>
+                        <Box key={item.id} sx={{ width: '100%' }}>
                             <Box
                                 onClick={() => setSelectedIndex(index)}
                                 sx={{
@@ -139,9 +147,9 @@ export default function PartnerMUI() {
                                     {item.title}
                                 </Typography>
                             </Box>
-                        </Grid>
+                        </Box>
                     ))}
-                </Grid>
+                </Box>
 
                 {/* Dynamic Content Panel */}
                 <Fade in={true} key={selectedIndex} timeout={500}>
