@@ -73,14 +73,14 @@ export default function ModernHero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                     className="absolute inset-0 w-full"
                 >
                     {/* Background Image */}
                     <motion.div 
-                        initial={{ scale: 1.1, opacity: 0 }}
+                        initial={{ scale: 1.05, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                         style={{
                             backgroundImage: `url(${slides[currentSlide].image})`
@@ -94,17 +94,17 @@ export default function ModernHero() {
                         <div className="max-w-4xl mx-auto text-center">
                             {/* Transparent Card Container */}
                             <motion.div
-                                initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                                initial={{ opacity: 0, y: 30, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                                transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                                 className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl"
                             >
 
                                 {/* Main Headline */}
                                 <motion.h1
-                                    initial={{ opacity: 0, y: 40 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+                                    transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                                     className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] mb-8"
                                 >
                                     {slides[currentSlide].title}
@@ -112,9 +112,9 @@ export default function ModernHero() {
 
                                 {/* Supporting Paragraph */}
                                 <motion.p
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={{ opacity: 0, y: 15 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+                                    transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                                     className="text-xl text-white/90 leading-relaxed max-w-3xl mx-auto font-medium mb-10"
                                 >
                                     {slides[currentSlide].subtitle}
@@ -122,9 +122,9 @@ export default function ModernHero() {
 
                                 {/* Single CTA Button */}
                                 <motion.div
-                                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+                                    transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                                 >
                                     <Link href="/learn-more">
                                         <motion.button
