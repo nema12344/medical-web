@@ -89,14 +89,18 @@ export default function PartnerMUI() {
                     </Typography>
                 </Box>
 
-                {/* Horizontal Tabs / Buttons Row */}
+                {/* Responsive Tabs - Single Column on Mobile */}
                 <Box
                     sx={{
                         display: 'grid',
-                        gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(3, minmax(0, 1fr))' },
-                        gap: 2,
+                        gridTemplateColumns: { 
+                            xs: '1fr', 
+                            sm: 'repeat(2, 1fr)', 
+                            md: 'repeat(3, 1fr)', 
+                            lg: 'repeat(5, 1fr)' 
+                        },
+                        gap: { xs: 1.5, sm: 2 },
                         mb: 6,
-                        justifyItems: 'center',
                     }}
                 >
                     {partnersData.map((item, index) => (
@@ -105,20 +109,22 @@ export default function PartnerMUI() {
                                 onClick={() => setSelectedIndex(index)}
                                 sx={{
                                     cursor: 'pointer',
-                                    p: 2,
+                                    p: { xs: 1.5, sm: 2 },
                                     height: '100%',
+                                    minHeight: { xs: '80px', sm: '100px' },
                                     borderRadius: 3,
-                                    border: selectedIndex === index ? '1px solid #D0252C' : '1px solid #E0E7FF',
+                                    border: selectedIndex === index ? '2px solid #D0252C' : '1px solid #E0E7FF',
                                     bgcolor: selectedIndex === index ? 'rgba(208, 37, 44, 0.04)' : 'transparent',
                                     display: 'flex',
-                                    flexDirection: 'column',
+                                    flexDirection: { xs: 'row', sm: 'column' },
                                     alignItems: 'center',
-                                    justifyContent: 'center',
-                                    textAlign: 'center',
+                                    justifyContent: { xs: 'flex-start', sm: 'center' },
+                                    textAlign: { xs: 'left', sm: 'center' },
+                                    gap: { xs: 1.5, sm: 0 },
                                     transition: 'all 0.3s ease',
                                     '&:hover': {
-                                        transform: 'translateY(-4px)',
-                                        boxShadow: '0 8px 16px rgba(15, 42, 68, 0.06)',
+                                        transform: 'translateY(-2px)',
+                                        boxShadow: '0 4px 12px rgba(15, 42, 68, 0.08)',
                                         borderColor: selectedIndex === index ? '#D0252C' : '#CBD5E1'
                                     }
                                 }}
@@ -126,12 +132,13 @@ export default function PartnerMUI() {
                                 <Box
                                     sx={{
                                         color: selectedIndex === index ? '#D0252C' : '#94A3B8',
-                                        mb: 1.5,
+                                        mb: { xs: 0, sm: 1.5 },
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         transform: selectedIndex === index ? 'scale(1.1)' : 'scale(1)',
-                                        transition: 'all 0.3s'
+                                        transition: 'all 0.3s',
+                                        fontSize: { xs: '1.2rem', sm: '1.5rem' }
                                     }}
                                 >
                                     {item.icon}
@@ -141,7 +148,9 @@ export default function PartnerMUI() {
                                     sx={{
                                         fontWeight: selectedIndex === index ? 700 : 600,
                                         color: selectedIndex === index ? '#0F2A44' : '#64748B',
-                                        lineHeight: 1.3
+                                        lineHeight: 1.3,
+                                        fontSize: { xs: '0.875rem', sm: '0.9rem' },
+                                        flex: 1
                                     }}
                                 >
                                     {item.title}

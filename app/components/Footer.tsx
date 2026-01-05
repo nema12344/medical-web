@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer(){
   return (
     <footer className="bg-slate-900 text-white pb-8 py-16">
@@ -20,11 +22,13 @@ export default function Footer(){
           <div>
             <h3 className="text-lg font-semibold mb-6">Products</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">IV Infusion Sets</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Surgical Disposables</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Medical Devices</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Diagnostic Equipment</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Product Catalog</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Infusion products</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Transfusion products</a></li>
+               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Gastroenterology</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Urology and Nephrology</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Anaesthesia & Respiratory</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Other Medical & Surgicals</a></li>
+              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">All Products List</Link></li>
             </ul>
           </div>
           
