@@ -132,6 +132,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsMobileOpen, setIsProductsMobileOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -322,17 +323,19 @@ export default function Navbar() {
           isScrolled ? 'shadow-xl backdrop-blur-sm bg-white/95' : ''
         }`}
       >
-        <div className="max-w-8xl mx-auto lg:px-15 px-8">
-          <div className="flex justify-between items-center h-20">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="flex justify-between items-center h-16 sm:h-18 lg:h-20">
             {/* LOGO */}
             <div className="flex items-center px-4">
-              <Image
-                src="/logo.png"
-                alt="Dispopwell Logo"
-                width={110}
-                height={10}
-                className="object-contain"
-              />
+             <Image
+  src="/logo.png"
+  alt="Dispopwell Logo"
+  width={140}
+  height={40}
+  priority
+  className="h-8 w-auto sm:h-9 md:h-10 object-contain"
+/>
+
             </div>
 
             {/* DESKTOP MENU */}
@@ -383,14 +386,17 @@ export default function Navbar() {
               </button>
 
               {/* REQUEST QUOTE BUTTON */}
-              <button className="bg-gradient-to-r hidden md:inline-flex from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
+              <button 
+                onClick={() => setIsQuoteModalOpen(true)}
+                className="bg-gradient-to-r hidden md:inline-flex from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+              >
                 <span>Request Quote</span>
                 <FiArrowRight className="w-4 h-4" />
               </button>
 
               {/* MOBILE MENU BUTTON */}
               <button
-                className="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-700"
+                className="lg:hidden p-2.5 rounded-xl bg-gray-100 active:scale-95 transition"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
@@ -460,7 +466,10 @@ export default function Navbar() {
                 >
                   Contact
                 </Link>
-                <button className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
+                <button 
+                  onClick={() => setIsQuoteModalOpen(true)}
+                  className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
+                >
                   <span>Request Quote</span>
                   <FiArrowRight className="w-4 h-4" />
                 </button>
@@ -505,6 +514,76 @@ export default function Navbar() {
           </div>
         )}
       </nav>
+
+      {/* Quote Modal */}
+      {isQuoteModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl p-8 max-w-md w-full relative">
+            <button 
+              onClick={() => setIsQuoteModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+            >
+              <FiX className="w-6 h-6" />
+            </button>
+            
+            <h3 className="text-2xl font-bold text-white mb-6">Request Quote</h3>
+            
+            <form className="space-y-4">
+              <div>
+                <input 
+                  type="text" 
+                  placeholder="Full Name"
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                />
+              </div>
+              
+              <div>
+                <input 
+                  type="email" 
+                  placeholder="Email Address"
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                />
+              </div>
+              
+              <div>
+                <input 
+                  type="tel" 
+                  placeholder="Phone Number"
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                />
+              </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input 
+                    type="text" 
+                    placeholder="city"
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                  />
+                  <input 
+                    type="text" 
+                    placeholder="state"
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                  />
+               </div>
+              
+              <div>
+                <textarea 
+                  placeholder="Product Requirements"
+                  rows={4}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none resize-none"
+                />
+              </div>
+              
+              <button 
+                type="submit"
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
+                Submit Request
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }

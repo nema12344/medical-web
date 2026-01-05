@@ -9,7 +9,7 @@ const slides = [
     {
         badge: "#1 Oncology Medical",
         title: "Discover a Wealth of Resources",
-        subtitle: "Comprehensive healthcare support and patient care solutions designed to empower both medical professionals and patients on their journey to recovery.",
+        subtitle: "Comprehensive healthcare support and patient care solutions designed to empower both medical on their journey to recovery.",
         image: "/images/hero-bg-2.png",
         bgGradient: "from-pink-50 via-rose-50 to-pink-100"
     },
@@ -105,7 +105,7 @@ export default function ModernHero() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                                    className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] mb-8"
+                                    className="text-5xl sm:text-4xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] mb-8"
                                 >
                                     {slides[currentSlide].title}
                                 </motion.h1>
