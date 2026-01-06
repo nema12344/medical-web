@@ -90,12 +90,12 @@ export default function ContactPage() {
                     
                     {/* Our Products Button */}
                     <div className="mb-8">
-                      <button className="group bg-white/20 hover:bg-white/30 backdrop-blur-sm  rounded-full px-6 py-3 flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20">
+                      <a href="/products" className="group bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full px-6 py-3 inline-flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20">
                         <span className="font-medium">Our Products</span>
                         <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                           <FiArrowRight className="w-4 h-4" />
                         </div>
-                      </button>
+                      </a>
                     </div>
                   </div>
                   
