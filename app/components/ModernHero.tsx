@@ -63,7 +63,7 @@ export default function ModernHero() {
 
     return (
         <section 
-            className="relative w-full min-h-screen overflow-hidden"
+            className="relative w-full h-[88dvh] md:h-[88dvh] overflow-hidden"
             onMouseEnter={() => setIsPlaying(false)}
             onMouseLeave={() => setIsPlaying(true)}
         >
@@ -90,14 +90,14 @@ export default function ModernHero() {
                     {/* Light Overlay */}
                     <div className="absolute inset-0 bg-black/20" />
                     
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center relative z-10">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-screen flex pt-10 relative z-10">
                         <div className="max-w-4xl mx-auto text-center">
                             {/* Transparent Card Container */}
                             <motion.div
                                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                                className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl"
+                                className="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl"
                             >
 
                                 {/* Main Headline */}
@@ -105,7 +105,7 @@ export default function ModernHero() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                                    className="text-5xl sm:text-4xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] mb-8"
+                                    className="text-3xl sm:text-4xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] mb-8"
                                 >
                                     {slides[currentSlide].title}
                                 </motion.h1>
@@ -115,7 +115,7 @@ export default function ModernHero() {
                                     initial={{ opacity: 0, y: 15 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                                    className="text-xl text-white/90 leading-relaxed max-w-3xl mx-auto font-medium mb-10"
+                                    className="text-md md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto font-medium mb-5   md:mb-10"
                                 >
                                     {slides[currentSlide].subtitle}
                                 </motion.p>
@@ -130,7 +130,7 @@ export default function ModernHero() {
                                         <motion.button
                                             whileHover={{ scale: 1.05, y: -2 }}
                                             whileTap={{ scale: 0.95 }}
-                                            className="px-12 py-5 bg-white text-slate-900 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-white/20 transition-all flex items-center justify-center gap-3 group mx-auto"
+                                            className="px-12 py-5 bg-white text-slate-900 rounded-2xl font-bold text-md md:text-lg shadow-2xl hover:shadow-white/20 transition-all flex items-center justify-center gap-3 group mx-auto"
                                         >
                                             Explore Our Solutions
                                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
