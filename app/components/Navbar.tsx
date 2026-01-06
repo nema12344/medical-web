@@ -327,7 +327,7 @@ export default function Navbar() {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex justify-between items-center h-16 sm:h-18 lg:h-20">
             {/* LOGO */}
-            <div className="flex items-center px-4">
+            <div className="flex items-center px-0 md:px-4">
              <Image
   src="/logo.png"
   alt="Dispopwell Logo"
@@ -377,8 +377,16 @@ export default function Navbar() {
             </div>
 
             {/* RIGHT SIDE BUTTONS */}
-            <div className="flex items-center space-x-4">
-              {/* Search Button */}
+            <div className="flex items-center space-x-3">
+              {/* Search Button - Mobile */}
+              <button 
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="lg:hidden p-2.5 rounded-xl bg-gray-100 active:scale-95 transition"
+              >
+                <FiSearch className="w-5 h-5" />
+              </button>
+
+              {/* Search Button - Desktop */}
               <button 
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-colors"
@@ -400,18 +408,17 @@ export default function Navbar() {
                 className="lg:hidden p-2.5 rounded-xl bg-gray-100 active:scale-95 transition"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                {isMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+                {isMenuOpen ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
               </button>
             </div>
           </div>
 
           {/* MOBILE MENU */}
-          {isMenuOpen && (
-            <>
-              <div className="lg:hidden fixed inset-0 bg-black/50" onClick={() => setIsMenuOpen(false)} style={{zIndex: 2147483646}} />
-              <div className="lg:hidden fixed top-0 left-0 w-80 h-screen bg-white shadow-xl flex flex-col" style={{zIndex: 2147483647}}>
+          <>
+            <div className={`lg:hidden fixed inset-0 bg-black/50 transition-opacity duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsMenuOpen(false)} style={{zIndex: 2147483646}} />
+            <div className={`lg:hidden fixed top-0 left-0 w-80 h-screen bg-white shadow-xl flex flex-col transform transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} style={{zIndex: 2147483647}}>
                 {/* Fixed Header */}
-                <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-white">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white">
                   <Image src="/logo.png" alt="Logo" width={120} height={40} className="h-8 w-auto sm:h-9 md:h-10 object-contain" />
                   <button onClick={() => setIsMenuOpen(false)} className="p-2 pe-0 ms-auto text-gray-600">
                     <FiX className="w-6 h-6" />
@@ -481,25 +488,27 @@ export default function Navbar() {
                 </div>
               </div>
             </>
-          )}
         </div>
 
         {/* Search Dropdown */}
         {isSearchOpen && (
           <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
-            <div className="max-w-5xl mx-auto px-8 py-6">
+            <div className="max-w-5xl mx-auto px-8 py-4">
               <div className="flex items-center gap-4">
                 <div className="flex-1 relative">
                   <input
                     type="text"
                     placeholder="Search products, categories, or solutions..."
-                    className="w-full px-6 py-4 border-2 border-red-200 rounded-xl focus:border-red-500 focus:outline-none text-lg"
+                    className="w-full h-14 px-6 border-2 border-red-200 rounded-xl focus:border-red-500 focus:outline-none text-lg"
                     autoFocus
                   />
                 </div>
-                <button className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors flex items-center gap-2">
+                <button className="hidden md:flex px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors items-center gap-2">
                   <FiSearch className="w-5 h-5" />
                   Search
+                </button>
+                <button className="md:hidden h-14 px-4 bg-red-600 hover:bg-red-700 text-white rounded-xl transition-colors flex items-center justify-center">
+                  <FiSearch className="w-5 h-5" />
                 </button>
                 <button onClick={() => setIsSearchOpen(false)} className="text-gray-600 hover:text-red-600 transition-colors">
                   <FiX className="w-6 h-6" />

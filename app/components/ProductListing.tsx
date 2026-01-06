@@ -92,12 +92,20 @@ const ProductListing: React.FC = () => {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex md:flex-wrap md:justify-center gap-2 mb-12 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0" style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none'
+        }}>
+          <style jsx>{`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
           {productCategories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                 activeCategory === category
                   ? 'bg-red-600 text-white shadow-lg'
                   : 'bg-white text-slate-600 hover:bg-red-50 hover:text-red-600 border border-slate-200'

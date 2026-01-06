@@ -89,29 +89,38 @@ export default function PartnerMUI() {
                     </Typography>
                 </Box>
 
-                {/* Responsive Tabs - Single Column on Mobile */}
+                {/* Responsive Tabs - Horizontal Scroll on Mobile */}
                 <Box
+                    className="tabs-container"
                     sx={{
-                        display: 'grid',
+                        display: { xs: 'flex', md: 'grid' },
+                        overflowX: { xs: 'auto', md: 'visible' },
                         gridTemplateColumns: { 
-                            xs: '1fr', 
-                            sm: 'repeat(2, 1fr)', 
                             md: 'repeat(3, 1fr)', 
                             lg: 'repeat(5, 1fr)' 
                         },
                         gap: { xs: 1.5, sm: 2 },
                         mb: 6,
+                        '&::-webkit-scrollbar': {
+                            display: 'none'
+                        },
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none'
                     }}
                 >
                     {partnersData.map((item, index) => (
-                        <Box key={item.id} sx={{ width: '100%' }}>
+                        <Box key={item.id} className="tab-item" sx={{ 
+                            minWidth: { xs: 'fit-content', md: 'auto' },
+                            flexShrink: { xs: 0, md: 1 }
+                        }}>
                             <Box
+                                className="tab-button"
                                 onClick={() => setSelectedIndex(index)}
                                 sx={{
                                     cursor: 'pointer',
                                     p: { xs: 1.5, sm: 2 },
                                     height: '100%',
-                                    minHeight: { xs: '80px', sm: '100px' },
+                                    minHeight: { xs: '48px', sm: '100px' },
                                     borderRadius: 3,
                                     border: selectedIndex === index ? '2px solid #D0252C' : '1px solid #E0E7FF',
                                     bgcolor: selectedIndex === index ? 'rgba(208, 37, 44, 0.04)' : 'transparent',
@@ -122,6 +131,7 @@ export default function PartnerMUI() {
                                     textAlign: { xs: 'left', sm: 'center' },
                                     gap: { xs: 1.5, sm: 0 },
                                     transition: 'all 0.3s ease',
+                                    whiteSpace: { xs: 'nowrap', md: 'normal' },
                                     '&:hover': {
                                         transform: 'translateY(-2px)',
                                         boxShadow: '0 4px 12px rgba(15, 42, 68, 0.08)',
