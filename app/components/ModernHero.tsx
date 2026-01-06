@@ -63,7 +63,7 @@ export default function ModernHero() {
 
     return (
         <section 
-            className="relative w-full h-[88dvh] md:h-[88dvh] overflow-hidden"
+            className="relative w-full h-[88dvh] md:h-[94dvh] overflow-hidden"
             onMouseEnter={() => setIsPlaying(false)}
             onMouseLeave={() => setIsPlaying(true)}
         >
@@ -90,7 +90,7 @@ export default function ModernHero() {
                     {/* Light Overlay */}
                     <div className="absolute inset-0 bg-black/20" />
                     
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-screen flex pt-10 relative z-10">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-screen flex pt-18 md:mt-6 relative z-10">
                         <div className="max-w-4xl mx-auto text-center">
                             {/* Transparent Card Container */}
                             <motion.div
@@ -126,7 +126,7 @@ export default function ModernHero() {
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                                 >
-                                    <Link href="/learn-more">
+                                    <Link href="/products">
                                         <motion.button
                                             whileHover={{ scale: 1.05, y: -2 }}
                                             whileTap={{ scale: 0.95 }}

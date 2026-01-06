@@ -22,12 +22,12 @@ export default function Footer(){
           <div>
             <h3 className="text-lg font-semibold mb-6">Products</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Infusion products</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Transfusion products</a></li>
-               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Gastroenterology</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Urology and Nephrology</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Anaesthesia & Respiratory</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Other Medical & Surgicals</a></li>
+              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Infusion products</Link></li>
+              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Transfusion products</Link></li>
+               <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Gastroenterology</Link></li>
+              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Urology and Nephrology</Link></li>
+              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Anaesthesia & Respiratory</Link></li>
+              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Other Medical & Surgicals</Link></li>
               <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">All Products List</Link></li>
             </ul>
           </div>
