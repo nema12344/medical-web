@@ -375,14 +375,6 @@ export default function ProductDetailPage() {
 
       <Footer />
 
-      {/* Sticky Enquiry CTA */}
-      {/* Mobile Bottom Fixed Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-50 md:hidden">
-        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-bold text-lg transition-colors duration-300">
-          Enquire Now
-        </button>
-      </div>
-
       {/* Desktop Inline CTA */}
       <div className="hidden md:block fixed bottom-8 right-8 z-50">
         <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 p-6">

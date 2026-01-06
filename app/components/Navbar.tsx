@@ -131,6 +131,7 @@ export default function Navbar() {
   const [isProductsMegaOpen, setIsProductsMegaOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsMobileOpen, setIsProductsMobileOpen] = useState(false);
+  const [openCategoryIndex, setOpenCategoryIndex] = useState<number | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
@@ -406,86 +407,80 @@ export default function Navbar() {
 
           {/* MOBILE MENU */}
           {isMenuOpen && (
-            <div className="lg:hidden py-6 border-t border-gray-200 bg-white">
-              <div className="flex flex-col space-y-4">
-                <Link
-                  href="/"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2"
-                >
-                  Home
-                </Link>
-
-                <Link
-                  href="/about"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2"
-                >
-                  Company
-                </Link>
-
-                <div className="rounded-xl border border-gray-200">
-                  <button
-                    className="w-full flex items-center justify-between px-3 py-3 text-left text-gray-800 font-semibold"
-                    onClick={() => setIsProductsMobileOpen((prev) => !prev)}
-                  >
-                    <span>Products</span>
-                    <FiChevronDown
-                      className={`w-4 h-4 transition-transform ${isProductsMobileOpen ? 'rotate-180' : ''}`}
-                    />
+            <>
+              <div className="lg:hidden fixed inset-0 bg-black/50" onClick={() => setIsMenuOpen(false)} style={{zIndex: 2147483646}} />
+              <div className="lg:hidden fixed top-0 left-0 w-80 h-screen bg-white shadow-xl flex flex-col" style={{zIndex: 2147483647}}>
+                {/* Fixed Header */}
+                <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-white">
+                  <Image src="/logo.png" alt="Logo" width={120} height={40} className="h-8 w-auto sm:h-9 md:h-10 object-contain" />
+                  <button onClick={() => setIsMenuOpen(false)} className="p-2 pe-0 ms-auto text-gray-600">
+                    <FiX className="w-6 h-6" />
                   </button>
-                  {isProductsMobileOpen && (
-                    <div className="px-3 pb-3 space-y-2">
-                      {productCategories.map((category, index) => (
-                        <div key={index} className="mb-3">
-                          <div className="text-sm font-semibold text-gray-800 mb-2">{category.title}</div>
-                          {category.items.slice(0, 3).map((item, idx) => (
-                            <button
-                              key={idx}
-                              className="w-full text-left px-3 py-2 rounded-lg bg-gray-50 hover:bg-red-600 hover:text-white text-sm text-gray-700 transition-colors mb-1"
-                            >
-                              {item}
-                            </button>
+                </div>
+                
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto  py-2">
+                  <div className="space-y-2">
+                    <Link href="/" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
+                      Home
+                    </Link>
+                    
+                    <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
+                      Company
+                    </Link>
+                    
+                    <div>
+                      <button onClick={() => setIsProductsMobileOpen(!isProductsMobileOpen)} className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
+                        <span>Products</span>
+                        <FiChevronDown className={`w-4 h-4 transition-transform ${isProductsMobileOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isProductsMobileOpen && (
+                        <div className="px-4 mt-2 space-y-1">
+                          {productCategories.map((category, index) => (
+                            <div key={index}>
+                              <button 
+                                onClick={() => setOpenCategoryIndex(openCategoryIndex === index ? null : index)}
+                                className="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-800 bg-gray-50 hover:bg-gray-100 rounded transition-colors"
+                              >
+                                <span>{category.title}</span>
+                                <FiChevronDown className={`w-3 h-3 transition-transform ${openCategoryIndex === index ? 'rotate-180' : ''}`} />
+                              </button>
+                              {openCategoryIndex === index && (
+                                <div className="ml-2 mt-1 space-y-1">
+                                  {category.items.map((item, idx) => (
+                                    <button key={idx} onClick={() => setIsMenuOpen(false)} className="block w-full text-left px-3 py-2 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 rounded transition-colors">
+                                      {item}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           ))}
                         </div>
-                      ))}
+                      )}
                     </div>
-                  )}
+                    
+                    <Link href="#" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
+                      Third Party/OEM
+                    </Link>
+                    
+                    <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
+                      Contact
+                    </Link>
+                  </div>
                 </div>
-                <Link
-                  href="#"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2"
-                >
-                  Third Party/OEM
-                </Link>
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-700 hover:text-red-600 transition-colors font-medium py-2"
-                >
-                  Contact
-                </Link>
-                <button 
-                  onClick={() => setIsQuoteModalOpen(true)}
-                  className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
-                >
-                  <span>Request Quote</span>
-                  <FiArrowRight className="w-4 h-4" />
-                </button>
-
-                <div className="pt-4 border-t border-gray-200">
-                  <div className="flex items-center space-x-2 text-gray-600 mb-2">
-                    <FiPhone className="w-4 h-4" />
-                    <span className="text-sm">+1 (555) 123-4567</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-gray-600">
-                    <FiMail className="w-4 h-4" />
-                    <span className="text-sm">info@dispopwell.com</span>
-                  </div>
+                
+                {/* Fixed Footer Buttons */}
+                <div className="px-4 py-3 border-t border-gray-200 bg-white flex gap-3">
+                  <button onClick={() => setIsQuoteModalOpen(true)} className="flex-1 bg-red-600 text-white px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors">
+                    Request Quote
+                  </button>
+                  <button onClick={() => setIsMenuOpen(false)} className="flex-1 bg-blue-600 text-white px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                    Enquire Now
+                  </button>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
 
