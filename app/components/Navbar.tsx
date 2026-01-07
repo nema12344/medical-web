@@ -12,6 +12,14 @@ import {
   FiPhone,
   FiMail,
   FiFilter,
+  FiShield,
+  FiAward,
+  FiDroplet,
+  FiHeart,
+  FiActivity,
+  FiUser,
+  FiWind,
+  FiPackage,
 } from 'react-icons/fi';
 
 const cities = [
@@ -216,127 +224,153 @@ export default function Navbar() {
   };
 
   const renderProductsMegaMenu = () => (
-    <div className="fixed left-0 right-0 top-20 w-full bg-white shadow-2xl border border-slate-100 p-5 z-40">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {/* Column 1: Infusion Therapy (Part 1) */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[0].title}</h3>
-            <div className="space-y-2">
-              {productCategories[0].items.slice(0, 7).map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
+    <div 
+      className="fixed left-0 right-0 top-20 w-full bg-white shadow-2xl border border-slate-100 p-8 z-40"
+      style={{
+        backgroundImage: 'url(/images/mega-img.png)',
+        backgroundSize: 'auto',
+        backgroundPosition: 'right center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      <div className="max-w-6xl mx-auto grid grid-cols-3 gap-8">
+        {/* Column 1: First 3 categories */}
+        <div className="space-y-6" style={{ backdropFilter: 'blur(10px)' }}>
+          <div 
+            className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setIsProductsMegaOpen(false);
+              window.location.href = '/products';
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to bottom right, #fef2f2, #fecaca)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#f8fafc';
+            }}
+          >
+            <FiDroplet className="w-12 h-12 text-slate-900 mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{productCategories[0].title}</h3>
+              <p className="text-sm text-slate-600">Complete range of IV infusion products for medical procedures</p>
             </div>
           </div>
-
-          {/* Column 2: Infusion Therapy (Part 2) + Transfusion */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3 opacity-0">.</h3>
-            <div className="space-y-2 mb-4">
-              {productCategories[0].items.slice(7).map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[1].title}</h3>
-            <div className="space-y-2">
-              {productCategories[1].items.map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
+          
+          <div 
+            className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setIsProductsMegaOpen(false);
+              window.location.href = '/products';
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to bottom right, #fef2f2, #fecaca)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#f8fafc';
+            }}
+          >
+            <FiUser className="w-8 h-8 text-slate-900 mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{productCategories[3].title}</h3>
+              <p className="text-sm text-slate-600">Urological and nephrology care products</p>
             </div>
           </div>
-
-          {/* Column 3: Gastroenterology + Urology */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[2].title}</h3>
-            <div className="space-y-2 mb-4">
-              {productCategories[2].items.map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[3].title}</h3>
-            <div className="space-y-2">
-              {productCategories[3].items.slice(0, 3).map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 4: Urology (Part 2) + Anaesthesia (Part 1) */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3 opacity-0">.</h3>
-            <div className="space-y-2 mb-4">
-              {productCategories[3].items.slice(3).map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[4].title}</h3>
-            <div className="space-y-2">
-              {productCategories[4].items.slice(0, 4).map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 5: Anaesthesia (Part 2) + Other Medical Disposables */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3 opacity-0">.</h3>
-            <div className="space-y-2 mb-4">
-              {productCategories[4].items.slice(4).map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-3">{productCategories[5].title}</h3>
-            <div className="space-y-2">
-              {productCategories[5].items.slice(0, 4).map((item, idx) => (
-                <button
-                  key={idx}
-                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-700 bg-slate-50 hover:bg-red-600 hover:text-white transition-colors duration-200"
-                >
-                  {item}
-                </button>
-              ))}
+          
+          <div 
+            className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setIsProductsMegaOpen(false);
+              window.location.href = '/products';
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to bottom right, #fef2f2, #fecaca)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#f8fafc';
+            }}
+          >
+            <FiActivity className="w-8 h-8 text-slate-900 mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{productCategories[2].title}</h3>
+              <p className="text-sm text-slate-600">Feeding tubes and gastric care products</p>
             </div>
           </div>
         </div>
+
+        {/* Column 2: Next 3 categories */}
+        <div className="space-y-6" style={{ backdropFilter: 'blur(10px)' }}>
+          <div 
+            className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setIsProductsMegaOpen(false);
+              window.location.href = '/products';
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to bottom right, #fef2f2, #fecaca)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#f8fafc';
+            }}
+          >
+            <FiHeart className="w-8 h-8 text-slate-900 mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{productCategories[1].title}</h3>
+              <p className="text-sm text-slate-600">Safe and reliable blood transfusion equipment</p>
+            </div>
+          </div>
+          
+          <div 
+            className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setIsProductsMegaOpen(false);
+              window.location.href = '/products';
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to bottom right, #fef2f2, #fecaca)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#f8fafc';
+            }}
+          >
+            <FiWind className="w-8 h-8 text-slate-900 mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{productCategories[4].title}</h3>
+              <p className="text-sm text-slate-600">Respiratory and anesthesia equipment</p>
+            </div>
+          </div>
+          
+          <div 
+            className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setIsProductsMegaOpen(false);
+              window.location.href = '/products';
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(to bottom right, #fef2f2, #fecaca)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#f8fafc';
+            }}
+          >
+            <FiPackage className="w-8 h-8 text-slate-900 mt-1" />
+            <div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{productCategories[5].title}</h3>
+              <p className="text-sm text-slate-600">Essential medical disposable products</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Column 3: Image */}
+        <div className="flex items-center justify-center h-full">
+          <div className="w-full h-full rounded-xl flex items-center justify-center" style={{ backgroundColor: '#ffe2e240', backdropFilter: 'blur(10px)' }}>
+            <div className="text-center">
+              <FiAward className="w-16 h-16 text-red-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-red-800 mb-2">Quality Products</h3>
+              <p className="text-red-600">ISO Certified Medical Devices</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 

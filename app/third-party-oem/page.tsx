@@ -1,10 +1,37 @@
 'use client';
 
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { FiCheck, FiArrowRight, FiShield, FiAward, FiTruck, FiUsers, FiFileText, FiPhone } from 'react-icons/fi';
+import { FiCheck, FiArrowRight, FiShield, FiAward, FiTruck, FiUsers, FiFileText, FiPhone, FiX } from 'react-icons/fi';
 
 export default function ThirdPartyOEMPage() {
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [citySearch, setCitySearch] = useState('');
+  const [stateSearch, setStateSearch] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [showCityDropdown, setShowCityDropdown] = useState(false);
+  const [showStateDropdown, setShowStateDropdown] = useState(false);
+
+  const cities = [
+    'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata', 'Surat', 'Pune', 'Jaipur',
+    'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Pimpri-Chinchwad', 'Patna', 'Vadodara'
+  ];
+
+  const states = [
+    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh',
+    'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland',
+    'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
+  ];
+
+  const filteredCities = cities.filter(city => 
+    city.toLowerCase().includes(citySearch.toLowerCase())
+  );
+  
+  const filteredStates = states.filter(state => 
+    state.toLowerCase().includes(stateSearch.toLowerCase())
+  );
   const services = [
     {
       title: "Third Party Contract Manufacturing",
@@ -225,15 +252,147 @@ export default function ThirdPartyOEMPage() {
               <FiPhone className="w-5 h-5" />
               +91 9950241240
             </a>
-            <a href="/contact" className="bg-red-800 text-white px-8 py-4 rounded-xl font-semibold hover:bg-red-900 transition-colors flex items-center justify-center gap-2">
+            <button 
+              onClick={() => setIsQuoteModalOpen(true)}
+              className="bg-red-800 text-white px-8 py-4 rounded-xl font-semibold hover:bg-red-900 transition-colors flex items-center justify-center gap-2"
+            >
               Request Quote
               <FiArrowRight className="w-5 h-5" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
 
       <Footer />
+
+      {/* Quote Modal */}
+      {isQuoteModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-3xl p-8 pt-6 max-w-xl w-full relative">
+            <button 
+              onClick={() => setIsQuoteModalOpen(false)}
+              className="absolute top-7 right-8 text-gray-400 hover:text-white"
+            >
+              <FiX className="w-5 h-5" />
+            </button>
+            
+            <h3 className="text-2xl font-bold text-white mb-2">Request Quote</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span className="text-white/90 text-sm">+91 9950241240</span>
+            </div>
+            
+            <form className="space-y-4">
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <input 
+                  type="text" 
+                  placeholder="Full Name"
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                />
+            
+                <input 
+                  type="tel" 
+                  placeholder="Phone Number"
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <input 
+                  type="email" 
+                  placeholder="Email Address"
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    placeholder="City"
+                    value={selectedCity || citySearch}
+                    onChange={(e) => {
+                      setCitySearch(e.target.value);
+                      setSelectedCity('');
+                      setShowCityDropdown(true);
+                    }}
+                    onFocus={() => setShowCityDropdown(true)}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                  />
+                  {showCityDropdown && filteredCities.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
+                      {filteredCities.slice(0, 5).map((city) => (
+                        <button
+                          key={city}
+                          type="button"
+                          onClick={() => {
+                            setSelectedCity(city);
+                            setCitySearch('');
+                            setShowCityDropdown(false);
+                          }}
+                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
+                        >
+                          {city}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    placeholder="State"
+                    value={selectedState || stateSearch}
+                    onChange={(e) => {
+                      setStateSearch(e.target.value);
+                      setSelectedState('');
+                      setShowStateDropdown(true);
+                    }}
+                    onFocus={() => setShowStateDropdown(true)}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                  />
+                  {showStateDropdown && filteredStates.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
+                      {filteredStates.slice(0, 5).map((state) => (
+                        <button
+                          key={state}
+                          type="button"
+                          onClick={() => {
+                            setSelectedState(state);
+                            setStateSearch('');
+                            setShowStateDropdown(false);
+                          }}
+                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
+                        >
+                          {state}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+             </div>
+              
+              <div>
+                <textarea 
+                  placeholder="Product Requirements"
+                  rows={3}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none resize-none"
+                />
+              </div>
+              
+              <button 
+                type="submit"
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
+                Submit Request
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
