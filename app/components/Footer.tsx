@@ -21,13 +21,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 text-slate-400 pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-slate-950 text-slate-400 pt-10 pb-5 border-t border-white/5 relative overflow-hidden">
       {/* Decorative Gradient Background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-red-600/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-10">
 
           {/* Brand Identity Section */}
           <div className="lg:col-span-4 space-y-8">
@@ -115,7 +115,7 @@ export default function Footer() {
           {/* Contact Hub Column */}
           <div className="lg:col-span-4 lg:bg-white/5 lg:backdrop-blur-sm lg:p-8 lg:rounded-3xl lg:border lg:border-white/10">
             <h3 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Direct Contact</h3>
-            <div className="space-y-8">
+            <div className="space-y-6">
               <a href="tel:+919950241240" className="block group">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all duration-500">
@@ -158,7 +158,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Information Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="pt-4 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-6 text-xs font-bold uppercase tracking-widest">
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>

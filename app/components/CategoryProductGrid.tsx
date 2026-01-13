@@ -67,7 +67,7 @@ export default function CategoryProductGrid({
     <div className="flex flex-col lg:flex-row gap-8 items-start">
       {/* Sidebar - Desktop */}
       <aside className="hidden lg:block w-72 flex-shrink-0 sticky top-24 space-y-6">
-        <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-sm">
+        <div className="bg-white rounded-3xl border border-slate-100 px-3 py-5 shadow-sm">
           <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6 px-2">Navigation</h3>
           <div className="space-y-1">
             {categories.map((cat) => (

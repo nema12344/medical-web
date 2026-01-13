@@ -27,6 +27,7 @@ import {
   Facebook,
   PhoneCall,
   ArrowUpRight,
+  ArrowRight,
   Award,
   Zap,
   MessageSquare,
@@ -324,80 +325,137 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Drawer (existing but refined) */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
+            {/* Backdrop blur overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMenuOpen(false)}
-              className="lg:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[90]"
+              className="lg:hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xl z-[90]"
             />
+
+            {/* Sidebar drawer */}
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed bottom-0 right-0 top-0 w-full max-w-xs bg-white z-[100] shadow-2xl flex flex-col"
+              initial={{ x: '-100%', opacity: 0.5 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: '-100%', opacity: 0.5 }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="lg:hidden fixed bottom-0 left-0 top-0 w-full max-w-[380px] bg-white/95 backdrop-blur-3xl z-[100] shadow-2xl flex flex-col border-r border-white/20"
             >
-              <div className="p-8 border-b border-slate-100 flex items-center justify-between">
-                <Image src="/logo.png" alt="Logo" width={120} height={30} className="h-6 w-auto" />
-                <button onClick={() => setIsMenuOpen(false)} className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center transition-all hover:bg-slate-100">
-                  <FiX className="w-5 h-5 text-slate-900" />
+              {/* Header */}
+              <div className="px-8 py-4 border-b border-slate-100 flex items-center justify-between bg-white/50">
+                <div className="relative">
+                  <Image src="/logo.png" alt="Logo" width={140} height={35} className="h-7 w-auto" />
+                </div>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center transition-all hover:bg-red-50 hover:text-red-600 shadow-sm"
+                >
+                  <FiX className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="flex-1 p-8 overflow-y-auto space-y-2">
-                <MobileNavLink href="/" onClick={() => setIsMenuOpen(false)}>Home</MobileNavLink>
-                <MobileNavLink href="/about" onClick={() => setIsMenuOpen(false)}>Company</MobileNavLink>
+              {/* Navigation Links with Staggered Animation */}
+              <div className="flex-1 p-8 overflow-y-auto space-y-6">
+                <div className="space-y-4">
 
-                <div className="py-2">
-                  <button
-                    onClick={() => setIsProductsMobileOpen(!isProductsMobileOpen)}
-                    className="w-full flex items-center justify-between py-4 text-slate-900 font-bold text-lg"
-                  >
-                    <span>Products</span>
-                    <FiChevronDown className={`w-5 h-5 transition-transform duration-500 ${isProductsMobileOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {isProductsMobileOpen && (
+                  <nav className="space-y-2">
+                    {[
+                      { href: '/', label: 'Home', icon: Globe },
+                      { href: '/about', label: 'Our Company', icon: Users },
+                      { href: '/third-party-oem', label: 'OEM Partnership', icon: Zap },
+                      { href: '/contact', label: 'Contact Us', icon: MessageSquare }
+                    ].map((link, i) => (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden bg-slate-50 rounded-2xl px-4"
+                        key={i}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 + i * 0.1 }}
                       >
-                        {productCategories.map((cat, i) => (
-                          <Link
-                            key={i}
-                            href="/products"
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block py-4 text-slate-600 font-medium border-b border-slate-200 last:border-0"
-                          >
-                            {cat.title}
-                          </Link>
-                        ))}
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="flex items-center justify-between p-4 rounded-2xl bg-slate-50/50 border border-transparent hover:border-red-500/10 hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all group"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-red-600 group-hover:text-white transition-all">
+                              <link.icon className="w-4 h-4" />
+                            </div>
+                            <span className="font-bold text-slate-900">{link.label}</span>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-red-500 group-hover:translate-x-1 transition-all" />
+                        </Link>
                       </motion.div>
-                    )}
-                  </AnimatePresence>
+                    ))}
+
+                    {/* Products Collapsible (Mobile) */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="space-y-2"
+                    >
+                      <button
+                        onClick={() => setIsProductsMobileOpen(!isProductsMobileOpen)}
+                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all ${isProductsMobileOpen ? 'bg-slate-900 text-white' : 'bg-slate-50/50 border border-transparent text-slate-900 hover:bg-white hover:shadow-xl shadow-slate-200/50'
+                          }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isProductsMobileOpen ? 'bg-red-600 text-white' : 'bg-white border border-slate-100 text-slate-400'
+                            }`}>
+                            <FiPackage className="w-4 h-4" />
+                          </div>
+                          <span className="font-bold">Products</span>
+                        </div>
+                        <FiChevronDown className={`w-5 h-5 transition-transform duration-500 ${isProductsMobileOpen ? 'rotate-180' : ''}`} />
+                      </button>
+
+                      <AnimatePresence>
+                        {isProductsMobileOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden bg-slate-50 rounded-[2rem] px-4 py-2 space-y-1"
+                          >
+                            {productCategories.map((cat, i) => (
+                              <Link
+                                key={i}
+                                href="/products"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="flex items-center gap-4 p-4 text-slate-600 font-bold text-sm border-b border-slate-200/50 last:border-0 hover:text-red-600"
+                              >
+                                <cat.icon className="w-4 h-4 opacity-50" />
+                                {cat.title}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  </nav>
                 </div>
 
-                <MobileNavLink href="/third-party-oem" onClick={() => setIsMenuOpen(false)}>OEM Partners</MobileNavLink>
-                <MobileNavLink href="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</MobileNavLink>
+
               </div>
 
-              <div className="p-8 bg-slate-50 border-t border-slate-100">
+              {/* Footer Part of Sidebar */}
+              <div className="px-8 py-4 bg-slate-50 border-t border-slate-100">
                 <button
                   onClick={() => {
                     setIsMenuOpen(false);
                     setIsQuoteModalOpen(true);
                   }}
-                  className="w-full bg-red-600 text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-red-200 flex items-center justify-center gap-2"
+                  className="w-full bg-red-600 text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-red-200 flex items-center justify-center gap-2 hover:bg-red-700 transition-all"
                 >
-                  Send Inquiry <FiArrowRight className="w-5 h-5" />
+                  Get Quote <ArrowRight className="w-5 h-5" />
                 </button>
+
+
               </div>
             </motion.div>
           </>
