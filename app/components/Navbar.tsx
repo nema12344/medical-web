@@ -21,6 +21,17 @@ import {
   FiWind,
   FiPackage,
 } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Linkedin,
+  Facebook,
+  PhoneCall,
+  ArrowUpRight,
+  Award,
+  Zap,
+  MessageSquare,
+  ChevronRight
+} from 'lucide-react';
 
 const cities = [
   'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata', 'Surat', 'Pune', 'Jaipur',
@@ -530,195 +541,255 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* Mobile Sidebar - Outside Navbar */}
-      <div className={`lg:hidden fixed inset-0 bg-black/50 transition-opacity duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsMenuOpen(false)} style={{ zIndex: 60 }} />
-      <div className={`lg:hidden fixed top-0 left-0 w-72 h-screen bg-white shadow-xl flex flex-col transform transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} style={{ zIndex: 70, borderTopRightRadius: '20px', borderBottomRightRadius: '20px' }}>
-        {/* Fixed Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white" style={{ borderTopRightRadius: '20px' }}>
-          <Image src="/logo.png" alt="Logo" width={120} height={40} className="h-8 w-auto sm:h-9 md:h-10 object-contain" />
-          <button onClick={() => setIsMenuOpen(false)} className="p-2 pe-0 ms-auto text-gray-600">
-            <FiX className="w-6 h-6" />
-          </button>
-        </div>
+      {/* Premium Mobile Sidebar */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+              className="lg:hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60]"
+            />
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto  py-2">
-          <div className="space-y-2">
-            <Link href="/" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
-              Home
-            </Link>
-
-            <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
-              Company
-            </Link>
-
-            <div>
-              <button onClick={() => setIsProductsMobileOpen(!isProductsMobileOpen)} className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
-                <span>Products</span>
-                <FiChevronDown className={`w-4 h-4 transition-transform ${isProductsMobileOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isProductsMobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                <div className="px-4 mt-2 space-y-1">
-                  {productCategories.map((category, index) => (
-                    <Link key={index} href="/products" onClick={() => setIsMenuOpen(false)} className="block w-full text-left px-4 py-2 text-sm font-medium text-gray-800 bg-gray-50 hover:bg-gray-100 rounded transition-colors">
-                      {category.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <Link href="/third-party-oem" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
-              Third Party/OEM
-            </Link>
-
-            <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
-              Contact
-            </Link>
-          </div>
-        </div>
-
-        {/* Fixed Footer Buttons */}
-        <div className="px-4 py-3 border-t border-gray-200 bg-white flex gap-3" style={{ borderBottomRightRadius: '20px' }}>
-          <button onClick={() => setIsQuoteModalOpen(true)} className="flex-1 bg-red-600 text-white px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors">
-            Request Quote
-          </button>
-          <button onClick={() => setIsMenuOpen(false)} className="flex-1 bg-blue-600 text-white px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-            Enquire Now
-          </button>
-        </div>
-      </div>
-
-      {/* Quote Modal */}
-      {isQuoteModalOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-800 rounded-3xl p-8 pt-6 max-w-xl w-full relative">
-            <button
-              onClick={() => setIsQuoteModalOpen(false)}
-              className="absolute top-7 right-8 text-gray-400 hover:text-white"
+            {/* Sidebar Content */}
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="lg:hidden fixed top-0 left-0 w-80 h-screen bg-white shadow-2xl flex flex-col z-[70] overflow-hidden"
+              style={{ borderTopRightRadius: '32px', borderBottomRightRadius: '32px' }}
             >
-              <FiX className="w-5 h-5" />
-            </button>
-
-            <h3 className="text-2xl font-bold text-white mb-2">Request Quote</h3>
-            <div className="flex items-center gap-3 mb-6">
-              <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-              </svg>
-              <span className="text-white/90 text-sm">+91 9950241240</span>
-            </div>
-
-            <form className="space-y-4">
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                />
-
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                />
+              {/* Sidebar Header */}
+              <div className="px-6 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                <Link href="/" onClick={() => setIsMenuOpen(false)} className="block">
+                  <Image
+                src="/logo.png"
+                alt="Dispopwell Logo"
+                width={140}
+                height={40}
+                priority
+                className="h-8 w-auto sm:h-9 md:h-10 object-contain"
+              />
+                </Link>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-8 h-8 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center text-slate-400 hover:text-red-600 transition-colors"
+                >
+                  <FiX className="w-4 h-4" />
+                </button>
               </div>
 
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                />
-              </div>
+              {/* Scrollable Navigation */}
+              <div className="flex-1 overflow-y-auto py-8 px-4 custom-scrollbar">
+                <div className="space-y-2">
+                  {[
+                    { name: 'Home', href: '/', icon: FiActivity },
+                    { name: 'Company', href: '/about', icon: FiShield },
+                    { name: 'Third Party/OEM', href: '/third-party-oem', icon: FiAward },
+                    { name: 'Contact', href: '/contact', icon: FiPhone },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.href}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`flex items-center gap-4 px-4 py-4 rounded-2xl transition-all ${pathname === item.href ? 'bg-red-50 text-red-600 shadow-sm' : 'text-slate-600 hover:bg-slate-50'
+                          }`}
+                      >
+                        <item.icon className={`w-5 h-5 ${pathname === item.href ? 'text-red-600' : 'text-slate-400'}`} />
+                        <span className="font-bold">{item.name}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
 
+                  {/* Products Dropdown Section */}
+                  <motion.div
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.35 }}
+                  >
+                    <button
+                      onClick={() => setIsProductsMobileOpen(!isProductsMobileOpen)}
+                      className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl transition-all ${isProductsMobileOpen ? 'bg-slate-900 text-white shadow-lg' : 'text-slate-600 hover:bg-slate-50'
+                        }`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <FiPackage className={`w-5 h-5 ${isProductsMobileOpen ? 'text-red-400' : 'text-slate-400'}`} />
+                        <span className="font-bold">Products</span>
+                      </div>
+                      <FiChevronDown className={`w-4 h-4 transition-transform duration-500 ${isProductsMobileOpen ? 'rotate-180' : ''}`} />
+                    </button>
 
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="City"
-                    value={selectedCity || citySearch}
-                    onChange={(e) => {
-                      setCitySearch(e.target.value);
-                      setSelectedCity('');
-                      setShowCityDropdown(true);
-                    }}
-                    onFocus={() => setShowCityDropdown(true)}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                  />
-                  {showCityDropdown && filteredCities.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
-                      {filteredCities.slice(0, 5).map((city) => (
-                        <button
-                          key={city}
-                          type="button"
-                          onClick={() => {
-                            setSelectedCity(city);
-                            setCitySearch('');
-                            setShowCityDropdown(false);
-                          }}
-                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
-                        >
-                          {city}
-                        </button>
-                      ))}
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isProductsMobileOpen ? 'max-h-[500px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+                      <div className="pl-4 space-y-1">
+                        {productCategories.map((category, index) => (
+                          <Link
+                            key={index}
+                            href="/products"
+                            onClick={() => setIsMenuOpen(false)}
+                            className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-red-500" />
+                            {category.title}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  )}
+                  </motion.div>
                 </div>
 
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="State"
-                    value={selectedState || stateSearch}
-                    onChange={(e) => {
-                      setStateSearch(e.target.value);
-                      setSelectedState('');
-                      setShowStateDropdown(true);
-                    }}
-                    onFocus={() => setShowStateDropdown(true)}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                  />
-                  {showStateDropdown && filteredStates.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
-                      {filteredStates.slice(0, 5).map((state) => (
-                        <button
-                          key={state}
-                          type="button"
-                          onClick={() => {
-                            setSelectedState(state);
-                            setStateSearch('');
-                            setShowStateDropdown(false);
-                          }}
-                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
-                        >
-                          {state}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+               
               </div>
 
-              <div>
-                <textarea
-                  placeholder="Product Requirements"
-                  rows={3}
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none resize-none"
-                />
+              {/* Fixed Bottom Action */}
+              <div className="p-6 bg-slate-50 flex items-center gap-3">
+                <button
+                  onClick={() => { setIsMenuOpen(false); setIsQuoteModalOpen(true); }}
+                  className="flex-1 bg-slate-900 text-white py-4 rounded-2xl font-bold text-sm shadow-xl shadow-slate-900/10 active:scale-95 transition"
+                >
+                  Request Quote
+                </button>
               </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
+      <AnimatePresence>
+        {isQuoteModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[100] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-[2.5rem] p-10 max-w-2xl w-full relative shadow-3xl overflow-y-auto max-h-[90vh]"
+            >
               <button
-                type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors"
+                onClick={() => setIsQuoteModalOpen(false)}
+                className="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition-colors"
               >
-                Submit Request
+                <FiX className="w-6 h-6" />
               </button>
-            </form>
-          </div>
-        </div>
-      )}
+
+              <div className="mb-10 text-center">
+                <div className="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Zap className="w-8 h-8" />
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-2">Partner with TNX</h3>
+                <p className="text-slate-500">Fill out your requirements for an instant factory quote.</p>
+              </div>
+
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 ml-1">Full Name</label>
+                    <input type="text" placeholder="John Doe" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 ml-1">Business Phone</label>
+                    <input type="tel" placeholder="+91 0000 000 000" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 ml-1">Corporate Email</label>
+                  <input type="email" placeholder="john@company.com" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="City"
+                      value={selectedCity || citySearch}
+                      onChange={(e) => {
+                        setCitySearch(e.target.value);
+                        setSelectedCity('');
+                        setShowCityDropdown(true);
+                      }}
+                      onFocus={() => setShowCityDropdown(true)}
+                      className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    />
+                    {showCityDropdown && filteredCities.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 bg-white border border-slate-100 rounded-xl mt-1 max-h-40 overflow-y-auto z-10 shadow-lg">
+                        {filteredCities.slice(0, 5).map((city) => (
+                          <button
+                            key={city}
+                            type="button"
+                            onClick={() => {
+                              setSelectedCity(city);
+                              setCitySearch('');
+                              setShowCityDropdown(false);
+                            }}
+                            className="w-full text-left px-4 py-3 text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+                          >
+                            {city}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="State"
+                      value={selectedState || stateSearch}
+                      onChange={(e) => {
+                        setStateSearch(e.target.value);
+                        setSelectedState('');
+                        setShowStateDropdown(true);
+                      }}
+                      onFocus={() => setShowStateDropdown(true)}
+                      className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                    />
+                    {showStateDropdown && filteredStates.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 bg-white border border-slate-100 rounded-xl mt-1 max-h-40 overflow-y-auto z-10 shadow-lg">
+                        {filteredStates.slice(0, 5).map((state) => (
+                          <button
+                            key={state}
+                            type="button"
+                            onClick={() => {
+                              setSelectedState(state);
+                              setStateSearch('');
+                              setShowStateDropdown(false);
+                            }}
+                            className="w-full text-left px-4 py-3 text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+                          >
+                            {state}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 ml-1">Project Details</label>
+                  <textarea rows={4} placeholder="Describe your branding and volume requirements..." className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all resize-none" />
+                </div>
+
+                <button className="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-black transition-all shadow-xl shadow-slate-900/10">
+                  Send Project Inquiry
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

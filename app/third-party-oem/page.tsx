@@ -2,401 +2,387 @@
 
 import { useState } from 'react';
 import Footer from '../components/Footer';
-import { FiCheck, FiArrowRight, FiShield, FiAward, FiTruck, FiUsers, FiFileText, FiPhone, FiX } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Check,
+  ArrowRight,
+  ShieldCheck,
+  Award,
+  Truck,
+  Users,
+  FileText,
+  PhoneCall,
+  X,
+  Zap,
+  Settings,
+  Layers,
+  Globe,
+  Clock,
+  ChevronRight,
+  ClipboardList
+} from 'lucide-react';
 
 export default function ThirdPartyOEMPage() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [citySearch, setCitySearch] = useState('');
-  const [stateSearch, setStateSearch] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
-  const [selectedState, setSelectedState] = useState('');
-  const [showCityDropdown, setShowCityDropdown] = useState(false);
-  const [showStateDropdown, setShowStateDropdown] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
 
-  const cities = [
-    'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata', 'Surat', 'Pune', 'Jaipur',
-    'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Pimpri-Chinchwad', 'Patna', 'Vadodara'
-  ];
-
-  const states = [
-    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh',
-    'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland',
-    'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
-  ];
-
-  const filteredCities = cities.filter(city =>
-    city.toLowerCase().includes(citySearch.toLowerCase())
-  );
-
-  const filteredStates = states.filter(state =>
-    state.toLowerCase().includes(stateSearch.toLowerCase())
-  );
   const services = [
     {
       title: "Third Party Contract Manufacturing",
-      description: "High-quality medical product manufacturing under your brand name"
+      description: "Scale your business with our world-class production lines, optimized for high-volume surgical disposables.",
+      icon: Layers
     },
     {
-      title: "OEM / Private Label Manufacturing",
-      description: "Customized products with your brand name and logo"
+      title: "OEM / Private Labeling",
+      description: "Complete brand integration where our quality becomes your reputation. Every detail tailored to your specifications.",
+      icon: Settings
     },
     {
-      title: "Custom Packaging and Branding",
-      description: "Attractive and professional packaging design services"
+      title: "Advanced Branding Support",
+      description: "From structural packaging to aesthetic design, we ensure your brand stands out in the medical market.",
+      icon: Zap
     },
     {
-      title: "Label Design Support",
-      description: "Label design assistance with regulatory compliance"
+      title: "Regulatory Compliance",
+      description: "Stay ahead of standards with our expert guidance on labeling, documentation, and international certifications.",
+      icon: ShieldCheck
     }
+  ];
+
+  const processSteps = [
+    { title: "Consultation", desc: "Define your product vision and specific market requirements." },
+    { title: "Design & Proto", desc: "Structural packaging and brand integration development." },
+    { title: "Precision Mfg", desc: "Batch production in our certified clean-room facilities." },
+    { title: "Global Delivery", desc: "Systematic sterilization and logistical excellence." }
   ];
 
   const products = [
     "IV Infusion Sets", "Blood Transfusion Sets", "Scalp Vein Sets",
     "Urine Bags", "IV Cannulas", "Oxygen Masks", "Nebulizer Masks",
-    "Disposable Syringes", "Surgical Gloves", "Other Disposable Medical Products"
-  ];
-
-  const whyChooseUs = [
-    { icon: FiUsers, title: "Trusted & Experienced Team", desc: "15+ years of medical industry experience" },
-    { icon: FiAward, title: "High Quality Products", desc: "Manufactured according to international standards" },
-    { icon: FiTruck, title: "Timely Supply", desc: "Guaranteed delivery on scheduled time" },
-    { icon: FiShield, title: "Brand Confidentiality", desc: "Complete protection of your brand information" }
-  ];
-
-  const states_list = [
-    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh',
-    'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland',
-    'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
-  ];
-
-  const documents = [
-    "Brand Name & Logo", "Drug License", "GST Certificate", "Company / Firm Information"
+    "Disposable Syringes", "Surgical Gloves", "Protective Gear"
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-red-100 selection:text-red-700">
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
-        <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
-            Third Party / OEM Manufacturing
-          </h1>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            At TNX Surgical, we provide reliable third-party contract manufacturing and OEM branding services for disposable surgical and medical products.
-          </p>
-        </div>
-      </section>
-
-      {/* What is Third Party/OEM Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-red-50/30">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">What is Third Party / OEM Manufacturing?</h2>
+      <main>
+        {/* Dynamic Hero Section */}
+        <section className="relative pt-40 pb-32 overflow-hidden bg-[#0A0F1D]">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+            <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-red-500 to-transparent" />
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #ffffff11 1px, transparent 0)', backgroundSize: '40px 40px' }} />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Third-party manufacturing is a business arrangement where we manufacture high-quality medical products under your brand name. This service is ideal for companies that want to build their brand but don't want to invest in manufacturing infrastructure.
-              </p>
-
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Who can benefit:</h3>
-              <ul className="space-y-3">
-                {[
-                  "Medical Distributors",
-                  "Healthcare Startups",
-                  "Pharmaceutical Companies",
-                  "Medical Equipment Traders",
-                  "Hospital Chains"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <FiCheck className="w-5 h-5 text-red-600" />
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <FiAward className="w-10 h-10 text-red-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Your Brand, Our Quality</h3>
-                <p className="text-gray-600">
-                  We manufacture the highest quality medical products while maintaining your brand identity.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">TNX Surgical Third Party / OEM Services</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="bg-gradient-to-br from-red-50 to-white rounded-2xl p-8 border border-red-100 hover:shadow-xl transition-all duration-300">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                <p className="text-gray-700">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Product Range Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-red-50/30">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Product Range</h2>
-            <p className="text-lg text-gray-600">We provide third-party manufacturing services for the following medical products:</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product, index) => (
-              <a key={index} href="/products" className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:bg-[#fff5f5] hover:border-red-200 transition-all duration-300">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-600 rounded-full"></div>
-                  <span className="font-medium text-gray-900">{product}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Quality Standards Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Manufacturing & Quality Standards</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: "Modern Manufacturing Unit", desc: "State-of-the-art machinery and technology" },
-              { title: "Sterilization Process", desc: "ETO and Gamma sterilization" },
-              { title: "Quality Control", desc: "Quality inspection at every stage" },
-              { title: "Certifications", desc: "ISO, WHO-GMP, CE standards" }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiShield className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-6">Why Choose TNX Surgical?</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
-                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-300">{item.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Required Documents Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Required Documents</h2>
-            <p className="text-lg text-gray-600">The following documents are required to start third-party manufacturing:</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {documents.map((doc, index) => (
-              <div key={index} className="bg-gradient-to-br from-red-50 to-white rounded-xl p-6 border border-red-100 text-center">
-                <FiFileText className="w-8 h-8 text-red-600 mx-auto mb-3" />
-                <span className="font-medium text-gray-900">{doc}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-800">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Contact Us for Third Party / OEM Manufacturing
-          </h2>
-          <p className="text-xl text-red-100 mb-8">
-            Connect with us today to grow your medical business
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+919950241240" className="bg-white text-red-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
-              <FiPhone className="w-5 h-5" />
-              +91 9950241240
-            </a>
-            <button
-              onClick={() => setIsQuoteModalOpen(true)}
-              className="bg-red-800 text-white px-8 py-4 rounded-xl font-semibold hover:bg-red-900 transition-colors flex items-center justify-center gap-2"
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Request Quote
-              <FiArrowRight className="w-5 h-5" />
-            </button>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-bold tracking-widest uppercase mb-8">
+                <Globe className="w-4 h-4 animate-pulse" />
+                Global Manufacturing Hub
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
+                Your Brand. <span className="text-red-600">Our Precision.</span>
+              </h1>
+              <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12">
+                Empowering healthcare brands worldwide with state-of-the-art contract manufacturing for premium medical disposables.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                <button
+                  onClick={() => setIsQuoteModalOpen(true)}
+                  className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold text-lg transition-all shadow-xl shadow-red-600/20 hover:-translate-y-1 flex items-center gap-2"
+                >
+                  Start Partnership <ArrowRight className="w-5 h-5" />
+                </button>
+                <div className="flex items-center gap-4 text-slate-400 font-medium">
+                  <div className="flex -space-x-3">
+                    {[1, 2, 3].map(i => <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0A0F1D] bg-slate-800 flex items-center justify-center text-[10px] font-bold">L{i}</div>)}
+                  </div>
+                  <span>Trusted by 50+ Global Brands</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Value Proposition Strategy */}
+        <section className="py-24 -mt-16 relative z-20">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="lg:col-span-2 bg-white rounded-[2.5rem] p-12 shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col md:flex-row gap-12 items-center"
+              >
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-3xl font-bold text-slate-900 mb-6 leading-tight">
+                    Scale Without <br /> <span className="text-red-600">Infrastructure Costs</span>
+                  </h2>
+                  <p className="text-slate-600 mb-8 leading-relaxed">
+                    Transform your medical distribution business by leveraging our multi-million dollar manufacturing facility. We handle the complexity; you build the brand.
+                  </p>
+                  <div className="space-y-4">
+                    {['Medical Distributors', 'Healthcare Startups', 'Hospital Chains'].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 font-semibold text-slate-700">
+                        <div className="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center text-red-600">
+                          <Check className="w-4 h-4" />
+                        </div>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 bg-slate-50 rounded-3xl p-8 border border-slate-200/50">
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                      <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 font-bold">99%</div>
+                      <div className="text-sm">
+                        <div className="font-bold text-slate-900">Quality Assurance</div>
+                        <div className="text-slate-500 text-xs">Zero Batch Failures in 2025</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                      <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600 font-bold">14d</div>
+                      <div className="text-sm">
+                        <div className="font-bold text-slate-900">Lead Time</div>
+                        <div className="text-slate-500 text-xs">Fastest in the Industry</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <div className="bg-red-600 rounded-[2.5rem] p-10 text-white shadow-xl shadow-red-600/20 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-125 transition-transform duration-700">
+                  <Award className="w-32 h-32" />
+                </div>
+                <h3 className="text-2xl font-bold mb-6">Expertise Hub</h3>
+                <p className="text-red-100 mb-8 leading-relaxed">
+                  Access our internal R&D team and regulatory experts who ensure every product complies with ISO 13485 and Global Standards.
+                </p>
+                <button className="flex items-center gap-2 font-bold text-white hover:gap-4 transition-all">
+                  Download Capability Deck <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Process Timeline Section */}
+        <section className="py-24 bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-20">
+              <span className="text-red-600 font-bold tracking-widest uppercase text-sm mb-4 block">STREAMLINED WORKFLOW</span>
+              <h2 className="text-4xl font-bold text-slate-900">How We Launch Your Brand</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+              <div className="absolute top-1/2 left-0 right-0 h-px bg-slate-100 hidden md:block" />
+              {processSteps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  onMouseEnter={() => setActiveStep(i)}
+                  className={`relative z-10 p-8 rounded-3xl border transition-all duration-300 ${activeStep === i ? 'bg-white border-red-500 shadow-xl' : 'bg-slate-50 border-transparent'}`}
+                >
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold mb-6 transition-colors ${activeStep === i ? 'bg-red-600 text-white' : 'bg-white text-slate-400'}`}>
+                    0{i + 1}
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 mb-3">{step.title}</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Services High-Tech Grid */}
+        <section className="py-24 bg-slate-900">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-white mb-8 leading-tight">
+                  Full-Spectrum <br /> <span className="text-red-600">OEM Architecture</span>
+                </h2>
+                <p className="text-slate-400 text-lg leading-relaxed mb-12">
+                  Our manufacturing stack is designed for flexibility. Whether you need niche customizations or high-volume standard units, we integrate seamlessly with your supply chain.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {services.map((s, i) => (
+                    <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                      <s.icon className="w-8 h-8 text-red-500 mb-4 group-hover:scale-110 transition-transform" />
+                      <h4 className="text-white font-bold mb-2">{s.title}</h4>
+                      <p className="text-slate-500 text-xs leading-relaxed">{s.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="relative">
+                <div className="absolute inset-0 bg-red-600/20 blur-3xl rounded-full" />
+                <div className="bg-gradient-to-br from-slate-800 to-slate-950 rounded-[3rem] p-1 border border-white/10 shadow-3xl overflow-hidden aspect-square">
+                  <div className="w-full h-full bg-[#0A0F1D] rounded-[2.8rem] flex items-center justify-center p-12 text-center text-white">
+                    <div>
+                      <div className="w-24 h-24 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-red-600/40">
+                        <Layers className="w-12 h-12 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4">Integrated Quality</h3>
+                      <p className="text-slate-400 text-sm mb-8 leading-relaxed">
+                        Certified Clean Rooms (Class 10,000) and ISO-standardized sterilization protocols ensure every product with your name on it is flawless.
+                      </p>
+                      <div className="flex justify-center gap-4">
+                        <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase">WHO-GMP</div>
+                        <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase">CE MARK</div>
+                        <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase">ISO 13485</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Product Marquee/List */}
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              {products.map((p, i) => (
+                <div key={i} className="px-6 py-3 rounded-2xl bg-slate-50 border border-slate-100 text-slate-700 font-bold hover:bg-white hover:border-red-500 hover:text-red-600 transition-all cursor-default flex items-center gap-3 group">
+                  <div className="w-2 h-2 rounded-full bg-red-500 group-hover:scale-150 transition-transform" />
+                  {p}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Required Documents / Checklist */}
+        <section className="py-24 bg-slate-50">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="bg-white rounded-[3rem] p-12 shadow-2xl shadow-blue-900/5 border border-slate-100">
+              <div className="text-center mb-12">
+                <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <ClipboardList className="w-8 h-8" />
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-4">Onboarding Checklist</h3>
+                <p className="text-slate-500">Essential documentation required to initiate your manufacturing line.</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  "Approved Brand Name & Logo",
+                  "Valid Possession of Drug License",
+                  "Company / Firm GST Registration",
+                  "Trade Mark Certificate Copy"
+                ].map((doc, i) => (
+                  <div key={i} className="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 hover:bg-red-50 transition-colors group">
+                    <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center text-slate-300 group-hover:text-red-500 shadow-sm transition-colors">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <span className="font-bold text-slate-800 text-sm">{doc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* High-Impact CTA */}
+        <section className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-red-600" />
+          <div className="absolute inset-0 bg-[#0A0F1D] translate-y-full rounded-t-[10rem]" />
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to Build Your <br /> <span className="opacity-80 underline decoration-red-300">Own Medical Brand?</span></h2>
+            <p className="text-xl text-red-50 max-w-2xl mx-auto mb-12 opacity-80">
+              Contact our partnership leads for a customized capability assessment and direct factory pricing.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a href="tel:+919950241240" className="px-10 py-5 bg-white text-red-600 rounded-2xl font-bold text-xl hover:shadow-2xl transition-all flex items-center gap-3">
+                <PhoneCall className="w-6 h-6" /> +91 9950241240
+              </a>
+              <button
+                onClick={() => setIsQuoteModalOpen(true)}
+                className="px-10 py-5 bg-red-800 text-white rounded-2xl font-bold text-xl hover:bg-black transition-all flex items-center gap-3"
+              >
+                Get Custom Pricing <FileText className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <Footer />
 
-      {/* Quote Modal */}
-      {isQuoteModalOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-800 rounded-3xl p-8 pt-6 max-w-xl w-full relative">
-            <button
-              onClick={() => setIsQuoteModalOpen(false)}
-              className="absolute top-7 right-8 text-gray-400 hover:text-white"
+      {/* Modernized Quote Modal */}
+      <AnimatePresence>
+        {isQuoteModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[100] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-[2.5rem] p-10 max-w-2xl w-full relative shadow-3xl overflow-y-auto max-h-[90vh]"
             >
-              <FiX className="w-5 h-5" />
-            </button>
-
-            <h3 className="text-2xl font-bold text-white mb-2">Request Quote</h3>
-            <div className="flex items-center gap-3 mb-6">
-              <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-              </svg>
-              <span className="text-white/90 text-sm">+91 9950241240</span>
-            </div>
-
-            <form className="space-y-4">
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                />
-
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="City"
-                    value={selectedCity || citySearch}
-                    onChange={(e) => {
-                      setCitySearch(e.target.value);
-                      setSelectedCity('');
-                      setShowCityDropdown(true);
-                    }}
-                    onFocus={() => setShowCityDropdown(true)}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                  />
-                  {showCityDropdown && filteredCities.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
-                      {filteredCities.slice(0, 5).map((city) => (
-                        <button
-                          key={city}
-                          type="button"
-                          onClick={() => {
-                            setSelectedCity(city);
-                            setCitySearch('');
-                            setShowCityDropdown(false);
-                          }}
-                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
-                        >
-                          {city}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="State"
-                    value={selectedState || stateSearch}
-                    onChange={(e) => {
-                      setStateSearch(e.target.value);
-                      setSelectedState('');
-                      setShowStateDropdown(true);
-                    }}
-                    onFocus={() => setShowStateDropdown(true)}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                  />
-                  {showStateDropdown && filteredStates.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
-                      {filteredStates.slice(0, 5).map((state) => (
-                        <button
-                          key={state}
-                          type="button"
-                          onClick={() => {
-                            setSelectedState(state);
-                            setStateSearch('');
-                            setShowStateDropdown(false);
-                          }}
-                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
-                        >
-                          {state}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div>
-                <textarea
-                  placeholder="Product Requirements"
-                  rows={3}
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none resize-none"
-                />
-              </div>
-
               <button
-                type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors"
+                onClick={() => setIsQuoteModalOpen(false)}
+                className="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition-colors"
               >
-                Submit Request
+                <X className="w-6 h-6" />
               </button>
-            </form>
-          </div>
-        </div>
-      )}
+
+              <div className="mb-10 text-center">
+                <div className="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Zap className="w-8 h-8" />
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-2">Partner with TNX</h3>
+                <p className="text-slate-500">Fill out your requirements for an instant factory quote.</p>
+              </div>
+
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 ml-1">Full Name</label>
+                    <input type="text" placeholder="John Doe" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 ml-1">Business Phone</label>
+                    <input type="tel" placeholder="+91 0000 000 000" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 ml-1">Corporate Email</label>
+                  <input type="email" placeholder="john@company.com" className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all" />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 ml-1">Primary Product Focus</label>
+                  <select className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all appearance-none cursor-pointer">
+                    <option>IV Infusion Sets</option>
+                    <option>Disposable Syringes</option>
+                    <option>Surgical Disposables</option>
+                    <option>Custom ODM Project</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 ml-1">Project Details</label>
+                  <textarea rows={4} placeholder="Describe your branding and volume requirements..." className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all resize-none" />
+                </div>
+
+                <button className="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-black transition-all shadow-xl shadow-slate-900/10">
+                  Send Project Inquiry
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

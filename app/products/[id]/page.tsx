@@ -314,74 +314,114 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
-            {/* Right Side - Product Info (Span 5 cols) */}
+            {/* Right Side - Product Sidebar (Span 4 cols) */}
             <div className="lg:col-span-4 relative">
-              <div className="sticky top-24 space-y-8">
-                <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100/50 backdrop-blur-sm">
-                  <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-700 text-sm font-medium border border-green-100">
-                      <Check className="w-4 h-4" /> In Stock
+              <div className="sticky top-24 space-y-6">
+
+                {/* Main Action Card */}
+                <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 shadow-2xl shadow-blue-900/5 border border-white/50 relative overflow-hidden group">
+                  {/* Decorative Gradient Blob */}
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-colors duration-700" />
+
+                  {/* Status Badges */}
+                  <div className="flex flex-wrap items-center gap-3 mb-6 relative z-10">
+                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100/50 shadow-sm shadow-emerald-700/5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      In Stock
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium border border-blue-100">
-                      <Award className="w-4 h-4" /> ISO Certified
+                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100/50 shadow-sm shadow-blue-700/5">
+                      <Award className="w-3.5 h-3.5" />
+                      ISO Certified
                     </span>
                   </div>
 
-
-
-                  {/* Key Features List */}
-                  <div className="space-y-3 mb-8 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                    {product.specifications.map((spec, index) => {
+                  {/* Feature Highlights Grid */}
+                  <div className="grid grid-cols-1 gap-3 mb-8 relative z-10">
+                    {product.specifications.slice(0, 3).map((spec, index) => {
                       const IconComponent = spec.icon;
                       return (
-                        <div key={index} className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm text-blue-600">
-                            <IconComponent className="w-4 h-4" />
+                        <div key={index} className="flex items-center gap-3.5 p-3 rounded-2xl bg-gray-50/50 border border-gray-100/50 hover:bg-white hover:border-blue-100 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-300 group/item">
+                          <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center shadow-sm text-blue-600 group-hover/item:scale-110 group-hover/item:bg-blue-600 group-hover/item:text-white transition-all duration-300">
+                            <IconComponent className="w-4.5 h-4.5" />
                           </div>
-                          <span className="text-gray-700 font-medium text-sm">{spec.label}: <span className="text-gray-900">{spec.value}</span></span>
+                          <div className="flex flex-col">
+                            <span className="text-[10px] uppercase tracking-wider font-bold text-gray-400">{spec.label}</span>
+                            <span className="text-sm font-semibold text-gray-900">{spec.value}</span>
+                          </div>
                         </div>
                       )
                     })}
                   </div>
 
-                  {/* Actions */}
-                  <div className="space-y-4">
-                    <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4.5 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg shadow-blue-600/20 hover:shadow-xl hover:shadow-blue-600/30 transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
-                      <FileText className="w-5 h-5" />
-                      Request Price Quote
+                  {/* Prime CTAs */}
+                  <div className="space-y-4 relative z-10">
+                    <button className="w-full bg-slate-900 hover:bg-black text-white px-8 py-4.5 rounded-2xl font-bold text-lg transition-all duration-500 shadow-xl shadow-slate-900/20 hover:shadow-2xl hover:shadow-slate-900/30 transform hover:-translate-y-1 flex items-center justify-center gap-3 group/btn">
+                      <FileText className="w-5 h-5 group-hover/btn:rotate-6 transition-transform" />
+                      Get Instant Quote
                     </button>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <button className="bg-white border border-gray-200 hover:border-green-500 hover:bg-green-50/50 text-gray-700 hover:text-green-700 px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 group">
-                        <MessageCircle className="w-5 h-5 text-green-600 group-hover:scale-110 transition-transform" />
-                        WhatsApp
+                    <div className="grid grid-cols-1 gap-3">
+                      <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 group/wa">
+                        <MessageCircle className="w-5 h-5 group-hover/wa:scale-110 transition-transform" />
+                        Chat on WhatsApp
+                        <span className="ml-1 flex h-2 w-2 relative">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                        </span>
                       </button>
-                      <button className="bg-white border border-gray-200 hover:border-blue-500 hover:bg-blue-50/50 text-gray-700 hover:text-blue-700 px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 group">
-                        <Download className="w-5 h-5 text-blue-600 group-hover:scale-110 transition-transform" />
-                        Brochure
+                      <button className="w-full bg-white border-2 border-gray-100 hover:border-blue-500 hover:text-blue-600 px-6 py-3.5 rounded-2xl font-bold text-gray-600 transition-all duration-300 flex items-center justify-center gap-2 group/bc">
+                        <Download className="w-5 h-5 text-blue-500 group-hover/bc:translate-y-0.5 transition-transform" />
+                        Technical Brochure
                       </button>
                     </div>
                   </div>
 
-                  {/* Trust Badge */}
-                  <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-center gap-6 text-gray-400 grayscale hover:grayscale-0 transition-all duration-500">
-                    <div className="flex flex-col items-center gap-1">
-                      <Shield className="w-6 h-6" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider">Secure</span>
+                  {/* Trust Signals Micro-Widget */}
+                  <div className="mt-8 pt-8 border-t border-gray-100 flex items-center justify-between px-2">
+                    <div className="flex flex-col items-center gap-2 group/trust">
+                      <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover/trust:bg-blue-600 group-hover/trust:text-white transition-colors">
+                        <Shield className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Secure</span>
                     </div>
-                    <div className="w-px h-8 bg-gray-100"></div>
-                    <div className="flex flex-col items-center gap-1">
-                      <Clock className="w-6 h-6" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider">Fast Support</span>
+                    <div className="w-px h-10 bg-gray-100 hidden sm:block"></div>
+                    <div className="flex flex-col items-center gap-2 group/trust">
+                      <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 group-hover/trust:bg-orange-600 group-hover/trust:text-white transition-colors">
+                        <Truck className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Express</span>
                     </div>
-                    <div className="w-px h-8 bg-gray-100"></div>
-                    <div className="flex flex-col items-center gap-1">
-                      <Award className="w-6 h-6" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider">Certified</span>
+                    <div className="w-px h-10 bg-gray-100 hidden sm:block"></div>
+                    <div className="flex flex-col items-center gap-2 group/trust">
+                      <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover/trust:bg-emerald-600 group-hover/trust:text-white transition-colors">
+                        <CheckCircle2 className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Verified</span>
                     </div>
                   </div>
-
                 </div>
+
+                {/* Social Proof Card */}
+                <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-[2rem] p-6 text-white shadow-xl shadow-blue-600/20 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-4 opacity-10">
+                    <Award className="w-16 h-16" />
+                  </div>
+                  <h4 className="text-lg font-bold mb-2">Healthcare Trust</h4>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-4">
+                    Trusted by over 500+ leading hospitals and healthcare institutions worldwide for precision and safety.
+                  </p>
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3, 4].map(i => (
+                      <div key={i} className="w-8 h-8 rounded-full border-2 border-blue-700 bg-blue-100 flex items-center justify-center">
+                        <span className="text-[10px] font-bold text-blue-600">H{i}</span>
+                      </div>
+                    ))}
+                    <div className="w-8 h-8 rounded-full border-2 border-blue-700 bg-white flex items-center justify-center">
+                      <span className="text-[10px] font-bold text-blue-600">+5</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

@@ -1,88 +1,184 @@
+'use client';
+
 import Link from 'next/link';
+import {
+  PhoneCall,
+  Mail,
+  MapPin,
+  Linkedin,
+  Facebook,
+  Twitter,
+  Instagram,
+  ChevronRight,
+  ArrowUpRight,
+  ShieldCheck,
+  Globe,
+  Award,
+  Zap
+} from 'lucide-react';
 
-export default function Footer(){
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-slate-900 text-white pb-8 py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          {/* Company Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Company</h3>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Our Mission</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">News & Events</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Quality Assurance</a></li>
+    <footer className="bg-slate-950 text-slate-400 pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
+      {/* Decorative Gradient Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-red-600/5 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+
+          {/* Brand Identity Section */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="space-y-4">
+              <Link href="/" className="inline-block">
+                <h2 className="text-3xl font-black text-white tracking-tighter flex items-center gap-2">
+                  TNX <span className="text-red-500">SURGICAL</span>
+                </h2>
+              </Link>
+              <p className="text-slate-500 leading-relaxed max-w-sm">
+                Leading the global medical industry with precision-engineered surgical disposables and innovative healthcare solutions since 2010.
+              </p>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-4">
+              {[
+                { icon: Linkedin, label: 'LinkedIn' },
+                { icon: Facebook, label: 'Facebook' },
+                { icon: Instagram, label: 'Instagram' },
+                { icon: Twitter, label: 'Twitter' }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 group"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                </a>
+              ))}
+            </div>
+
+            {/* Micro Trust Pills */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 uppercase tracking-wider">
+                <ShieldCheck className="w-3 h-3 text-red-500" /> ISO Certified
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 uppercase tracking-wider">
+                <Globe className="w-3 h-3 text-blue-500" /> Export Ready
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links Column */}
+          <div className="lg:col-span-2">
+            <h3 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Navigation</h3>
+            <ul className="space-y-4">
+              {['Home', 'Products', 'Third-Party OEM', 'About Us', 'Contact'].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/ /g, '-')}`}
+                    className="flex items-center gap-2 hover:text-red-500 transition-colors group"
+                  >
+                    <ChevronRight className="w-4 h-4 text-slate-800 group-hover:text-red-500 transition-colors" />
+                    <span className="text-sm font-medium">{item}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          
-          {/* Products Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Products</h3>
-            <ul className="space-y-3">
-              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Infusion products</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Transfusion products</Link></li>
-               <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Gastroenterology</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Urology and Nephrology</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Anaesthesia & Respiratory</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">Other Medical & Surgicals</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-white transition-colors">All Products List</Link></li>
+
+          {/* Categories Column */}
+          <div className="lg:col-span-2">
+            <h3 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Core Areas</h3>
+            <ul className="space-y-4">
+              {[
+                'IV Infusion',
+                'Blood Transfusion',
+                'Gastroenterology',
+                'Urology',
+                'Anesthesia',
+                'OEM Services'
+              ].map((area, i) => (
+                <li key={i}>
+                  <Link href="/products" className="flex items-center gap-2 hover:text-white transition-colors group">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500/20 group-hover:bg-red-500 transition-colors" />
+                    <span className="text-sm font-medium">{area}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          
-          {/* Other Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Support</h3>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Customer Service</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Technical Support</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Training</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
-            </ul>
+
+          {/* Contact Hub Column */}
+          <div className="lg:col-span-4 lg:bg-white/5 lg:backdrop-blur-sm lg:p-8 lg:rounded-3xl lg:border lg:border-white/10">
+            <h3 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Direct Contact</h3>
+            <div className="space-y-8">
+              <a href="tel:+919950241240" className="block group">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all duration-500">
+                    <PhoneCall className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-tighter mb-1">Call Our Expert</div>
+                    <div className="text-2xl font-bold text-white group-hover:text-red-500 transition-colors">+91 9950241240</div>
+                  </div>
+                </div>
+              </a>
+
+              <a href="mailto:Tnxsuurgicals@gmail.com" className="block group">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-600/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-tighter mb-1">Electronic Mail</div>
+                    <div className="text-lg font-bold text-white group-hover:text-blue-500 transition-colors truncate max-w-[200px] lg:max-w-none">Tnxsuurgicals@gmail.com</div>
+                  </div>
+                </div>
+              </a>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-slate-400">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-tighter mb-1">Headquarters</div>
+                  <div className="text-sm leading-relaxed text-slate-300">
+                    Shiv Vatika, Plot 1 & 2, Mansarovar,<br />
+                    Jaipur, Rajasthan 302020
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          {/* Contact Information */}
-         <div className="lg:text-right text-left">
-  {/* Phone */}
-  <p className="text-3xl lg:text-4xl font-light text-white mb-2">
-    +91 9950241240
-  </p>
 
-  {/* Email */}
-  <p className="text-red-400 font-medium mb-6">
-    Email: Tnxsuurgicals@gmail.com
-  </p>
-
-  {/* Address */}
-  <p className="text-gray-400 leading-relaxed mb-4">
-   Shiv Vatika, Plot No 1 & 2, near St. Teresa's School, Manyawas, Mansarovar, Jaipur, Rajasthan 302020
-  </p>
-
-  {/* Get Directions */}
-  <div className="flex lg:justify-end items-center gap-2 text-white font-medium cursor-pointer hover:text-red-400 transition">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-      className="w-5 h-5"
-    >
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" />
-    </svg>
-    <span>Get Directions</span>
-  </div>
-</div>
-
-          
         </div>
-        
-        {/* Bottom Copyright */}
-        <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-          <p className="text-gray-400">© {new Date().getFullYear()} <a href="https://codinwalk.com">codinwalk.com</a> All rights reserved.</p>
+
+        {/* Bottom Information Bar */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-6 text-xs font-bold uppercase tracking-widest">
+            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="#" className="hover:text-white transition-colors">Sitemap</Link>
+          </div>
+
+          <p className="text-xs text-slate-600 flex items-center gap-2">
+            © {currentYear} <span className="text-slate-400">Developed by 
+            <span className="hidden md:inline"> • </span>
+            codinwalk.com</span>
+          </p>
+
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-slate-950 transition-all duration-500 group"
+          >
+            <ArrowUpRight className="w-5 h-5 -rotate-45" />
+          </button>
         </div>
       </div>
     </footer>
-  )
+  );
 }
