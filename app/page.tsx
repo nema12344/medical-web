@@ -3,7 +3,7 @@ import Products from "./components/Products";
 import ProductListing from "./components/ProductListing";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
-import ModernHero from "./components/ModernHero";
+import HeroSlider from "./components/HeroSlider";
 import CompanyIntroSection from "./components/CompanyIntroSection";
 import QualitySection from "./components/QualitySection";
 // import ProcessSection from "./components/ProcessSection";
@@ -27,7 +27,7 @@ export default function Home() {
       <main className="flex-grow">
         {/* Hero Section - Full viewport on all devices */}
         <section id="hero" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
-          <ModernHero />
+          <HeroSlider />
         </section>
 
         {/* Main Content Container with responsive spacing */}
@@ -128,7 +128,7 @@ export default function Home() {
           </section>
         </div>
       </main>
-      
+
       {/* Footer - Full width */}
       <Footer />
     </div>
