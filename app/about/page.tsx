@@ -1,11 +1,10 @@
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FiAward, FiUsers, FiGlobe, FiTrendingUp } from 'react-icons/fi';
 
 export default function AboutPage() {
   const values = [
-     {
-        icon: FiAward,
+    {
+      icon: FiAward,
       title: "Quality Excellence",
       description: "Committed to delivering the highest quality medical products with rigorous testing and certification processes."
     },
@@ -28,8 +27,8 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
-      
+
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
         <div className="max-w-7xl mx-auto px-8 text-center">
@@ -60,7 +59,7 @@ export default function AboutPage() {
             </div>
             <div className="rounded-2xl lg:h-96 mt-8 flex items-center justify-center">
               <span className="text-gray-500">
-                 <img src="/images/company.png" alt="About Us" className="w-full h-full object-cover rounded-2xl" />   
+                <img src="/images/company.png" alt="About Us" className="w-full h-full object-cover rounded-2xl" />
               </span>
             </div>
           </div>
@@ -76,7 +75,7 @@ export default function AboutPage() {
               Our core values guide every decision we make and every product we create, ensuring we deliver excellence in healthcare solutions.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => {
               const Icon = value.icon;
@@ -151,7 +150,7 @@ export default function AboutPage() {
               Our commitment to quality is validated by international certifications and regulatory approvals.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center p-6 bg-gray-50 rounded-2xl">
               <div className="text-2xl font-bold text-gray-900 mb-2">ISO 13485</div>
@@ -182,7 +181,7 @@ export default function AboutPage() {
               Meet the experienced professionals driving our mission to deliver excellence in healthcare.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center bg-white p-8 rounded-2xl shadow-lg">
               <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-6"></div>

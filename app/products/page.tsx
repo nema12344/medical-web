@@ -1,6 +1,5 @@
 'use client';
 
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CategoryProductGrid from '../components/CategoryProductGrid';
 
@@ -15,7 +14,7 @@ const sampleProducts = [
     description: 'High-quality disposable IV infusion set for general medical use with precision flow control.'
   },
   {
-    id: '2', 
+    id: '2',
     name: 'IV Infusion Set Premium',
     category: 'Infusion Therapy',
     image: '/images/Iv-Infusion-set-Premium.png',
@@ -91,8 +90,7 @@ const sampleProducts = [
 export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
+
       {/* Page Header */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-red-600 to-red-700">
         <div className="max-w-7xl mx-auto px-8 text-center">
@@ -108,7 +106,7 @@ export default function ProductsPage() {
       {/* Products Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-8">
-          <CategoryProductGrid 
+          <CategoryProductGrid
             products={sampleProducts}
             showSearch={true}
             showViewToggle={true}

@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Search, Filter, Grid, List, ChevronDown } from 'lucide-react';
-import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 const products = [
@@ -88,7 +87,7 @@ export default function ProductListingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Navbar />
+
 
       <main className="flex-1">
         {/* Header Banner */}
@@ -166,28 +165,27 @@ export default function ProductListingPage() {
                       {product.category}
                     </span>
                   </div>
-                  
+
                   <h3 className="text-xl font-semibold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
                     {product.name}
                   </h3>
-                  
+
                   <p className="text-slate-600 mb-4 line-clamp-2">
                     {product.description}
                   </p>
-                  
+
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-slate-900">
                       {product.price}
                     </span>
-                    
+
                     <Link href={`/products/${product.id}`}>
                       <button
                         disabled={!product.inStock}
-                        className={`px-6 py-2 rounded-lg font-medium transition-colors ${
-                          product.inStock
-                            ? 'bg-red-600 hover:bg-red-700 text-white'
-                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                        }`}
+                        className={`px-6 py-2 rounded-lg font-medium transition-colors ${product.inStock
+                          ? 'bg-red-600 hover:bg-red-700 text-white'
+                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                          }`}
                       >
                         {product.inStock ? 'View Details' : 'Out of Stock'}
                       </button>

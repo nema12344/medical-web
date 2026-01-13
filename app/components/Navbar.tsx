@@ -51,7 +51,7 @@ const productCategories = [
     title: "Infusion Therapy",
     items: [
       "IV Infusion Set Economy",
-      "IV Infusion Set Premium", 
+      "IV Infusion Set Premium",
       "IV Set Vented Premium",
       "Needle Free IV Infusion Set",
       "PVC/DEHP Free IV Administration Set",
@@ -71,7 +71,7 @@ const productCategories = [
     ]
   },
   {
-    title: "Gastroenterology", 
+    title: "Gastroenterology",
     items: [
       "Infant Feeding Tube",
       "Ryles Tube",
@@ -83,7 +83,7 @@ const productCategories = [
     title: "Urology & Nephrology",
     items: [
       "Urine Bag",
-      "Urometer", 
+      "Urometer",
       "Urinary Catheter",
       "Nelaton Catheter",
       "Foley Ballon Catheter",
@@ -149,6 +149,8 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsMegaOpen, setIsProductsMegaOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isProductsMobileOpen, setIsProductsMobileOpen] = useState(false);
   const [openCategoryIndex, setOpenCategoryIndex] = useState<number | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -163,22 +165,42 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const filteredCities = cities.filter(city => 
+  const filteredCities = cities.filter(city =>
     city.toLowerCase().includes(citySearch.toLowerCase())
   );
-  
-  const filteredStates = states.filter(state => 
+
+  const filteredStates = states.filter(state =>
     state.toLowerCase().includes(stateSearch.toLowerCase())
   );
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      const currentScrollY = window.scrollY;
+
+      // Is Scrolled logic (threshold 200px)
+      setIsScrolled(currentScrollY > 200);
+
+      // Visibility logic (Hide on 10px up scroll)
+      if (currentScrollY > 200) {
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          setIsVisible(true);
+        } else if (lastScrollY - currentScrollY > 10) {
+          // Scrolling up by more than 10px
+          setIsVisible(false);
+        }
+      } else {
+        // Always visible at the top
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
       setIsProductsMegaOpen(false); // Close mega menu on scroll
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -224,7 +246,7 @@ export default function Navbar() {
   };
 
   const renderProductsMegaMenu = () => (
-    <div 
+    <div
       className={`fixed left-0 right-0 top-20 w-full bg-white shadow-2xl border border-slate-100 p-8 z-40 transform transition-all duration-500 ease-in-out ${isProductsMegaOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'}`}
       style={{
         backgroundImage: 'url(/images/mega-img.png)',
@@ -236,7 +258,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto grid grid-cols-3 gap-8">
         {/* Column 1: First 3 categories */}
         <div className="space-y-6" style={{ backdropFilter: 'blur(10px)' }}>
-          <div 
+          <div
             className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
             onClick={() => {
               setIsProductsMegaOpen(false);
@@ -255,8 +277,8 @@ export default function Navbar() {
               <p className="text-sm text-slate-600">Complete range of IV infusion products for medical procedures</p>
             </div>
           </div>
-          
-          <div 
+
+          <div
             className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
             onClick={() => {
               setIsProductsMegaOpen(false);
@@ -275,8 +297,8 @@ export default function Navbar() {
               <p className="text-sm text-slate-600">Urological and nephrology care products</p>
             </div>
           </div>
-          
-          <div 
+
+          <div
             className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
             onClick={() => {
               setIsProductsMegaOpen(false);
@@ -299,7 +321,7 @@ export default function Navbar() {
 
         {/* Column 2: Next 3 categories */}
         <div className="space-y-6" style={{ backdropFilter: 'blur(10px)' }}>
-          <div 
+          <div
             className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
             onClick={() => {
               setIsProductsMegaOpen(false);
@@ -318,8 +340,8 @@ export default function Navbar() {
               <p className="text-sm text-slate-600">Safe and reliable blood transfusion equipment</p>
             </div>
           </div>
-          
-          <div 
+
+          <div
             className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
             onClick={() => {
               setIsProductsMegaOpen(false);
@@ -338,8 +360,8 @@ export default function Navbar() {
               <p className="text-sm text-slate-600">Respiratory and anesthesia equipment</p>
             </div>
           </div>
-          
-          <div 
+
+          <div
             className="flex items-start gap-4 p-4 rounded-lg bg-slate-50 transition-all duration-200 cursor-pointer"
             onClick={() => {
               setIsProductsMegaOpen(false);
@@ -379,22 +401,24 @@ export default function Navbar() {
       {/* Main Navbar */}
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 bg-white shadow-lg z-50 transition-all duration-300 ${
-          isScrolled ? 'shadow-xl backdrop-blur-sm bg-white/95' : ''
-        }`}
+        className={`${isScrolled
+          ? 'fixed top-0 shadow-xl backdrop-blur-sm bg-white/95 translate-y-0 opacity-100'
+          : 'relative shadow-lg bg-white'
+          } ${!isVisible && isScrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
+          } left-0 right-0 z-50 transition-all duration-500 ease-in-out`}
       >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex justify-between items-center h-16 sm:h-18 lg:h-20">
             {/* LOGO */}
             <div className="flex items-center px-0 md:px-4">
-             <Image
-  src="/logo.png"
-  alt="Dispopwell Logo"
-  width={140}
-  height={40}
-  priority
-  className="h-8 w-auto sm:h-9 md:h-10 object-contain"
-/>
+              <Image
+                src="/logo.png"
+                alt="Dispopwell Logo"
+                width={140}
+                height={40}
+                priority
+                className="h-8 w-auto sm:h-9 md:h-10 object-contain"
+              />
 
             </div>
 
@@ -438,7 +462,7 @@ export default function Navbar() {
             {/* RIGHT SIDE BUTTONS */}
             <div className="flex items-center space-x-3">
               {/* Search Button - Mobile */}
-              <button 
+              <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className="lg:hidden p-2.5 rounded-xl bg-gray-100 active:scale-95 transition"
               >
@@ -446,7 +470,7 @@ export default function Navbar() {
               </button>
 
               {/* Search Button - Desktop */}
-              <button 
+              <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-red-50 text-gray-600 hover:text-red-600 transition-colors"
               >
@@ -454,7 +478,7 @@ export default function Navbar() {
               </button>
 
               {/* REQUEST QUOTE BUTTON */}
-              <button 
+              <button
                 onClick={() => setIsQuoteModalOpen(true)}
                 className="bg-gradient-to-r hidden md:inline-flex from-red-600 to-red-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
               >
@@ -507,27 +531,27 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Sidebar - Outside Navbar */}
-      <div className={`lg:hidden fixed inset-0 bg-black/50 transition-opacity duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsMenuOpen(false)} style={{zIndex: 60}} />
-      <div className={`lg:hidden fixed top-0 left-0 w-72 h-screen bg-white shadow-xl flex flex-col transform transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} style={{zIndex: 70, borderTopRightRadius: '20px', borderBottomRightRadius: '20px'}}>
+      <div className={`lg:hidden fixed inset-0 bg-black/50 transition-opacity duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsMenuOpen(false)} style={{ zIndex: 60 }} />
+      <div className={`lg:hidden fixed top-0 left-0 w-72 h-screen bg-white shadow-xl flex flex-col transform transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} style={{ zIndex: 70, borderTopRightRadius: '20px', borderBottomRightRadius: '20px' }}>
         {/* Fixed Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white" style={{borderTopRightRadius: '20px'}}>
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white" style={{ borderTopRightRadius: '20px' }}>
           <Image src="/logo.png" alt="Logo" width={120} height={40} className="h-8 w-auto sm:h-9 md:h-10 object-contain" />
           <button onClick={() => setIsMenuOpen(false)} className="p-2 pe-0 ms-auto text-gray-600">
             <FiX className="w-6 h-6" />
           </button>
         </div>
-        
+
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto  py-2">
           <div className="space-y-2">
             <Link href="/" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
               Home
             </Link>
-            
+
             <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
               Company
             </Link>
-            
+
             <div>
               <button onClick={() => setIsProductsMobileOpen(!isProductsMobileOpen)} className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
                 <span>Products</span>
@@ -543,19 +567,19 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            
+
             <Link href="/third-party-oem" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
               Third Party/OEM
             </Link>
-            
+
             <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
               Contact
             </Link>
           </div>
         </div>
-        
+
         {/* Fixed Footer Buttons */}
-        <div className="px-4 py-3 border-t border-gray-200 bg-white flex gap-3" style={{borderBottomRightRadius: '20px'}}>
+        <div className="px-4 py-3 border-t border-gray-200 bg-white flex gap-3" style={{ borderBottomRightRadius: '20px' }}>
           <button onClick={() => setIsQuoteModalOpen(true)} className="flex-1 bg-red-600 text-white px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors">
             Request Quote
           </button>
@@ -569,13 +593,13 @@ export default function Navbar() {
       {isQuoteModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-slate-800 rounded-3xl p-8 pt-6 max-w-xl w-full relative">
-            <button 
+            <button
               onClick={() => setIsQuoteModalOpen(false)}
               className="absolute top-7 right-8 text-gray-400 hover:text-white"
             >
               <FiX className="w-5 h-5" />
             </button>
-            
+
             <h3 className="text-2xl font-bold text-white mb-2">Request Quote</h3>
             <div className="flex items-center gap-3 mb-6">
               <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -583,109 +607,109 @@ export default function Navbar() {
               </svg>
               <span className="text-white/90 text-sm">+91 9950241240</span>
             </div>
-            
+
             <form className="space-y-4">
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="Full Name"
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
                 />
-            
-                <input 
-                  type="tel" 
+
+                <input
+                  type="tel"
                   placeholder="Phone Number"
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
                 />
               </div>
 
               <div>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   placeholder="Email Address"
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
                 />
               </div>
-              
-              
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="relative">
-                    <input 
-                      type="text" 
-                      placeholder="City"
-                      value={selectedCity || citySearch}
-                      onChange={(e) => {
-                        setCitySearch(e.target.value);
-                        setSelectedCity('');
-                        setShowCityDropdown(true);
-                      }}
-                      onFocus={() => setShowCityDropdown(true)}
-                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                    />
-                    {showCityDropdown && filteredCities.length > 0 && (
-                      <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
-                        {filteredCities.slice(0, 5).map((city) => (
-                          <button
-                            key={city}
-                            type="button"
-                            onClick={() => {
-                              setSelectedCity(city);
-                              setCitySearch('');
-                              setShowCityDropdown(false);
-                            }}
-                            className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
-                          >
-                            {city}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="relative">
-                    <input 
-                      type="text" 
-                      placeholder="State"
-                      value={selectedState || stateSearch}
-                      onChange={(e) => {
-                        setStateSearch(e.target.value);
-                        setSelectedState('');
-                        setShowStateDropdown(true);
-                      }}
-                      onFocus={() => setShowStateDropdown(true)}
-                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
-                    />
-                    {showStateDropdown && filteredStates.length > 0 && (
-                      <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
-                        {filteredStates.slice(0, 5).map((state) => (
-                          <button
-                            key={state}
-                            type="button"
-                            onClick={() => {
-                              setSelectedState(state);
-                              setStateSearch('');
-                              setShowStateDropdown(false);
-                            }}
-                            className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
-                          >
-                            {state}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-               </div>
-              
+
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="City"
+                    value={selectedCity || citySearch}
+                    onChange={(e) => {
+                      setCitySearch(e.target.value);
+                      setSelectedCity('');
+                      setShowCityDropdown(true);
+                    }}
+                    onFocus={() => setShowCityDropdown(true)}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                  />
+                  {showCityDropdown && filteredCities.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
+                      {filteredCities.slice(0, 5).map((city) => (
+                        <button
+                          key={city}
+                          type="button"
+                          onClick={() => {
+                            setSelectedCity(city);
+                            setCitySearch('');
+                            setShowCityDropdown(false);
+                          }}
+                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
+                        >
+                          {city}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="State"
+                    value={selectedState || stateSearch}
+                    onChange={(e) => {
+                      setStateSearch(e.target.value);
+                      setSelectedState('');
+                      setShowStateDropdown(true);
+                    }}
+                    onFocus={() => setShowStateDropdown(true)}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none"
+                  />
+                  {showStateDropdown && filteredStates.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 bg-slate-600 border border-slate-500 rounded-lg mt-1 max-h-40 overflow-y-auto z-10">
+                      {filteredStates.slice(0, 5).map((state) => (
+                        <button
+                          key={state}
+                          type="button"
+                          onClick={() => {
+                            setSelectedState(state);
+                            setStateSearch('');
+                            setShowStateDropdown(false);
+                          }}
+                          className="w-full text-left px-4 py-2 text-white hover:bg-slate-500 transition-colors"
+                        >
+                          {state}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
               <div>
-                <textarea 
+                <textarea
                   placeholder="Product Requirements"
                   rows={3}
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none resize-none"
                 />
               </div>
-              
-              <button 
+
+              <button
                 type="submit"
                 className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors"
               >
