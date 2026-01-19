@@ -160,15 +160,15 @@ export default function Footer() {
         {/* Bottom Information Bar */}
         <div className="pt-4 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-6 text-xs font-bold uppercase tracking-widest">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link href="#" className="hover:text-white transition-colors">Sitemap</Link>
           </div>
 
           <p className="text-xs text-slate-600 flex items-center gap-2">
-            © {currentYear} <span className="text-slate-400">Developed by 
-            <span className="hidden md:inline"> • </span>
-            codinwalk.com</span>
+            © {currentYear} <span className="text-slate-400">Developed by
+              <span className="hidden md:inline"> • </span>
+              codinwalk.com</span>
           </p>
 
           <button
