@@ -92,12 +92,6 @@ export default function MedicalSections() {
           >
             Comprehensive, cutting-edge healthcare solutions designed for optimal patient outcomes and clinical excellence.
           </motion.p>
-          <div className="mt-6 inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200">
-            <span className="text-sm text-slate-500">Active filter:</span>
-            <span className="text-sm font-semibold text-slate-800">
-              {activeFilter === 'all' ? 'All service lines' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
-            </span>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

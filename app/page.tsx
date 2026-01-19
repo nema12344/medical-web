@@ -3,7 +3,7 @@ import Products from "./components/Products";
 import ProductListing from "./components/ProductListing";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
-import ModernHero from "./components/ModernHero";
+import HeroSlider from "./components/HeroSlider";
 import CompanyIntroSection from "./components/CompanyIntroSection";
 import QualitySection from "./components/QualitySection";
 // import ProcessSection from "./components/ProcessSection";
@@ -25,85 +25,111 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50">
       <main className="flex-grow">
-        <section id="hero" className="scroll-mt-32">
-          <ModernHero />
+        {/* Hero Section - Full viewport on all devices */}
+        <section id="hero" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
+          <HeroSlider />
         </section>
 
-        <div>
-          <section id="company" className="scroll-mt-32">
+        {/* Main Content Container with responsive spacing */}
+        <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+          {/* Company Section */}
+          <section id="company" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper delay={0.1}>
-              <CompanyIntroSection />
+              <div className="">
+                <CompanyIntroSection />
+              </div>
             </SectionWrapper>
           </section>
 
-          <section id="highlights" className="scroll-mt-32">
+          {/* Highlights Section */}
+          <section id="highlights" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
-              <HighlightsMUI />
+              <div className="">
+                <HighlightsMUI />
+              </div>
             </SectionWrapper>
           </section>
 
-          {/* <SectionWrapper>
-            <ScrollingServices />
-          </SectionWrapper> */}
-
-          <section id="products" className="scroll-mt-32">
+          {/* Products Section */}
+          <section id="products" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
-              <Products />
+              <div className="">
+                <Products />
+              </div>
             </SectionWrapper>
           </section>
 
-          <section id="services" className="scroll-mt-32">
+          {/* Services Section */}
+          <section id="services" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
-              <MedicalSections />
+              <div className="">
+                <MedicalSections />
+              </div>
             </SectionWrapper>
           </section>
 
-          <section id="process" className="scroll-mt-32">
-            {/* <SectionWrapper>
-              <ProcessSection />
-            </SectionWrapper> */}
-          </section>
-
-          <SectionWrapper>
-            <QualitySection />
-          </SectionWrapper>
-
-          <section id="partners" className="scroll-mt-32">
+          {/* Quality Section - Full width background */}
+          <section className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
-              <PartnerMUI />
+              <QualitySection />
             </SectionWrapper>
           </section>
 
-          <section id="features" className="scroll-mt-32">
+          {/* Partners Section */}
+          <section id="partners" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
-              <Features />
+              <div className="">
+                <PartnerMUI />
+              </div>
             </SectionWrapper>
           </section>
 
-          <section id="product-listing" className="scroll-mt-32">
+          {/* Features Section */}
+          <section id="features" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
-              <ProductListing />
-            </SectionWrapper>
-          </section>
-          <section id="testimonials" className="scroll-mt-32">
-            <SectionWrapper>
-              <Testimonials />
+              <div className="">
+                <Features />
+              </div>
             </SectionWrapper>
           </section>
 
-          <section id="cta" className="scroll-mt-32">
+          {/* Product Listing Section */}
+          <section id="product-listing" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
+            <SectionWrapper>
+              <div className="">
+                <ProductListing />
+              </div>
+            </SectionWrapper>
+          </section>
+
+          {/* Testimonials Section */}
+          <section id="testimonials" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
+            <SectionWrapper>
+              <div className="">
+                <Testimonials />
+              </div>
+            </SectionWrapper>
+          </section>
+
+          {/* CTA Section - Full width background */}
+          <section id="cta" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
               <CTASection />
             </SectionWrapper>
           </section>
 
-          <section id="about" className="scroll-mt-32">
+          {/* About Section */}
+          <section id="about" className="scroll-mt-16 sm:scroll-mt-20 lg:scroll-mt-32">
             <SectionWrapper>
-              <HeroAbout />
+              <div className="">
+                <HeroAbout />
+              </div>
             </SectionWrapper>
           </section>
         </div>
       </main>
+
+      {/* Footer - Full width */}
       <Footer />
     </div>
   );

@@ -18,7 +18,7 @@ export default function CTASection() {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: "url('/images/hero-bg-2.png')" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-medicalNavy/95 to-medicalNavy/90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
           {/* Content */}
           <div className="relative z-10 px-6 md:px-12 py-16 md:py-24 text-center">
@@ -54,7 +54,7 @@ export default function CTASection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 bg-medicalRed text-white font-semibold rounded-lg shadow-redGlow hover:bg-red-700 transition-all duration-300"
+                  className="px-10 py-4 bg-red-500 text-white font-semibold rounded-lg shadow-redGlow hover:bg-red-700 transition-all duration-300"
                 >
                   Get Started Now
                 </motion.button>

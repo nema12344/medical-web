@@ -21,7 +21,7 @@ export default function CinematicHero() {
                 style={{ y: y2 }}
                 className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-medical-red/10 blur-[120px] mix-blend-screen"
             />
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+
 
             <div className="relative z-10 h-full flex flex-col items-center justify-center px-6">
                 <motion.div

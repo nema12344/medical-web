@@ -61,9 +61,9 @@ export default function HighlightsMUI() {
                             whileHover={{ y: -4 }}
                             className="group"
                         >
-                            <div className="flex items-start gap-6 p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-red-100 transition-all duration-300">
+                            <div className="md:flex md:flex-col-2  gap-6 p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-red-100 transition-all duration-300">
                                 {/* Icon Container */}
-                                <div className="flex-shrink-0">
+                                <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
                                     <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors duration-300">
                                         <item.icon className="w-8 h-8 text-red-600" />
                                     </div>
